@@ -1,1 +1,1 @@
-# Helm Charts for the Bigdata team
+# Ocean for Apache Spark helm charts
