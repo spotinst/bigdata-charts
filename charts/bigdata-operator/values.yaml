@@ -13,7 +13,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: 0.1.0-0e4ad310
 
-imagePullSecrets: [ ]
+imagePullSecrets: []
 
 # Controls the creation of big data environment using embedded components
 bigDataEnvironment:
@@ -24,15 +24,15 @@ bigDataEnvironment:
 
 serviceAccount:
   create: true
-  annotations: { }
-  name: "" # Defaults to release name
+  annotations: {}
+  name: ""  # Defaults to release name
 
-podAnnotations: { }
+podAnnotations: {}
 
-podSecurityContext: { }
+podSecurityContext: {}
 # fsGroup: 2000
 
-securityContext: { }
+securityContext: {}
 # capabilities:
 #   drop:
 #   - ALL
@@ -48,9 +48,9 @@ resources:
     cpu: 50m
     memory: 50Mi
 
-nodeSelector: { }
+nodeSelector: {}
 
-tolerations: [ ]
+tolerations: []
 
 affinity:
   nodeAffinity:
