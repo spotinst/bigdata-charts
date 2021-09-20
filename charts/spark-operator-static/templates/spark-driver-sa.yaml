@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: {{ .Values.sparkDriverServiceAccount.name }}
-  namespace: {{ .Values.sparkJobNamespace }}
+  namespace: {{ .Values.sparkAppsNamespace.name }}
   {{- if .Values.sparkDriverServiceAccount.annotations }}
   annotations:
   {{ toYaml .Values.sparkDriverServiceAccount.annotations | indent 4 }}

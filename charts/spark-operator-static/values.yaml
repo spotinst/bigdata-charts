@@ -1,7 +1,9 @@
 nameOverride: ""
 fullnameOverride: ""
 
-sparkJobNamespace: spark-apps
+sparkAppsNamespace:
+  create: true
+  name: spark-apps
 
 sparkDriverServiceAccount:
   annotations: {}

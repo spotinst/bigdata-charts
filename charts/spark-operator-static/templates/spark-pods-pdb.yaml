@@ -6,7 +6,7 @@ apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
 metadata:
   name: spark-pods
-  namespace:  {{ .Values.sparkJobNamespace }}
+  namespace:  {{ .Values.sparkAppsNamespace.name }}
   labels:
   {{- include "spark-operator-static.labels" . | nindent 4 }}
 spec:
