@@ -1,0 +1,41 @@
+spark-operator: # This section controls the behavior of the spark operator sub-chart
+  sparkJobNamespace: spark-apps
+  #image: # TODO - Use our own image
+  #  repository: gcr.io/datamechanics/spark-operator
+  #  tag: 92e8d78-dm4
+  #  pullPolicy: IfNotPresent
+  #imagePullSecrets:
+  #  - name: gcr-credentials
+
+  webhook:
+    enable: true
+    port: 443
+
+  serviceAccounts:
+    spark:
+      create: false # We create it ourselves so that we can add image pull secrets (static part)
+    sparkoperator:
+      # Upstream chart has hook-delete-policy "hook-failed", causing re-installs of the chart to fail. Let's override it.
+      # More info:
+      # The sparkoperator service account is created as part of a pre-install hook. That means that it is not managed by the
+      # release lifecycle, and is not removed when the chart is uninstalled. Furthermore, the hook deletion policy is set to
+      # "hook-failed", meaning that the resource is only deleted if the hook failed during execution.
+      # Put together, this means that install -> uninstall -> re-install will always fail since the service account already exists.
+      # To fix this, we set the hook-delete-policy to before-hook-creation, causing the previous resource to be deleted before
+      # a new hook is launched (and the resource is created again).
+      # See:
+      # https://helm.sh/docs/topics/charts_hooks/#hook-resources-are-not-managed-with-corresponding-releases
+      # https://helm.sh/docs/topics/charts_hooks/#hook-deletion-policies
+      # The hook-failed delete policy was introduced to support deployment via Argo CD:
+      # https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/pull/1313
+      hookDeletePolicy: before-hook-creation
+
+
+  resources:
+    requests:
+      cpu: 200m
+      memory: 50Mi
+
+  rbac:
+    createClusterRole: true  # This one is part of the blue/green
+    createRole: false        # This one is static

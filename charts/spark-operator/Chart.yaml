@@ -1,0 +1,9 @@
+apiVersion: v2
+description: Ocean Spark Operator (b/g part)
+name: ocean-spark-operator
+version: 0.1.0
+appVersion: 0.1.0
+dependencies:
+  - name: spark-operator
+    version: 1.1.6
+    repository: https://googlecloudplatform.github.io/spark-on-k8s-operator
