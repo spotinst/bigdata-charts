@@ -1,0 +1,36 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: {{ .Values.sparkJobNamespace }}
+  name: pod-manager
+  labels:
+  {{- include "spark-operator-static.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [ "" ] # "" indicates the core API group
+    resources: [ "pods" ]
+    verbs: [ "create", "get", "watch", "delete", "list", "patch" ]
+  - apiGroups: [ "" ] # "" indicates the core API group
+    resources: [ "configmaps" ]
+    verbs: [ "create", "get", "watch", "delete", "list" ]
+  - apiGroups: [ "" ] # "" indicates the core API group
+    resources: [ "pods/exec" ]
+    verbs: [ "get" ]
+  - apiGroups: [ "" ] # "" indicates the core API group
+    resources: [ "pods/log" ]
+    verbs: [ "get" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: spark-driver-pod-manager-rb
+  namespace: {{ .Values.sparkJobNamespace }}
+  labels:
+  {{- include "spark-operator-static.labels" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.sparkDriverServiceAccount.name }}
+    namespace: {{ .Values.sparkJobNamespace }}
+roleRef:
+  kind: Role
+  name: pod-manager
+  apiGroup: rbac.authorization.k8s.io

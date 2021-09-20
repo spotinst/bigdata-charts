@@ -1,0 +1,16 @@
+# This PDB targets driver pods.
+# The objective is to prevent pods with higher priority to evict them.
+# We're not sure yet whether this will work.
+# Let's test this when we implement priorities!
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: spark-pods
+  namespace:  {{ .Values.sparkJobNamespace }}
+  labels:
+  {{- include "spark-operator-static.labels" . | nindent 4 }}
+spec:
+  maxUnavailable: 0
+  selector:
+    matchLabels:
+      spark-role: driver
