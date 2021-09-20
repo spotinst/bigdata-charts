@@ -1,6 +1,6 @@
 dependencies:
 - name: spark-operator
   repository: https://googlecloudplatform.github.io/spark-on-k8s-operator
-  version: 1.0.8
-digest: sha256:2679f08cc3e7dcb1bf496009b4de7a08f05a1c2f3ce6b40db56b21f33b1a437a
-generated: "2021-03-08T16:49:23.166968+01:00"
+  version: 1.1.6
+digest: sha256:dbdb2c7eb06ffe5fe1aefe0fbea12acb7c2de2b226a2a9b129d19e72d5ac82b1
+generated: "2021-09-20T16:59:14.10422+02:00"

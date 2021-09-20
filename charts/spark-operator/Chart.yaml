@@ -1,6 +1,6 @@
 apiVersion: v2
-description: Ocean Spark Operator (b/g part)
-name: ocean-spark-operator
+description: Spark Operator (b/g part)
+name: spark-operator
 version: 0.1.0
 appVersion: 0.1.0
 dependencies:
