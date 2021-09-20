@@ -1,11 +1,10 @@
 spark-operator:  # This section controls the behavior of the spark operator sub-chart
   sparkJobNamespace: spark-apps
-  # image: # TODO - Use our own image
-  #   repository: gcr.io/datamechanics/spark-operator
-  #   tag: 92e8d78-dm4
-  #   pullPolicy: IfNotPresent
-  # imagePullSecrets:
-  #   - name: gcr-credentials
+  image:
+    repository: gcr.io/spark-operator/spark-operator
+    tag: v1beta2-1.2.3-3.1.1
+    pullPolicy: IfNotPresent
+  imagePullSecrets: []
 
   webhook:
     enable: true
