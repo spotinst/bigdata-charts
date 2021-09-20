@@ -1,11 +1,11 @@
-spark-operator: # This section controls the behavior of the spark operator sub-chart
+spark-operator:  # This section controls the behavior of the spark operator sub-chart
   sparkJobNamespace: spark-apps
-  #image: # TODO - Use our own image
-  #  repository: gcr.io/datamechanics/spark-operator
-  #  tag: 92e8d78-dm4
-  #  pullPolicy: IfNotPresent
-  #imagePullSecrets:
-  #  - name: gcr-credentials
+  # image: # TODO - Use our own image
+  #   repository: gcr.io/datamechanics/spark-operator
+  #   tag: 92e8d78-dm4
+  #   pullPolicy: IfNotPresent
+  # imagePullSecrets:
+  #   - name: gcr-credentials
 
   webhook:
     enable: true
@@ -13,7 +13,7 @@ spark-operator: # This section controls the behavior of the spark operator sub-c
 
   serviceAccounts:
     spark:
-      create: false # We create it ourselves so that we can add image pull secrets (static part)
+      create: false  # We create it ourselves so that we can add image pull secrets (static part)
     sparkoperator:
       # Upstream chart has hook-delete-policy "hook-failed", causing re-installs of the chart to fail. Let's override it.
       # More info:
