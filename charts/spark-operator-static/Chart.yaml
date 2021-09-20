@@ -1,6 +1,6 @@
 apiVersion: v2
-description: Ocean Spark Operator (static part)
-name: ocean-spark-operator-static
+description: Spark Operator (static part)
+name: spark-operator-static
 version: 0.1.0
 appVersion: 0.1.0
 maintainers:
