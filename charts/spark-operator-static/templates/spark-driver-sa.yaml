@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ .Values.sparkDriverServiceAccount.name }}
+  namespace: {{ .Values.sparkAppsNamespace.name }}
+  {{- if .Values.sparkDriverServiceAccount.annotations }}
+  annotations:
+  {{ toYaml .Values.sparkDriverServiceAccount.annotations | indent 4 }}
+  {{- end }}
+  labels:
+    bigdata.spot.io/resource: spark-driver-sa
+  {{- include "spark-operator-static.labels" . | nindent 4 }}

@@ -1,0 +1,12 @@
+nameOverride: ""
+fullnameOverride: ""
+
+sparkAppsNamespace:
+  create: true
+  name: spark-apps
+
+sparkDriverServiceAccount:
+  annotations: {}
+  name: spark-driver
+
+sparkPodsPreemptionPolicy: Never

@@ -1,0 +1,12 @@
+{{- if .Values.sparkAppsNamespace.create -}}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.sparkAppsNamespace.name }}
+  labels:
+    bigdata.spot.io/resource: spark-apps-ns
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/resource-policy: keep
+    helm.sh/hook-delete-policy: hook-failed
+{{- end }}

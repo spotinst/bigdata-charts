@@ -1,0 +1,41 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: spark-high-priority
+  namespace: {{ .Values.sparkAppsNamespace.name }}
+  labels:
+  {{- include "spark-operator-static.labels" . | nindent 4 }}
+value: 900
+  {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.Version }}
+preemptionPolicy: {{ .Values.sparkPodsPreemptionPolicy }}
+  {{- end }}
+globalDefault: false
+description: "Priority class used by the Spark scheduler for high priority applications"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: spark-normal-priority
+  namespace: {{ .Values.sparkAppsNamespace.name }}
+  labels:
+  {{- include "spark-operator-static.labels" . | nindent 4 }}
+value: 600
+  {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.Version }}
+preemptionPolicy: {{ .Values.sparkPodsPreemptionPolicy }}
+  {{- end }}
+globalDefault: false
+description: "Priority class used by the Spark scheduler for normal priority applications"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: spark-low-priority
+  namespace: {{ .Values.sparkAppsNamespace.name }}
+  labels:
+  {{- include "spark-operator-static.labels" . | nindent 4 }}
+value: 300
+  {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.Version }}
+preemptionPolicy: {{ .Values.sparkPodsPreemptionPolicy }}
+  {{- end }}
+globalDefault: false
+description: "Priority class used by the Spark scheduler for low priority applications"
