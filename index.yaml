@@ -60,4 +60,17 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-0.1.0/spark-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2021-09-21T10:48:39.812453497Z"
+  spark-operator-static:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-09-21T10:52:26.167408591Z"
+    description: Spark Operator (static part)
+    digest: d69f9858c8d6d7d81069096e521f0b6dd97817d5bcb09ba92989a81f8bae83d6
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: spark-operator-static
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-09-21T10:52:26.167416091Z"
