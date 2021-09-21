@@ -1,0 +1,16 @@
+apiVersion: v2
+description: Spark Operator (b/g part)
+name: spark-operator
+version: 0.1.0
+appVersion: 0.1.0
+dependencies:
+  - name: spark-operator
+    version: 1.1.6
+    # We use an unpacked manually managed sub chart / dependency chart - therefore we do not point to the chart repo
+    # To update the dependency chart:
+    # - uncomment this line and then run `helm dependency update charts/spark-operator`
+    # - unpack the .tgz file overriding the sub-chart, delete the .tgz file, and run `helm dependency update charts/spark-operator` again
+    # repository: https://googlecloudplatform.github.io/spark-on-k8s-operator
+maintainers:
+  - name: thorsteinnth
+    email: thorsteinn.sigurdsson@netapp.com
