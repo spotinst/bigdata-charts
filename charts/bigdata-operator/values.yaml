@@ -11,16 +11,9 @@ image:
   repository: public.ecr.aws/l8m2k1n1/netapp/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.0-0e4ad310
+  tag: 0.1.1-c31ad4f8
 
 imagePullSecrets: []
-
-# Controls the creation of big data environment using embedded components
-bigDataEnvironment:
-  create: false
-  name: ""
-  active: false
-  componentVersions: ""
 
 serviceAccount:
   create: true
