@@ -15,13 +15,6 @@ image:
 
 imagePullSecrets: []
 
-# Controls the creation of big data environment using embedded components
-bigDataEnvironment:
-  create: false
-  name: ""
-  active: false
-  componentVersions: ""
-
 serviceAccount:
   create: true
   annotations: {}
