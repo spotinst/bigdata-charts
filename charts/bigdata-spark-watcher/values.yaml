@@ -8,7 +8,7 @@ image:
   repository: public.ecr.aws/l8m2k1n1/netapp/bigdata-spark-watcher
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.1"
+  tag: 0.0.2-3f128a26
 
 imagePullSecrets: []
 nameOverride: ""
