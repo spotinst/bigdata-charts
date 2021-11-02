@@ -6,16 +6,16 @@ replicaCount: 1
 
 image:
   repository: public.ecr.aws/l8m2k1n1/netapp/bigdata-spark-watcher
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.1"
+  tag: 0.0.2-3f128a26
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-# label used to select sparkApplication custom resources
-deploymentLabel: "wave.spot.io/operator-wave-v0.0.1"
+# Spark Application watch label - used to select sparkApplication custom resources
+saWatchLabel: ""
 
 serviceAccount:
   create: true
