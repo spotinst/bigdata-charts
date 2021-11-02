@@ -31,7 +31,7 @@ spec:
           - --metrics-bind-address
           - ":8080"
           - --bigdata-watch-version
-          - "{{ .Values.deploymentLabel }}"
+          - "{{ .Values.saWatchLabel }}"
           ports:
           - name: metrics
             containerPort: 8080

@@ -8,7 +8,7 @@ Helm chart to deploy the Big Data Spark Watcher
 
 ## Values
 
-* deploymentLabel: label key used to select sparkApplication custom resources, for instance "wave.spot.io/operator-wave-v0.0.1" (label value is unimportant)
+* saWatchLabel: label key used to select sparkApplication custom resources, for instance "bigdata.spot.io/bdenv-v1" (label value is unimportant)
 
 ## Installation
 
