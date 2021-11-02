@@ -11,7 +11,7 @@ rules:
     verbs: [ "create", "get", "watch", "delete", "list", "patch" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "configmaps" ]
-    verbs: [ "create", "get", "watch", "delete", "list" ]
+    verbs: [ "create", "get", "watch", "delete", "list", "patch" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "pods/exec" ]
     verbs: [ "get" ]
