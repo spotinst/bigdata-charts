@@ -8,12 +8,16 @@ fullnameOverride: ""
 replicaCount: 1
 
 image:
-  repository: public.ecr.aws/l8m2k1n1/netapp/bigdata-operator
+  repository: public.ecr.aws/f4k1p1n4/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.3-06a3157c
+  tag: 0.1.4-a07bf361
 
 imagePullSecrets: []
+
+envVars:
+  - name: SPOTINST_BASE_URL
+    value: https://api.spotinst.io
 
 serviceAccount:
   create: true
