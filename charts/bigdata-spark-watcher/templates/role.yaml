@@ -36,3 +36,14 @@ rules:
   - list
   - watch
   - patch
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch

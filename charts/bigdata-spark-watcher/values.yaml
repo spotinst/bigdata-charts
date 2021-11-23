@@ -5,14 +5,20 @@
 replicaCount: 1
 
 image:
-  repository: public.ecr.aws/l8m2k1n1/netapp/bigdata-spark-watcher
+  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-spark-watcher
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.0.4-b02a9abc
+  tag: 0.1.0-8045089e
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: spot-bigdata-image-pull
+
 nameOverride: ""
 fullnameOverride: ""
+
+envVars:
+  - name: SPOTINST_BASE_URL
+    value: https://api.spotinst.io
 
 # Spark Application watch label - used to select sparkApplication custom resources
 saWatchLabel: ""
