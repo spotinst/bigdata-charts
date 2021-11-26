@@ -38,6 +38,12 @@ spec:
           env:
             - name: BIGDATA_PROXY_PORT
               value: "{{ .Values.port }}"
+            - name: BIGDATA_PROXY_LOG_LIMIT
+              value: "{{ .Values.logLimit }}"
+            - name: BIGDATA_PROXY_EVENT_TIMEOUT
+              value: "{{ .Values.eventTimeout }}"
+            - name: BIGDATA_PROXY_APPS_NAMESPACE
+              value: "{{ .Values.sparkAppsNamespace }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
