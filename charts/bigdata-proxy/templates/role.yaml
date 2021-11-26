@@ -6,44 +6,11 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - '*'
+  - pods
+  - pods/log
+  - events
+  - services
   verbs:
   - get
   - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - pods/exec
-  verbs:
-  - create
-- apiGroups:
-  - apps
-  resources:
-  - deployments
-  - jobs
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - sparkoperator.k8s.io
-  resources:
-  - sparkapplications
-  - scheduledsparkapplications
-  verbs:
-  - get
-  - list
-  - watch
-  - patch
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - delete
-  - get
-  - list
-  - patch
-  - update
   - watch
