@@ -12,7 +12,7 @@ spec:
   rules:  
   - http:
       paths:
-      - path: {{ .Values.ingress.prefixPath }}
+      - path: {{ printf "/%s/?(.*)" ( .Values.ingress.prefixPath | default (include "bigdata-proxy.fullname" .)) }}
         pathType: Prefix
         backend:
           service:
