@@ -18,6 +18,11 @@ logLimit: 200
 eventTimeout: 1m
 sparkAppsNamespace: spark-apps
 
+ingress:
+  create: true
+  prefixPath: /bdproxy/?(.*)
+  ingressClassName: spot-bigdata-nginx
+
 nameOverride: ""
 fullnameOverride: ""
 
