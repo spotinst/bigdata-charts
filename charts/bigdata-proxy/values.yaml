@@ -20,7 +20,7 @@ sparkAppsNamespace: spark-apps
 
 ingress:
   create: true
-  prefixPath: "" # Defaults to bigdata-proxy.fullname
+  prefixPath: ""  # Defaults to bigdata-proxy.fullname
   ingressClassName: spot-bigdata-nginx
 
 nameOverride: ""
