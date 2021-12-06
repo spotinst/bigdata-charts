@@ -1,0 +1,22 @@
+{{- if .Values.ingress.create -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "bigdata-proxy.fullname" . }}
+  labels:
+    {{- include "bigdata-proxy.labels" . | nindent 4 }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  rules:  
+  - http:
+      paths:
+      - path: {{ printf "/%s/?(.*)" ( .Values.ingress.prefixPath | default (include "bigdata-proxy.fullname" .)) }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "bigdata-proxy.fullname" . }}
+            port:
+              number: 80
+{{- end }}
