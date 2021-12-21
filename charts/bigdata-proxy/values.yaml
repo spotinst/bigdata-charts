@@ -22,6 +22,9 @@ ingress:
   create: true
   prefixPath: ""  # Defaults to bigdata-proxy.fullname
   ingressClassName: spot-bigdata-nginx
+  host: ""  # Overridden at deploy time
+  secretNamespace: ""  # Overridden at deploy time
+  secretName: ""  # Overridden at deploy time
 
 nameOverride: ""
 fullnameOverride: ""

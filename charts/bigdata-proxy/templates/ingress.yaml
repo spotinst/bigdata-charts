@@ -7,10 +7,15 @@ metadata:
     {{- include "bigdata-proxy.labels" . | nindent 4 }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    # Enable client certificate authentication
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    # Secret containing the trusted ca certificates
+    nginx.ingress.kubernetes.io/auth-tls-secret: {{ printf "%s/%s" .Values.ingress.secretNamespace .Values.ingress.secretName }}
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:  
-  - http:
+  - host: {{ .Values.ingress.host }}
+    http:
       paths:
       - path: {{ printf "/%s/?(.*)" ( .Values.ingress.prefixPath | default (include "bigdata-proxy.fullname" .)) }}
         pathType: Prefix
@@ -19,4 +24,8 @@ spec:
             name: {{ include "bigdata-proxy.fullname" . }}
             port:
               number: 80
+  tls:
+  - hosts:
+    - {{ .Values.ingress.host }}
+    secretName: {{ .Values.ingress.secretName }}
 {{- end }}
