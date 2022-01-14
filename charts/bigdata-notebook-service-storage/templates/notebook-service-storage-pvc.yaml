@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "bigdata-notebook-service-storage.fullname" . }}
+  labels:
+    {{- include "bigdata-notebook-service-storage.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  volumeName: {{ include "bigdata-notebook-service-storage.fullname" . }}
+  resources:
+    requests:
+      storage: {{ .Values.storage.capacity }}

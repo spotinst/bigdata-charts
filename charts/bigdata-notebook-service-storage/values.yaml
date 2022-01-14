@@ -1,0 +1,16 @@
+# Default values for bigdata-notebook-service-storage
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: ""
+
+storage:
+  capacity: 100Mi
+
+# Looks like we have to use the storage server's service's cluster IP: https://github.com/kubernetes/kubernetes/issues/44528
+# So the address is an IP
+nfs:
+  server:
+    address: ""  # Overridden at deploy time
+    path: "/"
