@@ -1,5 +1,43 @@
 apiVersion: v1
 entries:
+  bigdata-notebook-service-storage:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-01-14T13:42:13.895152025Z"
+    description: A Helm chart for the Spot Big Data Notebook Service Storage Objects
+    digest: 154ed41308f79223c83079dd82da9a1022b796c9a55c279b98dc459d3d53fd54
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-notebook-service-storage
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-storage-0.1.0/bigdata-notebook-service-storage-0.1.0.tgz
+    version: 0.1.0
+  bigdata-notebook-service-storage-server:
+  - apiVersion: v2
+    appVersion: "0.8"
+    created: "2022-01-14T13:42:14.030831979Z"
+    description: A Helm chart for the Spot Big Data Notebook Service Storage Server
+    digest: 5a11c83e10395fbe9cd4c9ad046c562c9bd2b537a118da4776a4fcd6be5e5084
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-notebook-service-storage-server
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-storage-server-0.1.0/bigdata-notebook-service-storage-server-0.1.0.tgz
+    version: 0.1.0
   bigdata-operator:
   - apiVersion: v2
     appVersion: 0.1.11
@@ -466,4 +504,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-21T15:23:43.008931468Z"
+generated: "2022-01-14T13:42:14.030884879Z"
