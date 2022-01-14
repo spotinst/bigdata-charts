@@ -12,5 +12,5 @@ storage:
 # So the address is an IP
 nfs:
   server:
-    address: "1" # Overridden at deploy time
+    address: "" # Overridden at deploy time
     path: "/"
