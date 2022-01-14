@@ -6,7 +6,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 storage:
-  size: 100Mi
+  capacity: 100Mi
 
 # Looks like we have to use the storage server's service's cluster IP: https://github.com/kubernetes/kubernetes/issues/44528
 # So the address is an IP

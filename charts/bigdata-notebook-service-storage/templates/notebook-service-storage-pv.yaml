@@ -6,7 +6,7 @@ metadata:
     {{- include "bigdata-notebook-service-storage.labels" . | nindent 4 }}
 spec:
   capacity:
-    storage: {{ .Values.storage.size }}
+    storage: {{ .Values.storage.capacity }}
   accessModes:
     - ReadWriteMany
   nfs:

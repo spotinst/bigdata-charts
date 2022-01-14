@@ -11,4 +11,4 @@ spec:
   volumeName: {{ include "bigdata-notebook-service-storage.fullname" . }}
   resources:
     requests:
-      storage: {{ .Values.storage.size }}
+      storage: {{ .Values.storage.capacity }}
