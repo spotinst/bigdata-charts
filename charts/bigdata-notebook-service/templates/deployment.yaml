@@ -25,6 +25,26 @@ spec:
       serviceAccountName: {{ include "bigdata-notebook-service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+      - name: session-storage
+        persistentVolumeClaim:
+          claimName: bigdata-notebook-service-storage
+      # This initContainers section should not be needed if the
+      # securityContext.fsGroup entry above wasn't ignored, but unfortunately
+      # it is ignored for NFS volumes:
+      # https://github.com/kubernetes/examples/issues/260
+      initContainers:
+      - name: nfs-fixer
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: session-storage
+          mountPath: "/mnt"
+        command:
+        - sh
+        - -c
+        - (chmod 0775 /mnt; chgrp 1000 /mnt)
       containers:
         - name: bigdata-notebook-service
           ports:
@@ -33,6 +53,16 @@ spec:
             protocol: TCP
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          volumeMounts:
+          - name: session-storage
+            mountPath: "/mnt"
+          livenessProbe:
+            exec:
+              command:
+                - ls
+                - /mnt/kernel_sessions
+            initialDelaySeconds: 30
+            periodSeconds: 10
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env: 
@@ -58,6 +88,10 @@ spec:
             value: "{{ .Values.kernel.portMin }}..{{ .Values.kernel.portMax }}"
           - name: EG_MIN_PORT_RANGE_SIZE  # This one needs to match the range above or JEG won't start
             value: "{{ sub .Values.kernel.portMax .Values.kernel.portMin }}"
+          - name: EG_KERNEL_SESSION_PERSISTENCE
+            value: "True"
+          - name: EG_PERSISTENCE_ROOT
+            value: "/mnt"            
           - name: SPOTINST_CLUSTER_ID
             valueFrom:
               configMapKeyRef:
