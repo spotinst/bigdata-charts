@@ -9,7 +9,7 @@ spec:
   selector:
     {{- include "bigdata-notebook-service.selectorLabels" . | nindent 4 }}
   ports:
-  {{- range untilStep (.Values.kernel.portMin|int) (add1 .Values.kernel.portMax|int) 1 }}
+  {{- range untilStep (.Values.kernel.portMin | int) (add1 .Values.kernel.portMax | int) 1 }}
   - protocol: TCP
     name: kernel-{{ . }}
     port: {{ . }}
