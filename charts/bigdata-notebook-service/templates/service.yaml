@@ -13,5 +13,5 @@ spec:
     targetPort: proxy
   selector:
     {{- include "bigdata-notebook-service.selectorLabels" . | nindent 4 }}
-  sessionAffinity: None
+  sessionAffinity: ClientIP
   type: ClusterIP

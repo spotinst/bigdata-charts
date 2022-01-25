@@ -5,14 +5,26 @@
 replicaCount: 1
 
 image:
-  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service
+  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service  #598800841386.dkr.ecr.us-east-2.amazonaws.com/private/bigdata-notebook-service
   pullPolicy: IfNotPresent
-  tag: master
+  tag: master  # notebook-service-integration
 
 imagePullSecrets:
-  - name: spot-bigdata-image-pull
+  - name: spot-bigdata-image-pull  # spot-bigdata-image-pull-dev
 
-port: 8080
+port: 8888
+
+kernel:
+  namespace: "spark-apps"
+  portMin: 50000  # Port range usable by kernels. Each kernel takes one port.
+  portMax: 50020
+  launchTimeout: 600 # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.
+  cullIdleTimeout: 3600 # Timeout for an idle kernel before it's culled in seconds. Default is 1 hour.
+
+egBaseUrl: "notebooks"
+egLogLevel: "DEBUG"
+
+spotBaseUrl: "https://api.spotinst.io"
 
 nameOverride: ""
 fullnameOverride: ""
@@ -24,7 +36,8 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:  
+  fsGroup: 1000
 
 securityContext: {}
 

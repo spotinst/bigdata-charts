@@ -35,7 +35,31 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env: []
+          env: 
+          - name: EG_PORT
+            value: {{ .Values.port | quote }}
+          - name: EG_BASE_URL
+            value: {{ .Values.egBaseUrl }}
+          - name: EG_NAMESPACE
+            value: {{ .Release.Namespace }}
+          - name: EG_CULL_IDLE_TIMEOUT
+            value: {{ .Values.kernel.cullIdleTimeout | quote }}
+          - name: EG_LOG_LEVEL
+            value: {{ .Values.egLogLevel }}
+          - name: EG_KERNEL_LAUNCH_TIMEOUT
+            value: {{ .Values.kernel.launchTimeout | quote }}
+          - name: OFAS_KERNEL_NAMESPACE
+            value: {{ .Values.kernel.namespace }}
+          - name: SPOTINST_BASE_URL
+            value: {{ .Values.spotBaseUrl }}
+          - name: EG_RESPONSE_IP
+            value: "{{ include "bigdata-notebook-service.fullname" . }}-kernels.{{ .Release.Namespace }}.svc.cluster.local"
+          - name: EG_PORT_RANGE
+            value: "{{ .Values.kernel.portMin }}..{{ .Values.kernel.portMax }}"
+          - name: EG_MIN_PORT_RANGE_SIZE  # This one needs to match the range above or JEG won't start
+            value: "{{ sub .Values.kernel.portMax .Values.kernel.portMin }}"
+          - name: SPOTINST_CLUSTER_ID
+            value: "osc-3689cd40"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
