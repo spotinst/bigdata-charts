@@ -21,6 +21,14 @@ kernel:
   launchTimeout: 600  # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.
   cullIdleTimeout: 3600  # Timeout for an idle kernel before it's culled in seconds. Default is 1 hour.
 
+ingress:
+  create: true
+  prefixPath: ""  # Defaults to bigdata-notebook-service.fullname
+  ingressClassName: spot-bigdata-nginx
+  host: ""  # Overridden at deploy time
+  secretNamespace: ""  # Overridden at deploy time
+  secretName: ""  # Overridden at deploy time
+
 egBaseUrl: "notebooks"
 egLogLevel: "DEBUG"
 
