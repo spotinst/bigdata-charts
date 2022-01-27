@@ -1,4 +1,5 @@
 ---
+#  TODO This needs to be a static asset
 apiVersion: v1
 kind: Service
 metadata:
