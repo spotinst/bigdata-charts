@@ -5,12 +5,12 @@
 replicaCount: 1
 
 image:
-  repository: 598800841386.dkr.ecr.us-east-2.amazonaws.com/private/bigdata-notebook-service  # 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service
-  pullPolicy: Always  # IfNotPresent
-  tag: notebook-service-integration  # master
+  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service
+  pullPolicy: IfNotPresent
+  tag: 4ad39e50
 
 imagePullSecrets:
-  - name: spot-bigdata-image-pull-dev  # spot-bigdata-image-pull
+  - name: spot-bigdata-image-pull
 
 port: 8888
 
