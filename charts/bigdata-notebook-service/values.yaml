@@ -1,0 +1,69 @@
+# Default values for bigdata-noteboook-service
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service
+  pullPolicy: IfNotPresent
+  tag: 4ad39e50
+
+imagePullSecrets:
+  - name: spot-bigdata-image-pull
+
+port: 8888
+
+kernel:
+  namespace: "spark-apps"
+  portMin: 50000  # Port range usable by kernels. Each kernel takes one port.
+  portMax: 50020
+  launchTimeout: 600  # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.
+  cullIdleTimeout: 3600  # Timeout for an idle kernel before it's culled in seconds. Default is 1 hour.
+  connectionServiceName: bigdata-notebook-service-kernel-connection
+
+ingress:
+  create: true
+  prefixPath: ""  # Defaults to bigdata-notebook-service.fullname
+  ingressClassName: spot-bigdata-nginx
+  host: ""  # Overridden at deploy time
+  secretNamespace: ""  # Overridden at deploy time
+  secretName: ""  # Overridden at deploy time
+
+egBaseUrl: "notebooks"
+egLogLevel: "DEBUG"
+
+# Has to be in sync with bigdata-notebook-service-storage chart
+sessionStoragePvcName: bigdata-notebook-service-storage
+
+spotBaseUrl: "https://api.spotinst.io"
+spotCredsNamespace: "kube-system"
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: bigdata-notebook-service
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext: {}
+
+resources:
+  limits:
+    cpu: 2
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 500Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

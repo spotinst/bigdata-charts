@@ -1,0 +1,42 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "bigdata-notebook-service.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "bigdata-notebook-service.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "bigdata-notebook-service.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "bigdata-notebook-service.fullname" . }}-pod-watcher
+  namespace: {{ .Values.kernel.namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "bigdata-notebook-service.fullname" . }}-pod-watcher
+subjects:
+- kind: ServiceAccount
+  name: {{ include "bigdata-notebook-service.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "bigdata-notebook-service.fullname" . }}-spot-creds
+  namespace: {{ .Values.spotCredsNamespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "bigdata-notebook-service.fullname" . }}-spot-creds
+subjects:
+- kind: ServiceAccount
+  name: {{ include "bigdata-notebook-service.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}

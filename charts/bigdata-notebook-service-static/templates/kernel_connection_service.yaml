@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.kernelConnectionServiceName}}
+  labels:
+    bigdata.spot.io/resource: notebook-kernel-connection-service
+    {{- include "bigdata-notebook-service-static.labels" . | nindent 4 }}      
+spec:
+  selector:
+    {{- with .Values.kernelConnectionServiceSelectorLabels }}  
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  ports:
+  {{- range untilStep (.Values.kernel.portMin | int) (add1 .Values.kernel.portMax | int) 1 }}
+  - protocol: TCP
+    name: kernel-{{ . }}
+    port: {{ . }}
+    targetPort: {{ . }}
+  {{- end }}
+  sessionAffinity: ClientIP
+  type: ClusterIP
