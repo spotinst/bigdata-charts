@@ -20,6 +20,3 @@ spec:
   {{- end }}
   sessionAffinity: ClientIP
   type: ClusterIP
-
-  
-  
