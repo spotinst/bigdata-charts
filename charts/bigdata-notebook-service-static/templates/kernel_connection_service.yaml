@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.kernelServiceName}}
+  name: {{ .Values.kernelConnectionServiceName}}
   labels:
     bigdata.spot.io/resource: notebook-kernel-connection-service
     {{- include "bigdata-notebook-service-static.labels" . | nindent 4 }}      
 spec:
   selector:
-    {{- with .Values.kernelServiceSelectorLabels }}  
+    {{- with .Values.kernelConnectionServiceSelectorLabels }}  
     {{- toYaml . | nindent 4 }}
     {{- end }}
   ports:

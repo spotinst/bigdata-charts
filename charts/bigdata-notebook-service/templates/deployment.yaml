@@ -83,7 +83,7 @@ spec:
           - name: SPOTINST_BASE_URL
             value: {{ .Values.spotBaseUrl }}
           - name: EG_RESPONSE_IP
-            value: "{{ include "bigdata-notebook-service.fullname" . }}-kernels.{{ .Release.Namespace }}.svc.cluster.local"
+            value: "{{ .Values.kernel.connectionServiceName }}.{{ .Release.Namespace }}.svc.cluster.local"
           - name: EG_PORT_RANGE
             value: "{{ .Values.kernel.portMin }}..{{ .Values.kernel.portMax }}"
           - name: EG_MIN_PORT_RANGE_SIZE  # This one needs to match the range above or JEG won't start

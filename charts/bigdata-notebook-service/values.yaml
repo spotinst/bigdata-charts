@@ -20,6 +20,7 @@ kernel:
   portMax: 50020
   launchTimeout: 600  # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.
   cullIdleTimeout: 3600  # Timeout for an idle kernel before it's culled in seconds. Default is 1 hour.
+  connectionServiceName: bigdata-notebook-service-kernel-connection
 
 ingress:
   create: true
