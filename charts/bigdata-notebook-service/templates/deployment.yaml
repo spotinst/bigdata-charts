@@ -28,7 +28,7 @@ spec:
       volumes:
       - name: session-storage
         persistentVolumeClaim:
-          claimName: bigdata-notebook-service-storage
+          claimName: {{ .Values.sessionStoragePvcName }}
       # This initContainers section should not be needed if the
       # securityContext.fsGroup entry above wasn't ignored, but unfortunately
       # it is ignored for NFS volumes:

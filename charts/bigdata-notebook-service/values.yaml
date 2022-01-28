@@ -33,6 +33,9 @@ ingress:
 egBaseUrl: "notebooks"
 egLogLevel: "DEBUG"
 
+# Has to be in sync with bigdata-notebook-service-storage chart
+sessionStoragePvcName: bigdata-notebook-service-storage
+
 spotBaseUrl: "https://api.spotinst.io"
 spotCredsNamespace: "kube-system"
 
