@@ -1,0 +1,11 @@
+apiVersion: v2
+name: bigdata-notebook-service-static
+description: A Helm chart for the Spot Big Data Notebook Service (static part)
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+home: https://github.com/spotinst/charts
+icon: https://docs.spot.io/_media/images/spot_mark.png
+maintainers:
+- name: thorsteinnth
+  email: thorsteinn.sigurdsson@netapp.com

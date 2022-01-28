@@ -1,0 +1,17 @@
+# Values for bigdata-noteboook-service-static
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+kernelServiceName: bigdata-notebook-service-kernels
+
+kernel:
+  # Port range usable by kernels. Each kernel takes one port.
+  # Has to be in sync with the port range in the JEG deployment.
+  portMin: 50000 
+  portMax: 50020
+
+kernelServiceSelectorLabels: {}  # Overridden at deploy time
+
+nameOverride: ""
+fullnameOverride: ""
+

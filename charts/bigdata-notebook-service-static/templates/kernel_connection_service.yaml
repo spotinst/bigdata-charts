@@ -1,14 +1,16 @@
 ---
-#  TODO This needs to be a static asset
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "bigdata-notebook-service.fullname" . }}-kernels
+  name: {{ .Values.kernelServiceName}}
   labels:
-    {{- include "bigdata-notebook-service.labels" . | nindent 4 }}      
+    bigdata.spot.io/resource: notebook-kernel-connection-service
+    {{- include "bigdata-notebook-service-static.labels" . | nindent 4 }}      
 spec:
   selector:
-    {{- include "bigdata-notebook-service.selectorLabels" . | nindent 4 }}
+    {{- with .Values.kernelServiceSelectorLabels }}  
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   ports:
   {{- range untilStep (.Values.kernel.portMin | int) (add1 .Values.kernel.portMax | int) 1 }}
   - protocol: TCP
@@ -19,3 +21,5 @@ spec:
   sessionAffinity: ClientIP
   type: ClusterIP
 
+  
+  
