@@ -40,10 +40,11 @@ spec:
           {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.envVars }}
           env:
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
+            - name: SPOTINST_BASE_URL
+              value: {{ .Values.spotBaseUrl | quote }}
+            - name: CHART_VERSION
+              value: {{ .Chart.Version | quote }}
           resources:
       {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
