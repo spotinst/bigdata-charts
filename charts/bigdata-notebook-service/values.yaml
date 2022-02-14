@@ -30,7 +30,7 @@ ingress:
   secretNamespace: ""  # Overridden at deploy time
   secretName: ""  # Overridden at deploy time
 
-egBaseUrl: "notebooks"
+egBaseUrl: "/"
 egLogLevel: "DEBUG"
 
 # Has to be in sync with bigdata-notebook-service-storage chart
