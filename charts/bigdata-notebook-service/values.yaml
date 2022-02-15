@@ -49,6 +49,9 @@ serviceAccount:
 
 podAnnotations: {}
 
+podLabels:
+  spotinst.io/restrict-scale-down: "true"
+
 podSecurityContext:
   fsGroup: 1000
 
