@@ -49,6 +49,9 @@ serviceAccount:
 
 podAnnotations: {}
 
+podLabels:
+  spotinst.io/restrict-scale-down: "true"
+
 podSecurityContext:
   fsGroup: 1000
 
@@ -66,4 +69,12 @@ nodeSelector: {}
 
 tolerations: []
 
-affinity: {}
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: spotinst.io/node-lifecycle
+          operator: In
+          values:
+          - od

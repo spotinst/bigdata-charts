@@ -14,6 +14,9 @@ fullnameOverride: ""
 
 podAnnotations: {}
 
+podLabels:
+  spotinst.io/restrict-scale-down: "true"
+
 serviceAccount:
   create: false
   name: ""
@@ -38,10 +41,9 @@ tolerations: []
 
 affinity:
   nodeAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-    - weight: 1
-      preference:
-        matchExpressions:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
         - key: spotinst.io/node-lifecycle
           operator: In
           values:
