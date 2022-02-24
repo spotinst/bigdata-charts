@@ -17,7 +17,7 @@ port: 8888
 kernel:
   namespace: "spark-apps"
   portMin: 50000  # Port range usable by kernels. Each kernel takes one port.
-  portMax: 50020
+  portMax: 50100
   launchTimeout: 600  # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.
   cullIdleTimeout: 3600  # Timeout for an idle kernel before it's culled in seconds. Default is 1 hour.
   connectionServiceName: bigdata-notebook-service-kernel-connection
