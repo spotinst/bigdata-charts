@@ -2,6 +2,21 @@ apiVersion: v1
 entries:
   bigdata-notebook-service:
   - apiVersion: v2
+    appVersion: 0.1.4
+    created: "2022-02-24T12:58:29.701266239Z"
+    description: A Helm chart for the Spot Big Data Notebook Service
+    digest: f48e28a639d91bba745136d997f93dc4ce2b69e8fbf9458e9ae065e6a52d6de0
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: sebastien.maintrot@netapp.com
+      name: impsy
+    name: bigdata-notebook-service
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-0.1.4/bigdata-notebook-service-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     appVersion: 0.1.3
     created: "2022-02-23T15:46:24.439737889Z"
     description: A Helm chart for the Spot Big Data Notebook Service
@@ -62,6 +77,21 @@ entries:
     - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-0.1.0/bigdata-notebook-service-0.1.0.tgz
     version: 0.1.0
   bigdata-notebook-service-static:
+  - apiVersion: v2
+    appVersion: 0.1.1
+    created: "2022-02-24T12:58:29.833854651Z"
+    description: A Helm chart for the Spot Big Data Notebook Service (static part)
+    digest: 2d250d91f52e1120c310092ef9748680ebd63fcc447c1c55ec499342d9a9030f
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-notebook-service-static
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-static-0.1.1/bigdata-notebook-service-static-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2022-01-28T14:58:04.226512491Z"
@@ -641,4 +671,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-23T15:46:24.439880062Z"
+generated: "2022-02-24T12:58:29.833932151Z"
