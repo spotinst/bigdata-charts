@@ -8,7 +8,7 @@ image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-proxy
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.0-3002031f
+  tag: 0.2.0-0412e055
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
