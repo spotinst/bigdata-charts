@@ -52,7 +52,7 @@ affinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
         - matchExpressions:
-            - key: spotinst.io/node-lifecycle
-              operator: In
-              values:
-                - od
+          - key: spotinst.io/node-lifecycle
+            operator: In
+            values:
+              - od
