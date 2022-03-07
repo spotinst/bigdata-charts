@@ -49,10 +49,9 @@ tolerations: []
 
 affinity:
   nodeAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
-        preference:
-          matchExpressions:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
             - key: spotinst.io/node-lifecycle
               operator: In
               values:
