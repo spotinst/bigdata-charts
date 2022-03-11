@@ -13,6 +13,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
 
   webhook:
     enable: true
+    # If hostNetwork is set to true it is probably a good idea to change this (e.g. 25554)
     port: 443
 
   serviceAccounts:
