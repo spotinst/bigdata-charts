@@ -6,8 +6,14 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
+  # Required on EKS if the cluster has a custom CNI (e.g. Calico),
+  # then the control plane (managed by AWS) can't communicate with
+  # pods' IP CIDR and webhooks don't work.
+  hostNetwork: false
+
   webhook:
     enable: true
+    # If hostNetwork is set to true it is probably a good idea to change this (e.g. 25554)
     port: 443
 
   serviceAccounts:
@@ -38,3 +44,13 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   rbac:
     createClusterRole: true  # This one is part of the blue/green
     createRole: false        # This one is static
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: spotinst.io/node-lifecycle
+                operator: In
+                values:
+                  - od
