@@ -6,6 +6,11 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
+  # Required on EKS if the cluster has a custom CNI (e.g. Calico),
+  # then the control plane (managed by AWS) can't communicate with
+  # pods' IP CIDR and webhooks don't work.
+  hostNetwork: false
+
   webhook:
     enable: true
     port: 443

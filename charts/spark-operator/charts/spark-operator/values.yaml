@@ -70,6 +70,9 @@ podSecurityContext: {}
 # securityContext -- Operator container security context
 securityContext: {}
 
+# Added by OfAS
+hostNetwork: false
+
 webhook:
   # -- Enable webhook server
   enable: false

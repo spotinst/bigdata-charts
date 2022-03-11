@@ -36,6 +36,17 @@ spec:
           {{- toYaml . | trim | nindent 8 }}
         {{- end }}
     spec:
+      {{- /*
+        Added by OfAS
+      */}}
+      {{- if .Values.hostNetwork }}
+      hostNetwork: true
+      {{- /*
+        https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy
+        For Pods running with hostNetwork, you should explicitly set its DNS policy to "ClusterFirstWithHostNet"
+      */}}
+      dnsPolicy: ClusterFirstWithHostNet
+      {{- end }}
       serviceAccountName: {{ include "spark-operator.serviceAccountName" . }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
