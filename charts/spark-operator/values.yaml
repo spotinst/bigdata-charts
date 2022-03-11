@@ -43,3 +43,13 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   rbac:
     createClusterRole: true  # This one is part of the blue/green
     createRole: false        # This one is static
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: spotinst.io/node-lifecycle
+                operator: In
+                values:
+                  - od
