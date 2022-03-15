@@ -1,4 +1,4 @@
-# Default values for wave-operator.
+# Default values for bigdata-operator.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -11,7 +11,7 @@ image:
   repository: public.ecr.aws/f4k1p1n4/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.18-a479f7c8
+  tag: 0.1.19-ff90da4c
 
 imagePullSecrets: []
 
