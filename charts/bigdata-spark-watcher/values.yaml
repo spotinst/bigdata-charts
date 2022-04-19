@@ -36,6 +36,9 @@ serviceAccount:
 
 podAnnotations: {}
 
+podLabels:
+  bigdata.spot.io/component: "bigdata-spark-watcher"
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -68,3 +71,15 @@ affinity:
           operator: In
           values:
           - od
+        - key: spotinst.io/ocean-vng-id
+          operator: Exists
+  podAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: bigdata.spot.io/component
+            operator: Exists
+        topologyKey: "kubernetes.io/hostname"
+

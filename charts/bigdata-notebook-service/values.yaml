@@ -51,6 +51,7 @@ podAnnotations: {}
 
 podLabels:
   spotinst.io/restrict-scale-down: "true"
+  bigdata.spot.io/component: "bigdata-notebook-service"
 
 podSecurityContext:
   fsGroup: 1000
@@ -78,3 +79,22 @@ affinity:
           operator: In
           values:
           - od
+        - key: spotinst.io/ocean-vng-id
+          operator: Exists
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: bigdata.spot.io/component
+          operator: In
+          values:
+          - bigdata-notebook-service-storage-server
+      topologyKey: "topology.kubernetes.io/zone"
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+            - key: bigdata.spot.io/component
+              operator: Exists
+        topologyKey: "kubernetes.io/hostname"

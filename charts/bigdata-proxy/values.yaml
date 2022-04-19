@@ -36,6 +36,9 @@ serviceAccount:
 
 podAnnotations: {}
 
+podLabels:
+  bigdata.spot.io/component: "bigdata-proxy"
+
 podSecurityContext: {}
   # fsGroup: 2000
 
@@ -61,11 +64,22 @@ tolerations: []
 
 affinity:
   nodeAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-    - weight: 1
-      preference:
-        matchExpressions:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
         - key: spotinst.io/node-lifecycle
           operator: In
           values:
           - od
+        - key: spotinst.io/ocean-vng-id
+          operator: Exists
+  podAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: bigdata.spot.io/component
+            operator: Exists
+        topologyKey: "kubernetes.io/hostname"
+
