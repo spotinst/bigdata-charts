@@ -56,7 +56,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
           - key: spotinst.io/node-lifecycle
             operator: In
             values:
-              - od
+            - od
           - key: spotinst.io/ocean-vng-id
             operator: Exists
     podAffinity:

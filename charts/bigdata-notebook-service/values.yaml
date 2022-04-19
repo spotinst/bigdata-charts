@@ -95,6 +95,6 @@ affinity:
       podAffinityTerm:
         labelSelector:
           matchExpressions:
-            - key: bigdata.spot.io/component
-              operator: Exists
+          - key: bigdata.spot.io/component
+            operator: Exists
         topologyKey: "kubernetes.io/hostname"
