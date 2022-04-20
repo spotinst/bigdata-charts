@@ -82,4 +82,3 @@ affinity:
           - key: bigdata.spot.io/component
             operator: Exists
         topologyKey: "kubernetes.io/hostname"
-
