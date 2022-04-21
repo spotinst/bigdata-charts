@@ -45,12 +45,26 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     createClusterRole: true  # This one is part of the blue/green
     createRole: false        # This one is static
 
+  podLabels:
+    bigdata.spot.io/component: "spark-operator"
+
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
-          - matchExpressions:
-              - key: spotinst.io/node-lifecycle
-                operator: In
-                values:
-                  - od
+        - matchExpressions:
+          - key: spotinst.io/node-lifecycle
+            operator: In
+            values:
+            - od
+          - key: spotinst.io/ocean-vng-id
+            operator: Exists
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: bigdata.spot.io/component
+              operator: Exists
+          topologyKey: "kubernetes.io/hostname"
