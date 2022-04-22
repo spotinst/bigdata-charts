@@ -19,7 +19,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   serviceAccounts:
     spark:
       create: false  # We create it ourselves so that we can add image pull secrets (static part)
-    #sparkoperator:
+    # sparkoperator:
       # Upstream chart has hook-delete-policy "hook-failed", causing re-installs of the chart to fail. Let's override it.
       # More info:
       # The sparkoperator service account is created as part of a pre-install hook. That means that it is not managed by the
