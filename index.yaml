@@ -901,6 +901,22 @@ entries:
     version: 0.0.1
   spark-operator:
   - apiVersion: v2
+    appVersion: v1beta2-1.3.4-3.1.1
+    created: "2022-04-22T12:56:39.524390468Z"
+    dependencies:
+    - name: spark-operator
+      repository: ""
+      version: 1.1.20
+    description: Spark Operator (b/g part)
+    digest: 4f969d125b3e0212e92cbe85035f1ebca4ba2eeae9c33f4ff69b34d0c436e609
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: spark-operator
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-0.1.3/spark-operator-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: 0.1.0
     created: "2022-04-21T08:43:49.056751056Z"
     dependencies:
@@ -985,4 +1001,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-21T08:43:49.057054554Z"
+generated: "2022-04-22T12:56:39.524538371Z"
