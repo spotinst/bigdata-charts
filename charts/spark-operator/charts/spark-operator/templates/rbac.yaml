@@ -9,7 +9,7 @@
         - The webhook cleanup job already deletes the init job - so it should go away in most cases before being run again
         - We set a short TTL-after-competion on the job. This makes it go away, and allows a re-run on upgrades.
           - However, the TTL controller was not enabled by default until k8s 1.21 (https://v1-20.docs.kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/)
-        - We also make sure (in bigdata-operator) that all webhook init jobs that may still be present are deleted before upgrading.
+        - We can also make sure (in bigdata-operator) that all webhook init jobs that may still be present are deleted before upgrading.
 
       Discarded alternative:
       - Add more hooks:

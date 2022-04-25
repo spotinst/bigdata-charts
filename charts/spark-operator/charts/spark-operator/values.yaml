@@ -98,7 +98,6 @@ webhook:
     # (It is problematic to remove keys in sub-charts, so we do it here instead of in the parent chart (https://github.com/helm/helm/issues/9136))
     # "helm.sh/hook": pre-install, pre-upgrade
     # "helm.sh/hook-weight": "50"
-    bigdata.spot.io/resource: "spark-operator-webhook-init-job"
   # -- The annotations applied to the cleanup job, required for helm lifecycle hooks
   cleanupAnnotations:
     "helm.sh/hook": pre-delete, pre-upgrade
