@@ -1,30 +1,39 @@
 {{- if or .Values.rbac.create .Values.rbac.createClusterRole }}
 {{- /*
       Helm hook changes by OfAS:
-      Added:
-      - pre-upgrade
-        - RBAC should be created/updated during upgrade process
-      - post-upgrade
-        - When upgrading from an old release that does not manage RBAC via hooks - with only the pre-upgrade hook specified - the following happens:
-        - RBAC gets deleted, created, then deleted again
-        - Hacky solution: Also create it in the post-upgrade step.
-        - Since we have the before-hook-creation hook-delete-policy the object will be deleted and recreated if it already exists.
-
-      Discarded alternative:
       - Don't manage RBAC via helm hooks
       - Don't run the webhook init job via helm hook - therefore we don't need to create the RBAC in a hook either.
       - However, the webhook cleanup job is run by a helm hook - deleting webhook certs on deletion and upgrades.
-      - To make sure that the webhook init job runs on upgrades (even if the yaml was not changed), we set a short TTL-after-competion on the job.
-      - This makes it go away, and be re-run on upgrades.
-      - Discarded because the TTL controller was not enabled by default until k8s 1.21 (https://v1-20.docs.kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/)
+      - To make sure that the webhook init job runs on upgrades, all old webhook init jobs must have been deleted first.
+      - To accomplish this:
+        - The webhook cleanup job already deletes the init job - so it should go away in most cases before being run again
+        - We set a short TTL-after-competion on the job. This makes it go away, and allows a re-run on upgrades.
+          - However, the TTL controller was not enabled by default until k8s 1.21 (https://v1-20.docs.kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/)
+        - We also make sure (in bigdata-operator) that all webhook init jobs that may still be present are deleted before upgrading.
+
+      Discarded alternative:
+      - Add more hooks:
+        - pre-upgrade
+          - RBAC should be created/updated during upgrade process
+        - post-upgrade
+          - When upgrading from an old release that does not manage RBAC via hooks - with only the pre-upgrade hook specified - the following happens:
+          - RBAC gets deleted, created, then deleted again
+          - Hacky solution: Also create it in the post-upgrade step.
+          - Since we have the before-hook-creation hook-delete-policy the object will be deleted and recreated if it already exists.
+      - Discarded because:
+        - If we manage RBAC by hooks, we cannot downgrade to an older version that does not manage RBAC by hooks
+        - We get errors like: "invalid ownership metadata; annotation validation error: missing key "meta.helm.sh/release-name": must be set to "spark-operator-bdenv-v19""
+        - (the RBAC is not managed by the helm release lifecycle if it is created via helm hooks)
 */}}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ include "spark-operator.fullname" . }}
-  annotations:
-    "helm.sh/hook": pre-install, pre-upgrade, post-upgrade
+  annotations: {}
+    {{- /*
+    "helm.sh/hook": pre-install
     "helm.sh/hook-delete-policy": hook-failed, before-hook-creation
+    */}}
   labels:
     {{- include "spark-operator.labels" . | nindent 4 }}
 rules:
@@ -130,9 +139,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: {{ include "spark-operator.fullname" . }}
-  annotations:
-    "helm.sh/hook": pre-install, pre-upgrade, post-upgrade
+  annotations: {}
+    {{- /*
+    "helm.sh/hook": pre-install
     "helm.sh/hook-delete-policy": hook-failed, before-hook-creation
+    */}}
   labels:
     {{- include "spark-operator.labels" . | nindent 4 }}
 subjects:
