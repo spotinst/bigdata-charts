@@ -96,9 +96,14 @@ webhook:
     "helm.sh/hook": pre-install, pre-upgrade
     "helm.sh/hook-weight": "50"
   # -- The annotations applied to the cleanup job, required for helm lifecycle hooks
+  # -- before-hook-creation added by OfAS
+  # -- Note:
+  # -- If no hook deletion policy annotation is specified, the before-hook-creation behavior applies by default
+  # -- Having hook-succeeded _only_ means that we do not have before-hook-creation anymore, and if it fails, we will not be able to re-run it
+  # -- Note: The init job does not have a hook-delete-policy, so it gets the before-hook-creation policy by default. Furthermore, the cleanup job deletes the init job.
   cleanupAnnotations:
     "helm.sh/hook": pre-delete, pre-upgrade
-    "helm.sh/hook-delete-policy": hook-succeeded
+    "helm.sh/hook-delete-policy": hook-succeeded, before-hook-creation
     # -- Webhook Timeout in seconds
   timeout: 30
 
