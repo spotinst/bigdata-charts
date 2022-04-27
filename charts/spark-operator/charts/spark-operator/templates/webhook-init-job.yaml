@@ -7,7 +7,11 @@ metadata:
     {{- toYaml .Values.webhook.initAnnotations | nindent 4 }}
   labels:
     {{- include "spark-operator.labels" . | nindent 4 }}
+    {{- /* Added by OfAS */}}
+    bigdata.spot.io/resource: "spark-operator-webhook-init-job"
 spec:
+  {{- /* Added by OfAS */}}
+  ttlSecondsAfterFinished: {{ .Values.webhook.jobTTLSecondsAfterFinished }}
   template:
     metadata:
       name: {{ include "spark-operator.fullname" . }}-webhook-init

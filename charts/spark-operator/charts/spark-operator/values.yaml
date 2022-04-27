@@ -93,14 +93,23 @@ webhook:
   namespaceSelector: ""
   # -- The annotations applied to init job, required to restore certs deleted by the cleanup job during upgrade
   initAnnotations:
-    "helm.sh/hook": pre-install, pre-upgrade
-    "helm.sh/hook-weight": "50"
+    # Changed by OfAS
+    # We do not run the webhook init job in a helm hook
+    # (It is problematic to remove keys in sub-charts, so we do it here instead of in the parent chart (https://github.com/helm/helm/issues/9136))
+    # "helm.sh/hook": pre-install, pre-upgrade
+    # "helm.sh/hook-weight": "50"
   # -- The annotations applied to the cleanup job, required for helm lifecycle hooks
   cleanupAnnotations:
     "helm.sh/hook": pre-delete, pre-upgrade
-    "helm.sh/hook-delete-policy": hook-succeeded
+    # Changed by OfAS
+    # Add before-hook-creation
+    # If no hook-delete-policy annotation is specified, the before-hook-creation behavior applies by default.
+    # Having hook-succeeded _only_ means that we do not have before-hook-creation anymore, and if the job fails, we will not be able to re-run it.
+    "helm.sh/hook-delete-policy": hook-succeeded, before-hook-creation
     # -- Webhook Timeout in seconds
   timeout: 30
+  # Added by OfAS
+  jobTTLSecondsAfterFinished: 300
 
 metrics:
   # -- Enable prometheus metric scraping
