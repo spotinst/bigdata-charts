@@ -23,8 +23,8 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
 
   resources:
     requests:
-      cpu: 200m
-      memory: 50Mi
+      cpu: 500m
+      memory: 500Mi
 
   rbac:
     createClusterRole: true  # This one is part of the blue/green
