@@ -11,7 +11,7 @@ image:
   repository: public.ecr.aws/f4k1p1n4/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.20-d2d9641d
+  tag: 0.1.21-a2c328ac
 
 imagePullSecrets: []
 
