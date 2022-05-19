@@ -100,6 +100,11 @@ spec:
               configMapKeyRef:
                 name: spot-ofas-cluster-info
                 key: clusterId
+          - name: SPOTINST_ACCOUNT_ID
+            valueFrom:
+              configMapKeyRef:
+                name: spot-ofas-cluster-info
+                key: accountId
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
