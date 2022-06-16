@@ -1,8 +1,8 @@
 spark-operator:  # This section controls the behavior of the spark operator sub-chart
   sparkJobNamespace: spark-apps
   image:
-    repository: ghcr.io/googlecloudplatform/spark-operator
-    tag: v1beta2-1.3.4-3.1.1
+    repository: public.ecr.aws/f4k1p1n4/spark-operator
+    tag: 3b58b26-dm4
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
