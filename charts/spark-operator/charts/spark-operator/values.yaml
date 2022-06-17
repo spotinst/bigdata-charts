@@ -145,6 +145,10 @@ tolerations: []
 # affinity -- Affinity for pod assignment
 affinity: {}
 
+# Added by OfAS
+# Affinity for webhook job pods
+jobAffinity: {}
+
 # podAnnotations -- Additional annotations to add to the pod
 podAnnotations: {}
 

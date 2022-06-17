@@ -33,6 +33,23 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   podLabels:
     bigdata.spot.io/component: "spark-operator"
 
+  jobAffinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: spotinst.io/ocean-vng-id
+                operator: Exists
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: bigdata.spot.io/component
+                  operator: Exists
+            topologyKey: "kubernetes.io/hostname"
+
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
