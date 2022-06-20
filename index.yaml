@@ -3,6 +3,21 @@ entries:
   bigdata-notebook-service:
   - apiVersion: v2
     appVersion: 0.1.9
+    created: "2022-06-20T10:14:39.4954029Z"
+    description: A Helm chart for the Spot Big Data Notebook Service
+    digest: 5aea89f25d362e84c08287d23d441e2b51263682c8f2ff95673871dde73d767e
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: sebastien.maintrot@netapp.com
+      name: impsy
+    name: bigdata-notebook-service
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-0.1.13/bigdata-notebook-service-0.1.13.tgz
+    version: 0.1.13
+  - apiVersion: v2
+    appVersion: 0.1.9
     created: "2022-05-24T11:42:21.163279509Z"
     description: A Helm chart for the Spot Big Data Notebook Service
     digest: 80ba0138d002a6b8a9b0d7a6f505f5a7fc08d6e33702876c855cdd73fd0185df
@@ -1246,4 +1261,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-06-17T14:10:39.226491312Z"
+generated: "2022-06-20T10:14:39.495822302Z"
