@@ -62,8 +62,8 @@ spec:
           livenessProbe:
             exec:
               command:
-                - ls
-                - /mnt/kernel_sessions
+                - bash
+                - check-liveness.sh
             initialDelaySeconds: 30
             periodSeconds: 10
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
