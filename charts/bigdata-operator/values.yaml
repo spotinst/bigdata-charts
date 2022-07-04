@@ -57,6 +57,10 @@ affinity:
       - matchExpressions:
         - key: spotinst.io/ocean-vng-id
           operator: Exists
+        - key: bigdata.spot.io/vng
+          operator: NotIn
+          values:
+          - ocean-spark
     preferredDuringSchedulingIgnoredDuringExecution:
     - weight: 100
       preference:

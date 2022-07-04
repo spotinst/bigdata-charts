@@ -40,6 +40,10 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
           - matchExpressions:
               - key: spotinst.io/ocean-vng-id
                 operator: Exists
+              - key: bigdata.spot.io/vng
+                operator: NotIn
+                values:
+                - ocean-spark
     podAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 100
@@ -61,6 +65,10 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
             - od
           - key: spotinst.io/ocean-vng-id
             operator: Exists
+          - key: bigdata.spot.io/vng
+            operator: NotIn
+            values:
+            - ocean-spark
     podAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
       - weight: 100
