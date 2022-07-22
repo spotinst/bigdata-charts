@@ -58,6 +58,11 @@ podSecurityContext:
 
 securityContext: {}
 
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+
 resources:
   limits:
     cpu: 2
