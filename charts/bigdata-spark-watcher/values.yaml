@@ -8,7 +8,7 @@ image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-spark-watcher
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.2.0-e7a828cc
+  tag: 0.2.1-a9e38a79
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
@@ -52,11 +52,11 @@ securityContext: {}
 
 resources:
   limits:
-    cpu: 500m
-    memory: 500Mi
+    cpu: 1000m
+    memory: 1000Mi
   requests:
-    cpu: 500m
-    memory: 500Mi
+    cpu: 1000m
+    memory: 1000Mi
 
 nodeSelector: {}
 
