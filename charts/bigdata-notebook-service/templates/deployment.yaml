@@ -64,11 +64,12 @@ spec:
               command:
                 - bash
                 - check-liveness.sh
-            initialDelaySeconds: 30
-            periodSeconds: 10
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env: 
+          env:
           - name: EG_PORT
             value: {{ .Values.port | quote }}
           - name: EG_BASE_URL
@@ -94,7 +95,7 @@ spec:
           - name: EG_KERNEL_SESSION_PERSISTENCE
             value: "True"
           - name: EG_PERSISTENCE_ROOT
-            value: "/mnt"            
+            value: "/mnt"
           - name: SPOTINST_CLUSTER_ID
             valueFrom:
               configMapKeyRef:
