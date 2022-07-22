@@ -3,6 +3,21 @@ entries:
   bigdata-notebook-service:
   - apiVersion: v2
     appVersion: 0.1.10
+    created: "2022-07-22T08:30:27.084334124Z"
+    description: A Helm chart for the Spot Big Data Notebook Service
+    digest: 34561df005a1c29879b43b47e54051657952edc92ec959f8b46a4053f9ee98e9
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: sebastien.maintrot@netapp.com
+      name: impsy
+    name: bigdata-notebook-service
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-0.1.16/bigdata-notebook-service-0.1.16.tgz
+    version: 0.1.16
+  - apiVersion: v2
+    appVersion: 0.1.10
     created: "2022-07-04T08:29:18.777867792Z"
     description: A Helm chart for the Spot Big Data Notebook Service
     digest: 6386742a6c4ff22d89d0b3b1e181dd863ba3322838217598364ad63a5de9478d
@@ -985,6 +1000,26 @@ entries:
     version: 0.0.1
   bigdata-spark-watcher:
   - apiVersion: v2
+    appVersion: 0.2.1
+    created: "2022-07-22T08:30:27.248416358Z"
+    description: A Helm chart for the Spot Big Data Spark Watcher
+    digest: aab5b5a8bc98e75d5e9b727e64c2a58f42a1c8b5520542df244d28a181fa86da
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-spark-watcher
+    sources:
+    - https://github.com/spotinst/bigdata-spark-watcher
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-spark-watcher-0.2.4/bigdata-spark-watcher-0.2.4.tgz
+    version: 0.2.4
+  - apiVersion: v2
     appVersion: 0.2.0
     created: "2022-07-04T08:29:19.315290431Z"
     description: A Helm chart for the Spot Big Data Spark Watcher
@@ -1386,4 +1421,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-07-04T08:29:19.471671596Z"
+generated: "2022-07-22T08:30:27.249032802Z"
