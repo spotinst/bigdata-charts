@@ -22,9 +22,9 @@ envVars:
   - name: APP_SYNC_PERIOD
     value: 5m
   - name: APP_SYNC_KILL_GRACE_PERIOD
-    value: 10m
+    value: 5m
   - name: APP_SYNC_GHOST_GRACE_PERIOD
-    value: 10m
+    value: 5m
 
 # Spark Application watch label - used to select sparkApplication custom resources
 saWatchLabel: ""
@@ -52,11 +52,11 @@ securityContext: {}
 
 resources:
   limits:
-    cpu: 1000m
-    memory: 1000Mi
+    cpu: 2000m
+    memory: 2000Mi
   requests:
-    cpu: 1000m
-    memory: 1000Mi
+    cpu: 2000m
+    memory: 2000Mi
 
 nodeSelector: {}
 
