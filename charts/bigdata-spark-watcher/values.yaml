@@ -24,7 +24,7 @@ envVars:
   - name: APP_SYNC_KILL_GRACE_PERIOD
     value: 5m
   - name: APP_SYNC_GHOST_GRACE_PERIOD
-    value: 5m
+    value: 6m
   - name: CREDS_REFRESH_INTERVAL
     value: 5m
 
