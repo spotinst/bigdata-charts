@@ -4,17 +4,6 @@ metadata:
   name: {{ include "bigdata-proxy.fullname" . }}
 rules:
 - apiGroups:
-  - ""
-  resources:
-  - pods
-  - pods/log
-  - events
-  - services
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
   - bigdata.spot.io
   resources:
   - bigdataenvironments
