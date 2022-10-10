@@ -27,6 +27,8 @@ envVars:
     value: 6m
   - name: CREDS_REFRESH_INTERVAL
     value: 5m
+  - name: SPARK_APP_FAILED_EXECUTOR_LIMIT
+    value: "100"
 
 # Spark Application watch label - used to select sparkApplication custom resources
 saWatchLabel: ""
