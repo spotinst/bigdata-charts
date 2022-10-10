@@ -47,6 +47,8 @@ spec:
               value: "{{ .Values.eventTimeout }}"
             - name: BIGDATA_PROXY_APPS_NAMESPACE
               value: "{{ .Values.sparkAppsNamespace }}"
+            - name: BIGDATA_PROXY_LOG_LEVEL
+              value: "{{ .Values.logLevel}}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
