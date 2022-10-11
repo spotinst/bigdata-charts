@@ -21,10 +21,14 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     spark:
       create: false  # We create it ourselves so that we can add image pull secrets (static part)
 
+  controllerThreads: 20
+  uiService:
+    enable: false
+
   resources:
     requests:
-      cpu: 500m
-      memory: 500Mi
+      cpu: 1000m
+      memory: 1000Mi
 
   rbac:
     createClusterRole: true  # This one is part of the blue/green
