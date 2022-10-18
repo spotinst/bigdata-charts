@@ -40,7 +40,7 @@ spec:
           {{- if .Values.replicaTagger.enabled }}
           - --enable-replica-tagger
           - --replica-count
-          - {{ .Values.replicaTagger.replicaCount }}
+          - "{{ .Values.replicaTagger.replicaCount }}"
           {{- end }}
           ports:
           - name: metrics

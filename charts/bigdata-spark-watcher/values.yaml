@@ -37,7 +37,7 @@ replicaTagger:
   enabled: false
   replicaCount: 0
 
-logLevel: info
+logLevel: debug
 
 sparkAppsNamespace: spark-apps
 
