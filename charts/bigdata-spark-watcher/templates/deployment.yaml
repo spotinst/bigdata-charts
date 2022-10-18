@@ -33,8 +33,15 @@ spec:
           args:
           - --metrics-bind-address
           - ":8080"
-          - --bigdata-watch-version
+          - --watch-label
           - "{{ .Values.saWatchLabel }}"
+          - --log-level
+          - "{{ .Values.logLevel }}"
+          {{- if .Values.replicaTagger.enabled }}
+          - --enable-replica-tagger
+          - --replica-count
+          - {{ .Values.replicaTagger.replicaCount }}
+          {{- end }}
           ports:
           - name: metrics
             containerPort: 8080

@@ -33,6 +33,12 @@ envVars:
 # Spark Application watch label - used to select sparkApplication custom resources
 saWatchLabel: ""
 
+replicaTagger:
+  enabled: false
+  replicaCount: 0
+
+logLevel: info
+
 sparkAppsNamespace: spark-apps
 
 serviceAccount:
