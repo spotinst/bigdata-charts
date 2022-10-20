@@ -1,0 +1,19 @@
+{{- /* Added by OfAS */}}
+{{- if .Values.metrics.enable -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "spark-operator.fullname" . }}-metrics
+  labels:
+    {{- include "spark-operator.labels" . | nindent 4 }}
+spec:
+  ports:
+    - name: {{ .Values.metrics.portName }}
+      port: 8080
+      protocol: TCP
+      targetPort: {{ .Values.metrics.portName }}
+  selector:
+    {{- include "spark-operator.selectorLabels" . | nindent 4 }}
+  sessionAffinity: None
+  type: ClusterIP
+{{ end }}
