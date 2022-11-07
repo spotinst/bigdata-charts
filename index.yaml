@@ -1,5 +1,21 @@
 apiVersion: v1
 entries:
+  bigdata-ingress-addons:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-11-07T08:22:24.541106257Z"
+    description: A Helm chart for the Spot Big Data Ingress addons
+    digest: 593712a319e0619c47abe92e641cddefca363af488086f2e78e155ebaacb4199
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-ingress-addons
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-ingress-addons-0.1.0/bigdata-ingress-addons-0.1.0.tgz
+    version: 0.1.0
   bigdata-notebook-service:
   - apiVersion: v2
     appVersion: 0.1.11
@@ -1609,4 +1625,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-04T09:08:36.956728883Z"
+generated: "2022-11-07T08:22:24.541426163Z"
