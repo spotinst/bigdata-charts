@@ -5,10 +5,10 @@
 nameOverride: ""
 fullnameOverride: ""
 
-targetGroupBindingName: "ocean-spark-ingress"
-
-serviceRef:
-  name: ofas-ingress-nginx-controller
-  port: 443
-
-targetGroupARN: "" // Overridden at deploy time
+targetGroupBinding:
+  create: false
+  name: "ocean-spark-ingress"
+  serviceRef:
+    name: ofas-ingress-nginx-controller
+    port: 443
+  targetGroupARN: "" # Overridden at deploy time
