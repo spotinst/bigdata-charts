@@ -11,4 +11,4 @@ targetGroupBinding:
   serviceRef:
     name: ofas-ingress-nginx-controller
     port: 443
-  targetGroupARN: "" # Overridden at deploy time
+  targetGroupARN: ""  # Overridden at deploy time
