@@ -38,7 +38,11 @@ resources:
 
 nodeSelector: {}
 
-tolerations: []
+tolerations:
+- key: "bigdata.spot.io/unschedulable"
+  operator: "Equal"
+  value: "ocean-spark-system"
+  effect: "NoSchedule"
 
 affinity:
   nodeAffinity:

@@ -30,6 +30,12 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
       cpu: 1000m
       memory: 1000Mi
 
+  tolerations:
+  - key: "bigdata.spot.io/unschedulable"
+    operator: "Equal"
+    value: "ocean-spark-system"
+    effect: "NoSchedule"
+
   rbac:
     createClusterRole: true  # This one is part of the blue/green
     createRole: false        # This one is static
