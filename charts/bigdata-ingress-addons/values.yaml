@@ -1,0 +1,14 @@
+# Values for bigdata-ingress-addons
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: ""
+
+targetGroupBinding:
+  create: false
+  name: "ocean-spark-ingress"
+  serviceRef:
+    name: ofas-ingress-nginx-controller
+    port: 443
+  targetGroupARN: ""  # Overridden at deploy time
