@@ -2,7 +2,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   sparkJobNamespace: spark-apps
   image:
     repository: public.ecr.aws/f4k1p1n4/spark-operator
-    tag: 3b58b26-dm4
+    tag: c261df6-dm18
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
