@@ -1166,6 +1166,26 @@ entries:
     version: 0.0.1
   bigdata-spark-watcher:
   - apiVersion: v2
+    appVersion: 0.2.6
+    created: "2022-11-15T10:13:30.63400547Z"
+    description: A Helm chart for the Spot Big Data Spark Watcher
+    digest: 0175ef92841a5bf5cab3140a76be610b25f4741a0fb159c3c4473ad23edf584a
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-spark-watcher
+    sources:
+    - https://github.com/spotinst/bigdata-spark-watcher
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-spark-watcher-0.2.10/bigdata-spark-watcher-0.2.10.tgz
+    version: 0.2.10
+  - apiVersion: v2
     appVersion: 0.2.5
     created: "2022-11-09T17:01:30.125601654Z"
     description: A Helm chart for the Spot Big Data Spark Watcher
@@ -1735,4 +1755,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-09T17:01:30.260269306Z"
+generated: "2022-11-15T10:13:30.635092892Z"
