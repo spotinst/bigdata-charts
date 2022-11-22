@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: k8s.gcr.io/volume-nfs
+  repository: public.ecr.aws/f4k1p1n4/volume-nfs
   pullPolicy: IfNotPresent
   tag: 0.8
 
