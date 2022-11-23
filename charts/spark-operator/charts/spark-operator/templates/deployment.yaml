@@ -65,6 +65,11 @@ spec:
           - name: {{ .Values.metrics.portName | quote }}
             containerPort: {{ .Values.metrics.port }}
         {{- end }}
+        {{- /* Added by OfAS */}}
+        {{- if .Values.pprof.enable -}}
+          - name: {{ .Values.pprof.portName | quote }}
+            containerPort: {{ .Values.pprof.port }}
+        {{- end }}
         {{- /*
            Added by OfAS
         */}}
@@ -89,6 +94,11 @@ spec:
         - -metrics-port={{ .Values.metrics.port }}
         - -metrics-endpoint={{ .Values.metrics.endpoint }}
         - -metrics-prefix={{ .Values.metrics.prefix }}
+        {{- end }}
+        {{- /* Added by OfAS */}}
+        {{- if .Values.pprof.enable -}}
+        - -enable-pprof=true
+        - -pprof-port={{ .Values.pprof.port }}
         {{- end }}
         {{- if .Values.webhook.enable }}
         - -enable-webhook=true
