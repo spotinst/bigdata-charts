@@ -20,7 +20,7 @@ rules:
     verbs: [ "get" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "services" ]
-    verbs: [ "get", "list", "watch" ]
+    verbs: [ "get", "list", "watch", "delete" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "persistentvolumeclaims" ]
     verbs: [ "get", "list", "watch" ]
