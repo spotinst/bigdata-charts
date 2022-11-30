@@ -2,7 +2,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   sparkJobNamespace: spark-apps
   image:
     repository: public.ecr.aws/f4k1p1n4/spark-operator
-    tag: c261df6-dm18
+    tag: ac8f646-dm18
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
@@ -16,6 +16,11 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     # If hostNetwork is set to true it is probably a good idea to change this (e.g. 25554)
     port: 443
     jobTTLSecondsAfterFinished: 60
+
+  pprof:
+    enable: true
+    port: 6060
+    portName: pprof
 
   serviceAccounts:
     spark:
