@@ -10,3 +10,5 @@ sparkDriverServiceAccount:
   name: spark-driver
 
 sparkPodsPreemptionPolicy: Never
+
+createPriorityClasses: true
