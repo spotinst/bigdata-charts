@@ -355,6 +355,24 @@ entries:
   bigdata-notebook-service-storage-server:
   - apiVersion: v2
     appVersion: "0.8"
+    created: "2022-12-01T11:04:59.826181906Z"
+    description: A Helm chart for the Spot Big Data Notebook Service Storage Server
+    digest: ff8459699adf6a7a4940a689bcc0b58d7af19412379563054e2538ef3509ba2e
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-notebook-service-storage-server
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-storage-server-0.1.6/bigdata-notebook-service-storage-server-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: "0.8"
     created: "2022-11-09T17:01:29.583562706Z"
     description: A Helm chart for the Spot Big Data Notebook Service Storage Server
     digest: e15584276789c52374278053d078e94bba3b60325df3887cebf593948e7980e0
@@ -1549,6 +1567,22 @@ entries:
   spark-operator:
   - apiVersion: v2
     appVersion: v1beta2-1.3.4-3.1.1
+    created: "2022-12-01T11:04:59.980455613Z"
+    dependencies:
+    - name: spark-operator
+      repository: ""
+      version: 1.1.20
+    description: Spark Operator (b/g part)
+    digest: 3418f084d97621f73ae726ab3e7454facbf286e3ac628254490434871e500841
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: spark-operator
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-0.1.13/spark-operator-0.1.13.tgz
+    version: 0.1.13
+  - apiVersion: v2
+    appVersion: v1beta2-1.3.4-3.1.1
     created: "2022-11-15T13:30:48.175690849Z"
     dependencies:
     - name: spark-operator
@@ -1804,4 +1838,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-30T15:31:28.177151705Z"
+generated: "2022-12-01T11:05:00.115714298Z"
