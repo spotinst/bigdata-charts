@@ -66,7 +66,7 @@ spec:
             containerPort: {{ .Values.metrics.port }}
         {{- end }}
         {{- /* Added by OfAS */}}
-        {{- if .Values.pprof.enable -}}
+        {{- if .Values.pprof.enable }}
           - name: {{ .Values.pprof.portName | quote }}
             containerPort: {{ .Values.pprof.port }}
         {{- end }}
@@ -96,7 +96,7 @@ spec:
         - -metrics-prefix={{ .Values.metrics.prefix }}
         {{- end }}
         {{- /* Added by OfAS */}}
-        {{- if .Values.pprof.enable -}}
+        {{- if .Values.pprof.enable }}
         - -enable-pprof=true
         - -pprof-port={{ .Values.pprof.port }}
         {{- end }}
