@@ -15,3 +15,20 @@ spec:
     {{- include "bigdata-proxy.selectorLabels" . | nindent 4 }}
   sessionAffinity: None
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "bigdata-proxy.name" . }}
+  labels:
+    {{- include "bigdata-proxy.labels" . | nindent 4 }}
+spec:
+  ports:
+    - name: proxy
+      port: 80
+      protocol: TCP
+      targetPort: proxy
+  selector:
+    {{- include "bigdata-proxy.selectorLabels" . | nindent 4 }}
+  sessionAffinity: None
+  type: ClusterIP
