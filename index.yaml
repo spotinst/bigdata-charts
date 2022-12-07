@@ -19,6 +19,21 @@ entries:
   bigdata-notebook-service:
   - apiVersion: v2
     appVersion: 0.1.11
+    created: "2022-12-07T13:57:35.449530634Z"
+    description: A Helm chart for the Spot Big Data Notebook Service
+    digest: 61806b9a9e36689175d3b5fbd1e402c7dd36b59dad1175c9a559363200044ca2
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: sebastien.maintrot@netapp.com
+      name: impsy
+    name: bigdata-notebook-service
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-0.1.19/bigdata-notebook-service-0.1.19.tgz
+    version: 0.1.19
+  - apiVersion: v2
+    appVersion: 0.1.11
     created: "2022-11-09T17:01:29.423287964Z"
     description: A Helm chart for the Spot Big Data Notebook Service
     digest: 58f282077e94bd4c6db151d587765eddbd03d9e0836510bc3bd7242004e6a809
@@ -944,6 +959,26 @@ entries:
     version: 0.1.0
   bigdata-proxy:
   - apiVersion: v2
+    appVersion: 0.2.3
+    created: "2022-12-07T13:57:35.646095645Z"
+    description: A Helm chart for the Spot Big Data Proxy
+    digest: 51f31aabdbf96911f129285f6d8b642dcff28429aa23e04f921ce429e6b3ad66
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-proxy
+    sources:
+    - https://github.com/spotinst/bigdata-proxy
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-proxy-0.2.8/bigdata-proxy-0.2.8.tgz
+    version: 0.2.8
+  - apiVersion: v2
     appVersion: 0.2.2
     created: "2022-11-09T17:01:29.982621602Z"
     description: A Helm chart for the Spot Big Data Proxy
@@ -1854,4 +1889,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-01T14:08:36.277569319Z"
+generated: "2022-12-07T13:57:35.646456447Z"
