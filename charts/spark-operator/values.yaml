@@ -22,6 +22,10 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     port: 6060
     portName: pprof
 
+  # This just adds a label/annotation to turn off istio sidecar injection in the webhook jobs
+  istio:
+    enabled: true
+
   serviceAccounts:
     spark:
       create: false  # We create it ourselves so that we can add image pull secrets (static part)
