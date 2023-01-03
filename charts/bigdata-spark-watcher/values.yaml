@@ -8,7 +8,7 @@ image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-spark-watcher
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.2.6-c654d6c2
+  tag: 0.2.7-92eaf3c7
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
@@ -25,6 +25,8 @@ envVars:
     value: 5m
   - name: APP_SYNC_GHOST_GRACE_PERIOD
     value: 6m
+  - name: APP_SYNC_REVERSE_GHOST_GRACE_PERIOD
+    value: 30s
   - name: CREDS_REFRESH_INTERVAL
     value: 5m
   - name: SPARK_APP_FAILED_EXECUTOR_LIMIT
