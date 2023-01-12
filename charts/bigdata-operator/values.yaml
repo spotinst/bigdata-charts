@@ -21,8 +21,12 @@ serviceAccount:
   create: true
   annotations: {}
   name: ""  # Defaults to release name
+  clusterAdmin: false
 
 podAnnotations: {}
+
+sparkAppsNamespace: spark-apps
+spotConfigNamespace: kube-system
 
 podLabels:
   bigdata.spot.io/component: "bigdata-operator"
