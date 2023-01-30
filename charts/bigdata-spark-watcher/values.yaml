@@ -41,8 +41,6 @@ replicaTagger:
 
 logLevel: debug
 
-sparkAppsNamespace: spark-apps
-
 serviceAccount:
   create: true
   annotations: {}

@@ -1,5 +1,5 @@
 spark-operator:  # This section controls the behavior of the spark operator sub-chart
-  sparkJobNamespace: spark-apps
+  sparkJobNamespace: "" # Empty means manage Spark apps in all namespaces
   image:
     repository: public.ecr.aws/ocean-spark/spark-operator
     tag: 057db89-dm18

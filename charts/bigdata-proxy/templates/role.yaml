@@ -61,11 +61,11 @@ rules:
       - list
       - watch
 ---
+# TODO Should be restricted to spark app namespaces
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
   name: {{ include "bigdata-proxy.fullname" . }}-spark-monitor
-  namespace: {{ .Values.sparkAppsNamespace }}
   labels:
     {{- include "bigdata-proxy.labels" . | nindent 4 }}
 rules:

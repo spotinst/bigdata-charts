@@ -5,18 +5,18 @@
 replicaCount: 1
 
 image:
-  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-proxy
+  repository: 598800841386.dkr.ecr.us-east-2.amazonaws.com/private/bigdata-proxy
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.2.3-f470a2fe
+  tag: bgd-2951-multiple-namespaces
 
 imagePullSecrets:
-  - name: spot-bigdata-image-pull
+  - name: spot-bigdata-image-pull-dev
 
 port: 8080
 logLimit: 0
 eventTimeout: 10m
-sparkAppsNamespace: spark-apps
+defaultSparkAppsNamespace: spark-apps
 logLevel: info
 
 ingress:
