@@ -5,13 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: 598800841386.dkr.ecr.us-east-2.amazonaws.com/private/bigdata-spark-watcher
-  pullPolicy: Always
+  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-spark-watcher
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: bgd-2961-multiple-spark-namespaces
+  tag: 0.2.9-7ac4275e
 
 imagePullSecrets:
-  - name: spot-bigdata-image-pull-dev
+  - name: spot-bigdata-image-pull
 
 nameOverride: ""
 fullnameOverride: ""
