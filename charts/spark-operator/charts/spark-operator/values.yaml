@@ -83,7 +83,7 @@ workqueue:
   tokenBucketSize: 500
   maxDelay:
     enabled: false
-    value: 0m
+    value: 6h
 
 # Added by OfAS
 disableExecutorReporting: false

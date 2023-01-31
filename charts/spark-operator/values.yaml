@@ -16,7 +16,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     tokenBucketSize: 500
     maxDelay:
       enabled: false
-      value: 0m
+      value: 6h
 
   disableExecutorReporting: false
 
