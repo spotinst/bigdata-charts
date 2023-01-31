@@ -104,7 +104,7 @@ spec:
         - -workqueue-token-refill-rate={{ .Values.workqueue.tokenRefillRate }}
         - -workqueue-token-bucket-size={{ .Values.workqueue.tokenBucketSize }}
         {{- if .Values.workqueue.maxDelay.enabled }}
-        - -workqueue-max-delay={{ .Values.workqueue.maxDelay.value | quote }}
+        - -workqueue-max-delay={{ .Values.workqueue.maxDelay.value }}
         {{- end }}
         {{- /* END - Added by OfAS */}}
         {{- if .Values.webhook.enable }}
