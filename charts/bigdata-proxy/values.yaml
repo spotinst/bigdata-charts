@@ -5,13 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: 598800841386.dkr.ecr.us-east-2.amazonaws.com/private/bigdata-proxy
+  repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-proxy
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: bgd-2951-multiple-namespaces
+  tag: 0.2.4-d0e4777e
 
 imagePullSecrets:
-  - name: spot-bigdata-image-pull-dev
+  - name: spot-bigdata-image-pull
 
 port: 8080
 logLimit: 0
