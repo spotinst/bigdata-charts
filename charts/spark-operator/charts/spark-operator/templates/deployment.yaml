@@ -100,6 +100,13 @@ spec:
         - -enable-pprof=true
         - -pprof-port={{ .Values.pprof.port }}
         {{- end }}
+        - -disable-executor-reporting={{ .Values.disableExecutorReporting }}
+        - -workqueue-token-refill-rate={{ .Values.workqueue.tokenRefillRate }}
+        - -workqueue-token-bucket-size={{ .Values.workqueue.tokenBucketSize }}
+        {{- if .Values.workqueue.maxDelay.enabled }}
+        - -workqueue-max-delay={{ .Values.workqueue.maxDelay.value | quote }}
+        {{- end }}
+        {{- /* END - Added by OfAS */}}
         {{- if .Values.webhook.enable }}
         - -enable-webhook=true
         - -webhook-svc-namespace={{ .Release.Namespace }}

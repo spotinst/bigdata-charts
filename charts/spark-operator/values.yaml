@@ -2,7 +2,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   sparkJobNamespace: spark-apps
   image:
     repository: public.ecr.aws/ocean-spark/spark-operator
-    tag: 057db89-dm18
+    tag: bc88547-gen19
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
@@ -10,6 +10,15 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   # then the control plane (managed by AWS) can't communicate with
   # pods' IP CIDR and webhooks don't work.
   hostNetwork: false
+
+  workqueue:
+    tokenRefillRate: 50
+    tokenBucketSize: 500
+    maxDelay:
+      enabled: false
+      value: 0m
+
+  disableExecutorReporting: false
 
   webhook:
     enable: true

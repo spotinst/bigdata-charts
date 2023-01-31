@@ -77,6 +77,17 @@ securityContext: {}
 # Added by OfAS
 hostNetwork: false
 
+# Added by OfAS
+workqueue:
+  tokenRefillRate: 50
+  tokenBucketSize: 500
+  maxDelay:
+    enabled: false
+    value: 0m
+
+# Added by OfAS
+disableExecutorReporting: false
+
 # volumes - Operator volumes
 volumes: []
 
