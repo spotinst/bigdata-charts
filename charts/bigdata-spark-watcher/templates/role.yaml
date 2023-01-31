@@ -24,13 +24,11 @@ rules:
   - sparkoperator.k8s.io
   resources:
   - sparkapplications
+  - sparkapplications/status
   - scheduledsparkapplications
+  - scheduledsparkapplications/status
   verbs:
-  - get
-  - list
-  - watch
-  - patch
-  - delete
+  - "*"
 - apiGroups:
   - ""
   resources:
