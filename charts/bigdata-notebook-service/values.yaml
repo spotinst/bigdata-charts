@@ -15,7 +15,7 @@ imagePullSecrets:
 port: 8888
 
 kernel:
-  defaultNamespace: "spark-apps" # Default kernel namespace
+  defaultNamespace: "spark-apps"  # Default kernel namespace
   portMin: 50000  # Port range usable by kernels. Each kernel takes one port.
   portMax: 50100
   launchTimeout: 600  # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.
