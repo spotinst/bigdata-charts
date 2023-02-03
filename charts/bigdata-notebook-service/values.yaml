@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service
   pullPolicy: IfNotPresent
-  tag: d5d1f6fe
+  tag: bcda54d9
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
@@ -15,7 +15,7 @@ imagePullSecrets:
 port: 8888
 
 kernel:
-  namespace: "spark-apps"
+  defaultNamespace: "spark-apps"  # Default kernel namespace
   portMin: 50000  # Port range usable by kernels. Each kernel takes one port.
   portMax: 50100
   launchTimeout: 600  # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.

@@ -46,7 +46,7 @@ spec:
             - name: BIGDATA_PROXY_EVENT_TIMEOUT
               value: "{{ .Values.eventTimeout }}"
             - name: BIGDATA_PROXY_APPS_NAMESPACE
-              value: "{{ .Values.sparkAppsNamespace }}"
+              value: "{{ .Values.defaultSparkAppsNamespace }}"
             - name: BIGDATA_PROXY_LOG_LEVEL
               value: "{{ .Values.logLevel }}"
           resources:

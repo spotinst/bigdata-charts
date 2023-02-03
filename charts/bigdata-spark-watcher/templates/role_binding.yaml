@@ -13,14 +13,13 @@ subjects:
   namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
-  name: {{ include "bigdata-spark-watcher.fullname" . }}
-  namespace: {{ .Values.sparkAppsNamespace }}
+  name: {{ include "bigdata-spark-watcher.fullname" . }}-killer
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: {{ include "bigdata-spark-watcher.fullname" . }}
+  kind: ClusterRole
+  name: {{ include "bigdata-spark-watcher.fullname" . }}-killer
 subjects:
   - kind: ServiceAccount
     name: {{ include "bigdata-spark-watcher.serviceAccountName" . }}
