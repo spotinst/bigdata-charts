@@ -22,6 +22,14 @@ serviceAccount:
   annotations: {}
   name: ""  # Defaults to release name
 
+spotConfigNamespace: kube-system
+defaultSparkAppsNamespace: spark-apps
+
+rbac:
+  createDeployer: true
+  useHelmHooks: true
+  allowRoleEscalation: true
+
 podAnnotations: {}
 
 podLabels:
