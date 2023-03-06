@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: public.ecr.aws/ocean-spark/volume-nfs
   pullPolicy: IfNotPresent
-  tag: 1.0.0-ofas
+  tag: 1.1.0-ofas
 
 nameOverride: ""
 fullnameOverride: ""
