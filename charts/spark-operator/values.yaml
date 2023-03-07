@@ -53,6 +53,10 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     operator: "Equal"
     value: "ocean-spark-system"
     effect: "NoSchedule"
+  - key: "kubernetes.azure.com/scalesetpriority"
+    operator: "Equal"
+    value: "spot"
+    effect: "NoSchedule"
 
   rbac:
     createClusterRole: true  # This one is part of the blue/green
