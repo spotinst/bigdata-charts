@@ -7,10 +7,51 @@ podAnnotations: {}
 podLabels:
   bigdata.spot.io/component: "bigdata-telemetry"
 
+prometheus:
+  additionalPodLabels:
+    bigdata.spot.io/telemetry: "prometheus"
+
+  config:
+    global:
+      scrape_interval: 5s
+      evaluation_interval: 5s
+    scrape_configs: |
+      - job_name: 'kubernetes-pods'
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+          action: keep
+          regex: true
+        - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+          action: replace
+          target_label: __metrics_path__
+          regex: (.+)
+        - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+          action: replace
+          regex: ([^:]+)(?::\d+)?;(\d+)
+          replacement: $1:$2
+          target_label: __address__
+        - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scheme]
+          action: replace
+          target_label: __scheme__
+          regex: (.+)
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 500M
+    limits:
+      cpu: 1
+      memory: 1Gi
+
 thanos:
   image:
     repository: quay.io/thanos/thanos
     tag: v0.15.0
+
+  additionalPodLabels:
+    bigdata.spot.io/telemetry: "thanos"
 
 
 nodeSelector: {}

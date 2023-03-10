@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "bigdata-telemetry.fullname" . }}-prometheus-agent-sa
+  labels:
+    {{- include "bigdata-telemetry.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "bigdata-telemetry.fullname" . }}-prometheus-agent
+  labels:
+    {{- include "bigdata-telemetry.labels" . | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name:  {{ include "bigdata-telemetry.fullname" . }}-prometheus-agent-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: {{ include "bigdata-telemetry.fullname" . }}-prometheus-agent-sa
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name:  {{ include "bigdata-telemetry.fullname" . }}-prometheus-agent-cluster-role
+  labels:
+    {{- include "bigdata-telemetry.labels" . | nindent 4 }}
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - nodes/proxy
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - extensions
+  resources:
+  - ingresses
+  verbs: ["get", "list", "watch"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]

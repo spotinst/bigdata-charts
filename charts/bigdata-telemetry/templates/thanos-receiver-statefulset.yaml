@@ -13,6 +13,9 @@ spec:
       {{- with .Values.thanos.podLabels }}
       {{- toYaml . | nindent 6 }}
       {{- end }}
+      {{- with .Values.thanos.additionalPodLabels }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
   serviceName: {{ include "bigdata-telemetry.fullname" . }}-thanos-receiver
   template:
     metadata:
@@ -24,6 +27,9 @@ spec:
         {{- include "bigdata-telemetry.selectorLabels" . | nindent 8 }}
         {{- with .Values.thanos.podLabels }}
         {{- toYaml . | nindent 6 }}
+        {{- end }}
+        {{- with .Values.thanos.additionalPodLabels }}
+        {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
       containers:
@@ -53,6 +59,8 @@ spec:
                 secretKeyRef:
                   key: thanos_object_store
                   name: spot-bigdata-telemetry-creds
+                  key: object-store.yaml
+                  name: bigdata-telemetry-object-store
           image: "{{ .Values.thanos.image.repository }}:{{ .Values.thanos.image.tag }}"
           livenessProbe:
             failureThreshold: 8
