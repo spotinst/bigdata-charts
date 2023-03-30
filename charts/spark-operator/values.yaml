@@ -48,6 +48,13 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
       cpu: 1000m
       memory: 1000Mi
 
+  telemetry:
+    enabled: true
+    fluentbit:
+      image:
+        repository: cr.fluentbit.io/fluent/fluent-bit
+        tag: 2.0.10
+
   tolerations:
   - key: "bigdata.spot.io/unschedulable"
     operator: "Equal"
