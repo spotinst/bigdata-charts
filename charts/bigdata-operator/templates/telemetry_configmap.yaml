@@ -1,14 +1,13 @@
-{{- $root := . -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fluentbit-cm
+  name: bigdata-telemetry-fluentbit-cm
   labels:
   {{- include "bigdata-operator.labels" . | nindent 4 }}
 data:
   parsers.conf: |
-{{ tpl $root.Values.telemetry.fluentbit.configMap.parsers $root | indent 6 }}
+{{ .Values.telemetry.fluentbit.configMap.parsers | toString | indent 6 }}
 
   fluent-bit.conf: |
-{{ tpl $root.Values.telemetry.fluentbit.configMap.config $root | indent 6 }}
+{{ .Values.telemetry.fluentbit.configMap.config | toString | indent 6 }}
 
