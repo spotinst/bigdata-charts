@@ -94,6 +94,8 @@ spec:
             value: "{{ sub .Values.kernel.portMax .Values.kernel.portMin }}"
           - name: EG_KERNEL_SESSION_PERSISTENCE
             value: "True"
+          - name: EG_RESPONSE_ADDR_ANY
+            value: "True"
           - name: EG_PERSISTENCE_ROOT
             value: "/mnt"
           - name: SPOTINST_CLUSTER_ID
