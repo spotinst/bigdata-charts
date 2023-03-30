@@ -13,9 +13,6 @@ spec:
       {{- with .Values.thanos.podLabels }}
       {{- toYaml . | nindent 6 }}
       {{- end }}
-      {{- with .Values.thanos.additionalPodLabels }}
-      {{- toYaml . | nindent 6 }}
-      {{- end }}
   serviceName: {{ include "bigdata-telemetry.fullname" . }}-thanos-receiver
   template:
     metadata:
@@ -27,9 +24,6 @@ spec:
         {{- include "bigdata-telemetry.selectorLabels" . | nindent 8 }}
         {{- with .Values.thanos.podLabels }}
         {{- toYaml . | nindent 6 }}
-        {{- end }}
-        {{- with .Values.thanos.additionalPodLabels }}
-        {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
       containers:

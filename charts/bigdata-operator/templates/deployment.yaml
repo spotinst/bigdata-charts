@@ -54,6 +54,69 @@ spec:
                   fieldPath: metadata.namespace
           resources:
       {{- toYaml .Values.resources | nindent 12 }}
+        - name: fluentbit
+          image: "{{ .Values.telemetry.fluentbit.image.repository }}:{{ .Values.telemetry.fluentbit.image.tag }}"
+          ports:
+            - name: http
+              containerPort: 2020
+              protocol: TCP
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: spot-bigdata-telemetry-creds
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: spot-bigdata-telemetry-creds
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: spot-bigdata-telemetry-creds
+                  key: AWS_BUCKET_NAME
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: spot-bigdata-telemetry-creds
+                  key: AWS_REGION
+            - name: CLUSTER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: clusterId
+            - name: ACCOUNT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: accountId
+            - name: ORGANIZATION_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: organizationId
+          resources: {}
+          volumeMounts:
+            - name: config
+              mountPath: /fluent-bit/etc/fluent-bit.conf
+              subPath: fluent-bit.conf
+            - name: varlog
+              readOnly: true
+              mountPath: /var/log/
+            - name: varlibdockercontainers
+              readOnly: true
+              mountPath: /var/lib/docker/containers
+      volumes:
+        - name: config
+          configMap:
+            name: fluentbit-cm
+        - name: varlog
+          hostPath:
+            path: /var/log/
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
       {{- with .Values.nodeSelector }}
       nodeSelector:
       {{- toYaml . | nindent 8 }}
