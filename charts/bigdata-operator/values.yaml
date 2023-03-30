@@ -90,7 +90,6 @@ telemetry:
             Match kube.*
             Add ClusterId ${CLUSTER_ID}
             Add AccountID ${ACCOUNT_ID}
-            Add OrganizationId ${ORGANIZATION_ID}
 
         # [FILTER]
         #     Name    grep

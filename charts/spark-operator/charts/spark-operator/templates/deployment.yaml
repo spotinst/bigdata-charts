@@ -172,11 +172,6 @@ spec:
                 configMapKeyRef:
                   name: spot-ofas-cluster-info
                   key: accountId
-            - name: ORGANIZATION_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: spot-ofas-cluster-info
-                  key: organizationId
           resources: {}
           volumeMounts:
             - name: config
