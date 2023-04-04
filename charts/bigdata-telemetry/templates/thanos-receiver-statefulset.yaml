@@ -1,0 +1,104 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "bigdata-telemetry.fullname" . }}-thanos-receiver
+  labels:
+    {{- include "bigdata-telemetry.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "bigdata-telemetry.selectorLabels" . | nindent 6 }}
+      {{- with .Values.thanos.podLabels }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
+  serviceName: {{ include "bigdata-telemetry.fullname" . }}-thanos-receiver
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "bigdata-telemetry.selectorLabels" . | nindent 8 }}
+        {{- with .Values.thanos.podLabels }}
+        {{- toYaml . | nindent 6 }}
+        {{- end }}
+    spec:
+      containers:
+        - args:
+            - receive
+            - --objstore.config=$(OBJSTORE_CONFIG)
+            - --tsdb.path=/var/thanos/receive
+            - --label=cluster_id="$(SPOTINST_CLUSTER_ID)"
+            - --grpc-address=0.0.0.0:10901
+            - --http-address=0.0.0.0:10902
+            - --remote-write.address=0.0.0.0:19291
+            - --receive.local-endpoint=127.0.0.1:10901
+            - --tsdb.retention=1d
+            - --receive.hashrings-file=/var/lib/thanos-receive/hashrings.json
+          env:
+            - name: SPOTINST_CLUSTER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: clusterId
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: OBJSTORE_CONFIG
+              valueFrom:
+                secretKeyRef:
+                  key: thanos_object_store
+                  name: spot-bigdata-telemetry-creds
+          image: "{{ .Values.thanos.image.repository }}:{{ .Values.thanos.image.tag }}"
+          livenessProbe:
+            failureThreshold: 8
+            httpGet:
+              path: /-/healthy
+              port: 10902
+              scheme: HTTP
+            periodSeconds: 30
+          name: thanos-receive
+          ports:
+            - containerPort: 10901
+              name: grpc
+            - containerPort: 10902
+              name: http
+            - containerPort: 19291
+              name: remote-write
+          readinessProbe:
+            failureThreshold: 20
+            httpGet:
+              path: /-/ready
+              port: 10902
+              scheme: HTTP
+            periodSeconds: 5
+          terminationMessagePolicy: FallbackToLogsOnError
+          volumeMounts:
+            - mountPath: /var/thanos/receive
+              name: data
+              readOnly: false
+            - mountPath: /var/lib/thanos-receive
+              name: hashring-config
+      terminationGracePeriodSeconds: 900
+      volumes:
+        - emptyDir: {}
+          name: data
+        - configMap:
+            name: {{ include "bigdata-telemetry.fullname" . }}-thanos-receiver-cm
+          name: hashring-config
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
