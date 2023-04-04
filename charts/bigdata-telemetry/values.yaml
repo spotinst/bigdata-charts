@@ -1,0 +1,47 @@
+# Default values for bigdata-telemetry.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+podAnnotations: {}
+
+podLabels:
+  bigdata.spot.io/component: "bigdata-telemetry"
+
+thanos:
+  image:
+    repository: quay.io/thanos/thanos
+    tag: v0.15.0
+
+
+nodeSelector: {}
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: spotinst.io/ocean-vng-id
+          operator: Exists
+        - key: bigdata.spot.io/vng
+          operator: NotIn
+          values:
+          - ocean-spark
+  podAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: bigdata.spot.io/component
+            operator: Exists
+        topologyKey: "kubernetes.io/hostname"
+
+tolerations:
+- key: "bigdata.spot.io/unschedulable"
+  operator: "Equal"
+  value: "ocean-spark-system"
+  effect: "NoSchedule"
+- key: "kubernetes.azure.com/scalesetpriority"
+  operator: "Equal"
+  value: "spot"
+  effect: "NoSchedule"
