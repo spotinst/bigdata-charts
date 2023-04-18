@@ -5,4 +5,7 @@
 nameOverride: ""
 fullnameOverride: ""
 
-useHelmHooks: true
+useHelmHooks: false
+
+rbac:
+  allowRoleEscalation: true
