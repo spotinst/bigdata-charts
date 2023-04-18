@@ -65,7 +65,7 @@ rules:
     verbs: ["get", "list"]
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["spot-bigdata-tls", "spot-bigdata-image-pull", "spot-bigdata-log-collector-creds"]
+    resourceNames: ["spot-bigdata-tls", "spot-bigdata-image-pull", "spot-bigdata-log-collector-creds", "spot-bigdata-telemetry-creds"]
     verbs: ["*"]
   - apiGroups: [""]
     resources: ["secrets"]
