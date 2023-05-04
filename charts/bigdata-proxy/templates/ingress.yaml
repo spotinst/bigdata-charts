@@ -9,6 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     # Enable client certificate authentication
     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    # Increase timeout for notebook connections
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     # Secret containing the trusted ca certificates
     nginx.ingress.kubernetes.io/auth-tls-secret: {{ printf "%s/%s" .Values.ingress.secretNamespace .Values.ingress.secretName }}
 spec:
