@@ -20,6 +20,12 @@ rules:
       - list
       - watch
   - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - "*"
+  - apiGroups:
       - "apps"
     resources:
       - deployments
