@@ -37,7 +37,6 @@ egLogLevel: "DEBUG"
 sessionStoragePvcName: bigdata-notebook-service-storage
 
 spotBaseUrl: "https://api.spotinst.io"
-spotCredsNamespace: "kube-system"
 
 nameOverride: ""
 fullnameOverride: ""

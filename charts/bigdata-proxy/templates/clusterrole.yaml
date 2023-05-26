@@ -3,20 +3,19 @@ kind: ClusterRole
 metadata:
   name: {{ include "bigdata-proxy.fullname" . }}
 rules:
-- apiGroups:
-  - bigdata.spot.io
-  resources:
-  - bigdataenvironments
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - sparkoperator.k8s.io
-  resources:
-  - sparkapplications
-  - scheduledsparkapplications
-  verbs:
-  - get
-  - list
-  - watch
+  - apiGroups:
+      - bigdata.spot.io
+    resources:
+      - "*"
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - sparkoperator.k8s.io
+    resources:
+      - "*"
+    verbs:
+      - get
+      - list
+      - watch
