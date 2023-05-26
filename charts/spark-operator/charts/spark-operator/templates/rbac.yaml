@@ -48,12 +48,17 @@ rules:
   resources:
   - services
   - configmaps
+  {{- /*
+    Moved to namespaced RBAC
   - secrets
+    */}}
   verbs:
   - create
   - get
   - delete
   - update
+  {{- /*
+    We do not create Spark UI ingresses for each application
 - apiGroups:
   - extensions
   - networking.k8s.io
@@ -63,6 +68,7 @@ rules:
   - create
   - get
   - delete
+    */}}
 - apiGroups:
   - ""
   resources:
@@ -125,12 +131,15 @@ rules:
   - "*"
   {{- end }}
   {{ if .Values.webhook.enable }}
+  {{- /*
+  Moved to namespaced RBAC
 - apiGroups:
   - batch
   resources:
   - jobs
   verbs:
   - delete
+  */}}
   {{- end }}
 
 ---
