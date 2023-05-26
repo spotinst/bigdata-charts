@@ -4,37 +4,23 @@ metadata:
   name: {{ include "bigdata-notebook-service.fullname" . }}
   namespace: {{ .Release.Namespace }}
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - 'configmaps'
-  verbs:
-  - get
+  - apiGroups:
+      - ""
+    resources:
+      - 'configmaps'
+    verbs:
+      - get
 ---
-# TODO Should be restricted to spark app namespaces
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ include "bigdata-notebook-service.fullname" . }}-pod-watcher
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - 'pods'
-  verbs:
-  - get
-  - list
-  - watch
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: {{ include "bigdata-notebook-service.fullname" . }}-spot-creds
-  namespace: {{ .Values.spotCredsNamespace }}
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - 'secrets'
-  verbs:
-  - get
+  - apiGroups:
+      - ""
+    resources:
+      - 'pods'
+    verbs:
+      - get
+      - list
+      - watch
