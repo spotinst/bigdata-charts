@@ -29,6 +29,7 @@ rbac:
   createDeployer: true
   useHelmHooks: true
   allowRoleEscalation: true
+  ingressNginxEnabled: true
 
 podAnnotations: {}
 

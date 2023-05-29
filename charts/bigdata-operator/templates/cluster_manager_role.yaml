@@ -43,7 +43,8 @@ rules:
     verbs: ["*"]
   - apiGroups: [""]
     resources: ["secrets"]
-    verbs: ["create"] # Create cannot be restricted to individual resource names
+    {{- /* Create cannot be restricted to individual resource names */}}
+    verbs: ["create"]
   - apiGroups: ["scheduling.k8s.io"]
     resources: ["priorityclasses"]
     verbs: ["*"]
@@ -103,3 +104,26 @@ rules:
     resources: ["secrets"]
     resourceNames: ["spotinst-kubernetes-cluster-controller"]
     verbs: ["get"]
+  {{- /*
+    The following permissions are required by the ingress-nginx installation.
+    Currently, scoping ingress-nginx to a single namespace is broken, see: https://github.com/kubernetes/ingress-nginx/issues/9481
+    This can be reconsidered when that is fixed.
+    If OfAS does not install ingress-nginx (bring your own ingress controller scenario), this can be turned off via the values configuration.
+  */}}
+  {{- if .Values.rbac.ingressNginxEnabled }}
+  - apiGroups: [""]
+    resources: ["endpoints", "nodes", "secrets"]
+    verbs: ["list", "watch"]
+  - apiGroups: ["coordination.k8s.io"]
+    resources: ["leases"]
+    verbs: ["list", "watch"]
+  - apiGroups: ["discovery.k8s.io"]
+    resources: ["endpointslices"]
+    verbs: ["list", "watch", "get"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["list", "watch", "get"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses/status"]
+    verbs: ["update"]
+  {{- end }}
