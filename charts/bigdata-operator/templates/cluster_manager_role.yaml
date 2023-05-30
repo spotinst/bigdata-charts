@@ -104,6 +104,10 @@ rules:
     resources: ["secrets"]
     resourceNames: ["spotinst-kubernetes-cluster-controller"]
     verbs: ["get"]
+    {{- /* Used by deployer to clean up deployer jobs */}}
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["get", "list", "delete"]
   {{- /*
     The following permissions are required by the ingress-nginx installation.
     Currently, scoping ingress-nginx to a single namespace is broken, see: https://github.com/kubernetes/ingress-nginx/issues/9481
