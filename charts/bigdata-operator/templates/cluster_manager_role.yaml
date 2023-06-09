@@ -1,22 +1,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: bigdata-cluster-manager
-  annotations:
-    {{- if .Values.rbac.useHelmHooks }}
-    helm.sh/hook: pre-install, pre-upgrade
-    helm.sh/resource-policy: keep
-    {{- /* Delete the previous resource before a new hook is launched */}}
-    helm.sh/hook-delete-policy: before-hook-creation
-    helm.sh/hook-weight: "1"
-    {{- end }}
+  name: {{ include "bigdata-operator.fullname" . }}-cluster-manager
 rules:
-  - apiGroups: [""]
-    resources: ["namespaces"]
-    verbs: ["*"]
-  - apiGroups: [""]
-    resources: ["nodes"]
-    verbs: ["get"]
+    # ----------------------------------------------------------------------------
+    # Grant permissions over CRDs used by Ocean for Apache Spark
+    # ----------------------------------------------------------------------------
   - apiGroups: ["apiextensions.k8s.io"]
     resources: ["customresourcedefinitions"]
     verbs: ["*"]
@@ -26,9 +15,9 @@ rules:
   - apiGroups: ["sparkoperator.k8s.io"]
     resources: ["*"]
     verbs: ["*"]
-  - apiGroups: ["rbac.authorization.k8s.io"]
-    resources: ["clusterroles", "clusterrolebindings"]
-    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+    # ----------------------------------------------------------------------------
+    # Grant read permissions over Ocean config map and secret
+    # ----------------------------------------------------------------------------
   - apiGroups: [""]
     resources: ["configmaps"]
     resourceNames: ["spotinst-kubernetes-cluster-controller-config"]
@@ -37,14 +26,26 @@ rules:
     resources: ["secrets"]
     resourceNames: ["spotinst-kubernetes-cluster-controller"]
     verbs: ["get", "list"]
+    # ----------------------------------------------------------------------------
+    # Grant full permissions over Ocean for Apache Spark managed secrets
+    # ----------------------------------------------------------------------------
   - apiGroups: [""]
     resources: ["secrets"]
     resourceNames: ["spot-bigdata-tls", "spot-bigdata-image-pull", "spot-bigdata-log-collector-creds", "spot-bigdata-telemetry-creds"]
     verbs: ["*"]
   - apiGroups: [""]
     resources: ["secrets"]
-    {{- /* Create cannot be restricted to individual resource names */}}
+    # Create cannot be restricted to individual resource names
     verbs: ["create"]
+    # ----------------------------------------------------------------------------
+    # Permissions required by Ocean for Apache Spark components
+    # ----------------------------------------------------------------------------
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get"]
   - apiGroups: ["scheduling.k8s.io"]
     resources: ["priorityclasses"]
     verbs: ["*"]
@@ -54,6 +55,9 @@ rules:
   - apiGroups: [""]
     resources: ["persistentvolumes"]
     verbs: ["*"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["clusterroles", "clusterrolebindings"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
   - apiGroups: ["rbac.authorization.k8s.io"]
     resources: ["roles", "rolebindings"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
@@ -96,25 +100,18 @@ rules:
   - apiGroups: [""]
     resources: ["resourcequotas"]
     verbs: ["get", "list", "watch"]
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    resourceNames: ["spotinst-kubernetes-cluster-controller-config"]
-    verbs: ["get"]
-  - apiGroups: [""]
-    resources: ["secrets"]
-    resourceNames: ["spotinst-kubernetes-cluster-controller"]
-    verbs: ["get"]
-    {{- /* Used by deployer to clean up deployer jobs */}}
+    # ----------------------------------------------------------------------------
+    # Clean up deployer jobs
+    # ----------------------------------------------------------------------------
   - apiGroups: ["batch"]
     resources: ["jobs"]
     verbs: ["get", "list", "delete"]
-  {{- /*
-    The following permissions are required by the ingress-nginx installation.
-    Currently, scoping ingress-nginx to a single namespace is broken, see: https://github.com/kubernetes/ingress-nginx/issues/9481
-    This can be reconsidered when that is fixed.
-    If OfAS does not install ingress-nginx (bring your own ingress controller scenario), this can be turned off via the values configuration.
-  */}}
-  {{- if .Values.rbac.ingressNginxEnabled }}
+    {{- if .Values.rbac.ingressNginxEnabled }}
+    # ----------------------------------------------------------------------------
+    # The following permissions are required by the ingress-nginx installation.
+    # Currently, scoping ingress-nginx to a single namespace is broken, see: https://github.com/kubernetes/ingress-nginx/issues/9481
+    # If OfAS does not install ingress-nginx (bring your own ingress controller scenario), this can be removed
+    # ----------------------------------------------------------------------------
   - apiGroups: [""]
     resources: ["endpoints", "nodes", "secrets"]
     verbs: ["list", "watch"]
@@ -130,4 +127,4 @@ rules:
   - apiGroups: ["networking.k8s.io"]
     resources: ["ingresses/status"]
     verbs: ["update"]
-  {{- end }}
+    {{- end }}

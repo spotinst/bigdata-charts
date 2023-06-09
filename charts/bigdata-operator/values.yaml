@@ -23,9 +23,6 @@ serviceAccount:
   name: ""  # Defaults to release name
 
 rbac:
-  createDeployer: true
-  useHelmHooks: true
-  allowRoleEscalation: true
   ingressNginxEnabled: true
 
 podAnnotations: {}
