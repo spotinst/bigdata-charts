@@ -96,6 +96,8 @@ spec:
             value: "True"
           - name: EG_RESPONSE_ADDR_ANY
             value: "True"
+          - name: EG_RESPONSE_PORT
+            value: "{{ .Values.kernel.egResponsePort }}"
           - name: EG_PERSISTENCE_ROOT
             value: "/mnt"
           - name: SPOTINST_CLUSTER_ID
