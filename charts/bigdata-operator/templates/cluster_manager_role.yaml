@@ -1,0 +1,130 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "bigdata-operator.fullname" . }}-cluster-manager
+rules:
+    # ----------------------------------------------------------------------------
+    # Grant permissions over CRDs used by Ocean for Apache Spark
+    # ----------------------------------------------------------------------------
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources: ["customresourcedefinitions"]
+    verbs: ["*"]
+  - apiGroups: ["bigdata.spot.io"]
+    resources: ["*"]
+    verbs: ["*"]
+  - apiGroups: ["sparkoperator.k8s.io"]
+    resources: ["*"]
+    verbs: ["*"]
+    # ----------------------------------------------------------------------------
+    # Grant read permissions over Ocean config map and secret
+    # ----------------------------------------------------------------------------
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["spotinst-kubernetes-cluster-controller-config"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["spotinst-kubernetes-cluster-controller"]
+    verbs: ["get", "list"]
+    # ----------------------------------------------------------------------------
+    # Grant full permissions over Ocean for Apache Spark managed secrets
+    # ----------------------------------------------------------------------------
+  - apiGroups: [""]
+    resources: ["secrets"]
+    resourceNames: ["spot-bigdata-tls", "spot-bigdata-image-pull", "spot-bigdata-log-collector-creds", "spot-bigdata-telemetry-creds"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    # Create cannot be restricted to individual resource names
+    verbs: ["create"]
+    # ----------------------------------------------------------------------------
+    # Permissions required by Ocean for Apache Spark components
+    # ----------------------------------------------------------------------------
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get"]
+  - apiGroups: ["scheduling.k8s.io"]
+    resources: ["priorityclasses"]
+    verbs: ["*"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingressclasses"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["*"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["clusterroles", "clusterrolebindings"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["roles", "rolebindings"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["policy"]
+    resources: ["poddisruptionbudgets"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["serviceaccounts"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["pods/exec"]
+    verbs: ["create", "get"]
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["*"]
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["nodes", "pods"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "jobs"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["create", "get", "watch", "delete", "list", "patch", "update"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["admissionregistration.k8s.io"]
+    resources: ["mutatingwebhookconfigurations", "validatingwebhookconfigurations"]
+    verbs: ["create", "get", "watch", "delete", "list", "patch", "update"]
+  - apiGroups: [""]
+    resources: ["resourcequotas"]
+    verbs: ["get", "list", "watch"]
+    # ----------------------------------------------------------------------------
+    # Clean up deployer jobs
+    # ----------------------------------------------------------------------------
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["get", "list", "delete"]
+    {{- if .Values.rbac.ingressNginxEnabled }}
+    # ----------------------------------------------------------------------------
+    # The following permissions are required by the ingress-nginx installation.
+    # Currently, scoping ingress-nginx to a single namespace is broken, see: https://github.com/kubernetes/ingress-nginx/issues/9481
+    # If OfAS does not install ingress-nginx (bring your own ingress controller scenario), this can be removed
+    # ----------------------------------------------------------------------------
+  - apiGroups: [""]
+    resources: ["endpoints", "nodes", "secrets"]
+    verbs: ["list", "watch"]
+  - apiGroups: ["coordination.k8s.io"]
+    resources: ["leases"]
+    verbs: ["list", "watch"]
+  - apiGroups: ["discovery.k8s.io"]
+    resources: ["endpointslices"]
+    verbs: ["list", "watch", "get"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["list", "watch", "get"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses/status"]
+    verbs: ["update"]
+    {{- end }}

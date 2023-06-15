@@ -11,7 +11,7 @@ image:
   repository: public.ecr.aws/f4k1p1n4/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.1.35-e3b6c65f
+  tag: 0.2.1-ea2ed45d
 
 imagePullSecrets: []
 
@@ -21,6 +21,9 @@ serviceAccount:
   create: true
   annotations: {}
   name: ""  # Defaults to release name
+
+rbac:
+  ingressNginxEnabled: true
 
 podAnnotations: {}
 
