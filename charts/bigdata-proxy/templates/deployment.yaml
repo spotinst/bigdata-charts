@@ -49,6 +49,8 @@ spec:
               value: "{{ .Values.defaultSparkAppsNamespace }}"
             - name: BIGDATA_PROXY_LOG_LEVEL
               value: "{{ .Values.logLevel }}"
+            - name: BIGDATA_PROXY_UPSTREAM_TTL
+              value: "{{ .Values.upstreamTTL }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
