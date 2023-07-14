@@ -90,7 +90,7 @@ rules:
     verbs: ["get", "list", "watch"]
   - apiGroups: [""]
     resources: ["configmaps"]
-    verbs: ["create", "get", "watch", "delete", "list", "patch", "update"]
+    verbs: ["create", "get", "watch", "delete", "list", "patch", "update", "deletecollection"]
   - apiGroups: [""]
     resources: ["persistentvolumeclaims"]
     verbs: ["*"]
