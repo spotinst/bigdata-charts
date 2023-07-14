@@ -2702,6 +2702,18 @@ entries:
     version: 0.1.0
   spark-operator-static:
   - apiVersion: v2
+    appVersion: 0.1.6
+    created: "2023-07-14T08:12:19.295989551Z"
+    description: Spark Operator (static part)
+    digest: a63dda33f14d146437650430942e1192706fb1cd3471b18efa78e9294283078f
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: spark-operator-static
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.6/spark-operator-static-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
     appVersion: 0.1.5
     created: "2023-07-13T07:48:45.560509522Z"
     description: Spark Operator (static part)
@@ -2773,4 +2785,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2023-07-13T09:53:43.504332345Z"
+generated: "2023-07-14T08:12:19.296277432Z"
