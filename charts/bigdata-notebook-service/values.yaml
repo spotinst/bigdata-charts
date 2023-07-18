@@ -18,6 +18,7 @@ kernel:
   defaultNamespace: "spark-apps"  # Default kernel namespace
   portMin: 50000  # Port range usable by kernels. Each kernel takes one port.
   portMax: 50100
+  egResponsePort: 50100  # Port used by kernels to send responses to the notebook service.
   launchTimeout: 600  # Timeout for kernel launching in seconds. Nginx timeout is also set to this value.
   cullIdleTimeout: 0  # Timeout for an idle kernel before it's culled in seconds. 0 turns it off, we use the timeout feature instead.
   connectionServiceName: bigdata-notebook-service-kernel-connection
