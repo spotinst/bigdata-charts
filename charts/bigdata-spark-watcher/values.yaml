@@ -8,7 +8,7 @@ image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-spark-watcher
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.3.1-cf56a824
+  tag: 0.3.2-bc5b589f
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull

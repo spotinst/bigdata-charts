@@ -16,7 +16,7 @@ rules:
     resources: ["*"]
     verbs: ["*"]
     # ----------------------------------------------------------------------------
-    # Grant read permissions over Ocean config map and secret
+    # Grant read permissions over Ocean config map and secrets
     # ----------------------------------------------------------------------------
   - apiGroups: [""]
     resources: ["configmaps"]
@@ -24,7 +24,7 @@ rules:
     verbs: ["get", "list"]
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["spotinst-kubernetes-cluster-controller"]
+    resourceNames: ["spotinst-kubernetes-cluster-controller", "spotinst-kubernetes-cluster-controller-ca-bundle"]
     verbs: ["get", "list"]
     # ----------------------------------------------------------------------------
     # Grant full permissions over Ocean for Apache Spark managed secrets
@@ -90,10 +90,10 @@ rules:
     verbs: ["get", "list", "watch"]
   - apiGroups: [""]
     resources: ["configmaps"]
-    verbs: ["create", "get", "watch", "delete", "list", "patch", "update"]
+    verbs: ["create", "get", "watch", "delete", "list", "patch", "update", "deletecollection"]
   - apiGroups: [""]
     resources: ["persistentvolumeclaims"]
-    verbs: ["get", "list", "watch"]
+    verbs: ["*"]
   - apiGroups: ["admissionregistration.k8s.io"]
     resources: ["mutatingwebhookconfigurations", "validatingwebhookconfigurations"]
     verbs: ["create", "get", "watch", "delete", "list", "patch", "update"]
