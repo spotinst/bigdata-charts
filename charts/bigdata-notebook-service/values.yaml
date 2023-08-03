@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service
   pullPolicy: IfNotPresent
-  tag: 992d6beb
+  tag: 99cc6cc2
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
