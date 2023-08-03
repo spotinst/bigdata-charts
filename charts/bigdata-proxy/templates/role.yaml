@@ -20,6 +20,12 @@ rules:
       - list
       - watch
   - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - delete
+  - apiGroups:
       - "apps"
     resources:
       - deployments

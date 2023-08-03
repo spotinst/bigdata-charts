@@ -8,10 +8,10 @@ metadata:
 rules:
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "pods" ]
-    verbs: [ "create", "get", "watch", "delete", "list", "patch" ]
+    verbs: [ "create", "get", "watch", "delete", "list", "patch", "update", "deletecollection" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "configmaps" ]
-    verbs: [ "create", "get", "watch", "delete", "list", "patch" ]
+    verbs: [ "create", "get", "watch", "delete", "list", "patch", "update", "deletecollection" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "pods/exec" ]
     verbs: [ "get" ]
@@ -20,10 +20,10 @@ rules:
     verbs: [ "get" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "services" ]
-    verbs: [ "get", "list", "watch", "delete" ]
+    verbs: [ "create", "get", "watch", "delete", "list", "patch", "update", "deletecollection" ]
   - apiGroups: [ "" ] # "" indicates the core API group
     resources: [ "persistentvolumeclaims" ]
-    verbs: [ "get", "list", "watch" ]
+    verbs: [ "create", "get", "watch", "delete", "list", "patch", "update", "deletecollection" ]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
