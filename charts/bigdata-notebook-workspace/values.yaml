@@ -1,0 +1,108 @@
+# Default values for bigdata-spark-watcher.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+creatorUserId: ""
+workspaceName: ""
+
+image:
+  repository: jupyter/datascience-notebook
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: lab-4.0.3
+
+imagePullSecrets:
+  - name: spot-bigdata-image-pull
+
+nameOverride: ""
+fullnameOverride: ""
+
+gatewayClient:
+  enabled: true
+  url: "http://bigdata-notebook-service.spot-system.svc.cluster.local"
+  requestTimeout: 600
+  headers: '{"Content-Type": "application/json"}'
+  secretKeyToken: token
+
+podAnnotations: {}
+podLabels: {}
+sharedLabels: {}
+sharedAnnotations: {}
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+
+pvc:
+  create: true
+  requests:
+    storage: 10Gi
+
+volume:
+  name: workspace-data
+  mountPath: /home/jovyan
+
+podSecurityContext:
+  runAsUser: 0
+  fsGroup: 0
+
+containerPort:
+  port: 8888
+  name: workspace
+
+restartPolicy: Always
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1000Mi
+  requests:
+    cpu: 250m
+    memory: 500Mi
+
+nodeSelector: {}
+
+tolerations:
+- key: "bigdata.spot.io/unschedulable"
+  operator: "Equal"
+  value: "ocean-spark-system"
+  effect: "NoSchedule"
+- key: "kubernetes.azure.com/scalesetpriority"
+  operator: "Equal"
+  value: "spot"
+  effect: "NoSchedule"
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: spotinst.io/node-lifecycle
+          operator: In
+          values:
+          - od
+        - key: spotinst.io/ocean-vng-id
+          operator: Exists
+        - key: bigdata.spot.io/vng
+          operator: NotIn
+          values:
+          - ocean-spark
+  podAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: bigdata.spot.io/component
+            operator: Exists
+        topologyKey: "kubernetes.io/hostname"
