@@ -1,0 +1,23 @@
+{{- if .Values.pvc.create -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "bigdata-notebook-workspace.labels" . | nindent 4 }}
+    {{- with .Values.sharedLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- include "bigdata-notebook-workspace.annotations" . | nindent 4 }}
+    {{- with .Values.sharedAnnotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.pvc.requests.storage }}
+{{- end }}

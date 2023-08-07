@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "bigdata-notebook-workspace.labels" . | nindent 4 }}
+    {{- with .Values.sharedLabels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- include "bigdata-notebook-workspace.annotations" . | nindent 4 }}
+    {{- with .Values.sharedAnnotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "bigdata-notebook-workspace.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        {{- include "bigdata-notebook-workspace.annotations" . | nindent 8 }}
+        {{- with .Values.sharedAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "bigdata-notebook-workspace.labels" . | nindent 8 }}
+        {{- with .Values.sharedLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "bigdata-notebook-workspace.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: workspace
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.containerPort.port }}
+              name: {{ .Values.containerPort.name }}
+          command:
+            - /bin/bash
+            - -c
+            - |
+              start.sh jupyter lab --LabApp.token='' --LabApp.ip='0.0.0.0' --LabApp.allow_root=True --LabApp.base_url=workspace/{{ .Release.Namespace }}/{{ .Release.Name }}/proxy --GatewayWebSocketConnection.kernel_ws_protocol=""
+          env:
+          {{- if .Values.pvc.create }}
+          - name: "CHOWN_HOME"
+            value: "yes"
+          - name: "CHOWN_HOME_OPTS"
+            value: "-R"
+          {{- end }}
+          {{- if .Values.gatewayClient.enabled }}
+          - name: "JUPYTER_GATEWAY_URL"
+            value: {{ .Values.gatewayClient.url }}
+          - name: "JUPYTER_GATEWAY_AUTH_TOKEN"
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}
+                key: {{ .Values.gatewayClient.secretKeyToken }}
+          - name: "JUPYTER_GATEWAY_REQUEST_TIMEOUT"
+            value: {{ .Values.gatewayClient.requestTimeout | quote }}
+          - name: "JUPYTER_GATEWAY_HEADERS"
+            value: {{ .Values.gatewayClient.headers | quote }}
+          {{- end }}
+          {{- if .Values.pvc.create }}
+          volumeMounts:
+            - name: {{ .Values.volume.name }}
+              mountPath: {{ .Values.volume.mountPath }}
+          {{- end }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      restartPolicy: {{ .Values.restartPolicy }}
+      {{- if .Values.pvc.create }}
+      volumes:
+        - name: {{ .Values.volume.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
