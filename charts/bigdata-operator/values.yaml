@@ -46,7 +46,7 @@ securityContext: {}
 # runAsUser: 1000
 
 telemetry:
-  enabled: true
+  enabled: false
   fluentbit:
     image:
       repository: public.ecr.aws/ocean-spark/fluent-bit
