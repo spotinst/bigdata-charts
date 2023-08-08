@@ -49,7 +49,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
       memory: 1000Mi
 
   telemetry:
-    enabled: true
+    enabled: false
     fluentbit:
       image:
         repository: public.ecr.aws/ocean-spark/fluent-bit
