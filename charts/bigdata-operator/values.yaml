@@ -25,11 +25,7 @@ serviceAccount:
 rbac:
   ingressNginxEnabled: true
 
-podAnnotations:
-  prometheus.io/scrape: true
-  prometheus.io/path: "/metrics"
-  prometheus.io/port: 8080
-  prometheus.io/scheme: http
+podAnnotations: {}
 
 podLabels:
   bigdata.spot.io/component: "bigdata-operator"
