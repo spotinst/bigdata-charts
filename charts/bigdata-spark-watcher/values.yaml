@@ -73,7 +73,7 @@ resources:
     memory: 2000Mi
 
 telemetry:
-  enabled: true
+  enabled: false
   fluentbit:
     image:
       repository: public.ecr.aws/ocean-spark/fluent-bit
