@@ -41,6 +41,21 @@ entries:
   bigdata-notebook-service:
   - apiVersion: v2
     appVersion: 0.1.15
+    created: "2023-08-08T12:29:22.963967601Z"
+    description: A Helm chart for the Spot Big Data Notebook Service
+    digest: d5ce55c844f8a4d95edd9af07ba58ed60417f3d7fd33cc539aa2d39865a45ed0
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: sebastien.maintrot@netapp.com
+      name: impsy
+    name: bigdata-notebook-service
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-0.1.29/bigdata-notebook-service-0.1.29.tgz
+    version: 0.1.29
+  - apiVersion: v2
+    appVersion: 0.1.15
     created: "2023-08-03T14:05:41.720676876Z"
     description: A Helm chart for the Spot Big Data Notebook Service
     digest: e502ff5328b1b05f626c8241221924131196d293c807cf2f636a235f762a9feb
@@ -527,6 +542,24 @@ entries:
   bigdata-notebook-service-storage-server:
   - apiVersion: v2
     appVersion: 1.1.0-ofas
+    created: "2023-08-08T12:29:23.170309417Z"
+    description: A Helm chart for the Spot Big Data Notebook Service Storage Server
+    digest: 7301b19b9c2c90d2467b2b75810cb67b14972c6a78981fc4fe20291757f81a77
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-notebook-service-storage-server
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-storage-server-0.1.10/bigdata-notebook-service-storage-server-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v2
+    appVersion: 1.1.0-ofas
     created: "2023-03-07T08:41:46.82458289Z"
     description: A Helm chart for the Spot Big Data Notebook Service Storage Server
     digest: b803f1fc32faca2643da406764982716824f69bde9e554b99106bf2f8fd3066a
@@ -706,6 +739,27 @@ entries:
     - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-storage-server-0.1.0/bigdata-notebook-service-storage-server-0.1.0.tgz
     version: 0.1.0
   bigdata-operator:
+  - apiVersion: v2
+    appVersion: 0.2.3
+    created: "2023-08-08T12:29:23.402680064Z"
+    description: Spot Ocean BigData Operator
+    digest: fee75f3990a20a54bc369b4172cac2783bfde80b7505a9b4bfe180b91683e84f
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - toolkit
+    - ocean
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-operator
+    sources:
+    - https://github.com/spotinst/bigdata-operator
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-operator-0.2.7/bigdata-operator-0.2.7.tgz
+    version: 0.2.7
   - apiVersion: v2
     appVersion: 0.2.3
     created: "2023-07-14T11:26:34.985978934Z"
@@ -1443,6 +1497,26 @@ entries:
     version: 0.1.0
   bigdata-proxy:
   - apiVersion: v2
+    appVersion: 0.2.4
+    created: "2023-08-08T12:29:23.619521313Z"
+    description: A Helm chart for the Spot Big Data Proxy
+    digest: 064692c920a21bc387429bf2906a7df264509f0cdd124006092a2c9e38ea6ff4
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-proxy
+    sources:
+    - https://github.com/spotinst/bigdata-proxy
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-proxy-0.3.3/bigdata-proxy-0.3.3.tgz
+    version: 0.3.3
+  - apiVersion: v2
     appVersion: 0.3.1
     created: "2023-06-29T10:56:15.828743922Z"
     description: A Helm chart for the Spot Big Data Proxy
@@ -1863,6 +1937,26 @@ entries:
     - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-proxy-0.0.1/bigdata-proxy-0.0.1.tgz
     version: 0.0.1
   bigdata-spark-watcher:
+  - apiVersion: v2
+    appVersion: 0.4.1
+    created: "2023-08-08T12:29:23.828397262Z"
+    description: A Helm chart for the Spot Big Data Spark Watcher
+    digest: 18a544b0695173d75cc95a396283853293f9a276aafdf6346428d6f7f1ae641a
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-spark-watcher
+    sources:
+    - https://github.com/spotinst/bigdata-spark-watcher
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-spark-watcher-0.4.2/bigdata-spark-watcher-0.4.2.tgz
+    version: 0.4.2
   - apiVersion: v2
     appVersion: 0.4.1
     created: "2023-08-07T15:05:46.687940594Z"
@@ -2486,6 +2580,26 @@ entries:
   bigdata-telemetry:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-08-08T12:29:24.010968777Z"
+    description: A Helm chart for the Spot Big Data Telemetry components
+    digest: 713c4ad638bc59b77a3e2a4e5ba22fc8a71378b43e07988b9585f1533752f425
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: zakaria.elbazi@netapp.com
+      name: z4ck404
+    name: bigdata-telemetry
+    sources:
+    - https://github.com/spotinst/bigdata-telemetry
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-telemetry-0.1.1/bigdata-telemetry-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-04-04T15:27:25.513061446Z"
     description: A Helm chart for the Spot Big Data Telemetry components
     digest: 85aa2402f74514d940a4a512e86456b67acce424f93db7330c9c2096dbbff551
@@ -2505,6 +2619,22 @@ entries:
     - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-telemetry-0.1.0/bigdata-telemetry-0.1.0.tgz
     version: 0.1.0
   spark-operator:
+  - apiVersion: v2
+    appVersion: v1beta2-1.3.4-3.1.1
+    created: "2023-08-08T12:29:24.214234054Z"
+    dependencies:
+    - name: spark-operator
+      repository: ""
+      version: 1.1.20
+    description: Spark Operator (b/g part)
+    digest: 8e4abc2c272057cfedbbab4e65d3c36f69ede3d9354371f58a1be946e15cef4d
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: spark-operator
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-0.1.21/spark-operator-0.1.21.tgz
+    version: 0.1.21
   - apiVersion: v2
     appVersion: v1beta2-1.3.4-3.1.1
     created: "2023-05-26T13:09:56.541764726Z"
@@ -2926,4 +3056,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2023-08-07T15:05:46.688810503Z"
+generated: "2023-08-08T12:29:24.215598472Z"
