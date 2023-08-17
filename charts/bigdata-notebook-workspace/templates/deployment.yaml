@@ -52,10 +52,15 @@ spec:
             - containerPort: {{ .Values.containerPort.port }}
               name: {{ .Values.containerPort.name }}
           command:
-            - /bin/bash
-            - -c
-            - |
-              start.sh jupyter lab --LabApp.token='' --LabApp.ip='0.0.0.0' --LabApp.allow_root=True --LabApp.base_url=workspace/{{ .Release.Namespace }}/{{ .Release.Name }}/proxy --GatewayWebSocketConnection.kernel_ws_protocol=""
+            - start.sh
+            - jupyter
+            - lab
+          args:
+            - --LabApp.token=''
+            - --LabApp.ip='0.0.0.0'
+            - --LabApp.allow_root=True
+            - --LabApp.base_url=workspace/{{ .Release.Namespace }}/{{ .Release.Name }}/proxy
+            - --GatewayWebSocketConnection.kernel_ws_protocol=''
           env:
           {{- if .Values.pvc.create }}
           - name: "CHOWN_HOME"
