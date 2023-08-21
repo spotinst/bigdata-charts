@@ -56,7 +56,6 @@ spec:
           args:
             - --ServerApp.token=''
             - --ServerApp.ip='0.0.0.0'
-            - --ServerApp.allow_root=True
             - --ServerApp.base_url=workspace/{{ .Release.Namespace }}/{{ .Release.Name }}/proxy
             - --GatewayWebSocketConnection.kernel_ws_protocol=''
           env:
