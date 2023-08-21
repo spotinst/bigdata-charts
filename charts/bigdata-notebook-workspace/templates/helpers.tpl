@@ -49,7 +49,7 @@ bigdata.spot.io/creatorUserId: {{ .Values.creatorUserId | quote }}
 Common annotations
 */}}
 {{- define "bigdata-notebook-workspace.annotations" -}}
-bigdata.spot.io/notebookWorkspaceName: {{ .Values.workspaceName }}
+bigdata.spot.io/notebookWorkspaceName: {{ .Release.Name }}
 {{- end }}
 
 {{/*
