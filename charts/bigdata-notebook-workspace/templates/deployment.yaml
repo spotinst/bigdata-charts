@@ -52,14 +52,12 @@ spec:
             - containerPort: {{ .Values.containerPort.port }}
               name: {{ .Values.containerPort.name }}
           command:
-            - start.sh
-            - jupyter
-            - lab
+            - start-notebook.sh
           args:
-            - --LabApp.token=''
-            - --LabApp.ip='0.0.0.0'
-            - --LabApp.allow_root=True
-            - --LabApp.base_url=workspace/{{ .Release.Namespace }}/{{ .Release.Name }}/proxy
+            - --ServerApp.token=''
+            - --ServerApp.ip='0.0.0.0'
+            - --ServerApp.allow_root=True
+            - --ServerApp.base_url=workspace/{{ .Release.Namespace }}/{{ .Release.Name }}/proxy
             - --GatewayWebSocketConnection.kernel_ws_protocol=''
           env:
           {{- if .Values.pvc.create }}
