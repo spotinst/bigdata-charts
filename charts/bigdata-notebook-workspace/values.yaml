@@ -4,13 +4,12 @@
 
 replicaCount: 1
 creatorUserId: ""
-workspaceName: ""
 
 image:
-  repository: jupyter/datascience-notebook
+  repository: jupyter/base-notebook
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: lab-4.0.3
+  tag: lab-4.0.4
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
