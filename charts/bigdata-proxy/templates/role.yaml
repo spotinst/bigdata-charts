@@ -86,6 +86,11 @@ rules:
       - get
       - list
       - watch
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
       - delete
   - apiGroups:
       - metrics.k8s.io
