@@ -86,6 +86,7 @@ rules:
       - get
       - list
       - watch
+      - delete
   - apiGroups:
       - metrics.k8s.io
     resources:
