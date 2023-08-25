@@ -1593,6 +1593,26 @@ entries:
   bigdata-proxy:
   - apiVersion: v2
     appVersion: 0.3.1
+    created: "2023-08-25T10:54:50.065709765Z"
+    description: A Helm chart for the Spot Big Data Proxy
+    digest: 43b17c1693d49a00865907ca99755fa500a9d296890cc4b0bb5169f404456d3a
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-proxy
+    sources:
+    - https://github.com/spotinst/bigdata-proxy
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-proxy-0.3.5/bigdata-proxy-0.3.5.tgz
+    version: 0.3.5
+  - apiVersion: v2
+    appVersion: 0.3.1
     created: "2023-08-25T10:31:23.973793163Z"
     description: A Helm chart for the Spot Big Data Proxy
     digest: 9e924f9d092ebe85c6b431ebc3a2a84bc6c6140d851ed266bfd139616c9d759f
@@ -3171,4 +3191,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2023-08-25T10:31:23.974488869Z"
+generated: "2023-08-25T10:54:50.066258974Z"
