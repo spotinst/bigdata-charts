@@ -56,7 +56,8 @@ spec:
           args:
             - --ServerApp.token=''
             - --ServerApp.ip='0.0.0.0'
-            - --ServerApp.base_url=workspace/{{ .Release.Namespace }}/{{ .Release.Name }}/proxy
+            - --ServerApp.allow_origin='*'
+            - --ServerApp.base_url={{ include "bigdata-notebook-workspace.server.baseURL" . }}
             - --GatewayWebSocketConnection.kernel_ws_protocol=''
           env:
           {{- if .Values.pvc.create }}

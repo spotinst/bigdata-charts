@@ -17,6 +17,9 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
+server:
+  baseURL:
+
 gatewayClient:
   enabled: true
   url: "http://bigdata-notebook-service.spot-system.svc.cluster.local"
