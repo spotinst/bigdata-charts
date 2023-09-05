@@ -55,7 +55,7 @@ spec:
             - start-notebook.sh
           args:
           {{- range $key, $value := .Values.server }}
-            - --{{ printf "ServerApp.%s" $key }}={{$value | squote}}
+            - --ServerApp.{{ $key | snakecase }}={{$value}}
           {{- end}}
             - --GatewayWebSocketConnection.kernel_ws_protocol=''
           env:

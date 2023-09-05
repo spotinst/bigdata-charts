@@ -20,7 +20,7 @@ fullnameOverride: ""
 server:
   token: ''
   ip: '0.0.0.0'
-  allow_origin: '*'
+  allowOrigin: '*'
 
 gatewayClient:
   enabled: true
