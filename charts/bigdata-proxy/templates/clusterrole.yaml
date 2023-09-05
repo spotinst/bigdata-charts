@@ -12,6 +12,22 @@ rules:
       - list
       - watch
   - apiGroups:
+      - bigdata.spot.io
+    resources:
+      - "bigdatacomponents"
+    verbs:
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - ""
+    resources:
+      - "secrets"
+    verbs:
+      - create
+      - update
+      - delete
+  - apiGroups:
       - sparkoperator.k8s.io
     resources:
       - "*"
