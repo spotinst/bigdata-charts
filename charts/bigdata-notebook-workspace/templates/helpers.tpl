@@ -70,15 +70,3 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
-
-{{/*
-Compute the server base URL
-*/}}
-{{- define "bigdata-notebook-workspace.server.baseURL" -}}
-{{- if .Values.server.baseURL }}
-{{- .Values.server.baseURL }}
-{{- else }}
-{{- printf "workspace/%s/%s/proxy" .Release.Namespace .Release.Name }}
-{{- end }}
-{{- end }}
-

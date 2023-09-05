@@ -54,10 +54,9 @@ spec:
           command:
             - start-notebook.sh
           args:
-            - --ServerApp.token=''
-            - --ServerApp.ip='0.0.0.0'
-            - --ServerApp.allow_origin='*'
-            - --ServerApp.base_url={{ include "bigdata-notebook-workspace.server.baseURL" . }}
+          {{- range $key, $value := .Values.server }}
+            - --{{ printf "ServerApp.%s" $key }}={{$value | squote}}
+          {{- end}}
             - --GatewayWebSocketConnection.kernel_ws_protocol=''
           env:
           {{- if .Values.pvc.create }}
