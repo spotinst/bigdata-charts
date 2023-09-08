@@ -1,9 +1,9 @@
 apiVersion: v2
-name: bigdata-operator
-description: Spot Ocean BigData Operator
+name: bigdata-crds
+description: Custom Resource Definitions for the Spot Bigdata Platform
 type: application
-version: 0.3.2
-appVersion: 0.3.0
+version: 1.0.0
+appVersion: "1.0.0"
 home: https://github.com/spotinst/charts
 icon: https://docs.spot.io/_media/images/spot_mark.png
 sources:
