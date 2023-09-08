@@ -1,5 +1,27 @@
 apiVersion: v1
 entries:
+  bigdata-crds:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-09-08T13:32:58.685460775Z"
+    description: Custom Resource Definitions for the Spot Bigdata Platform
+    digest: 7c3119559ca9356262c60f8ad9123143ded491a4cc6ffe319b494af98667d46e
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - toolkit
+    - ocean
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-crds
+    sources:
+    - https://github.com/spotinst/bigdata-operator
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-crds-1.0.0/bigdata-crds-1.0.0.tgz
+    version: 1.0.0
   bigdata-deployer:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -833,6 +855,27 @@ entries:
     - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-workspace-0.0.1/bigdata-notebook-workspace-0.0.1.tgz
     version: 0.0.1
   bigdata-operator:
+  - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2023-09-08T13:32:58.859869115Z"
+    description: Spot Ocean BigData Operator
+    digest: 52979a6a05742f644a300264f311187b8e0c7192d9354e463a843487b69af847
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - toolkit
+    - ocean
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-operator
+    sources:
+    - https://github.com/spotinst/bigdata-operator
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-operator-0.3.2/bigdata-operator-0.3.2.tgz
+    version: 0.3.2
   - apiVersion: v2
     appVersion: 0.3.0
     created: "2023-09-06T12:02:50.264220247Z"
@@ -3293,4 +3336,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-06T12:02:50.26491744Z"
+generated: "2023-09-08T13:32:58.86145312Z"
