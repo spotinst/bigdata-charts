@@ -14,7 +14,20 @@ spec:
     singular: bigdatacomponent
   scope: Namespaced
   versions:
-  - name: v1
+  - additionalPrinterColumns:
+    - jsonPath: .spec.chartName
+      name: Chart
+      type: string
+    - jsonPath: .spec.version
+      name: Version
+      type: string
+    - jsonPath: .status.conditions[-1:].type
+      name: Status
+      type: string
+    - jsonPath: .status.conditions[-1:].message
+      name: Message
+      type: string
+    name: v1
     schema:
       openAPIV3Schema:
         description: BigDataComponent is the Schema for the bigdatacomponents API
