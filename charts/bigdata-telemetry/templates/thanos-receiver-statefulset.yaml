@@ -55,6 +55,18 @@ spec:
                   name: spot-bigdata-telemetry-creds
                   key: object-store.yaml
                   name: bigdata-telemetry-object-store
+            - name: HTTP_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: proxyUrl
+                  optional: true
+            - name: HTTPS_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: proxyUrl
+                  optional: true
           image: "{{ .Values.thanos.image.repository }}:{{ .Values.thanos.image.tag }}"
           livenessProbe:
             failureThreshold: 8

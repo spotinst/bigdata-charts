@@ -54,6 +54,18 @@ spec:
           env:
           {{- toYaml . | nindent 12 }}
           {{- end }}
+            - name: HTTP_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: proxyUrl
+                  optional: true
+            - name: HTTPS_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: proxyUrl
+                  optional: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
     {{- if .Values.telemetry.enabled }}
@@ -94,6 +106,18 @@ spec:
                 configMapKeyRef:
                   name: spot-ofas-cluster-info
                   key: accountId
+            - name: HTTP_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: proxyUrl
+                  optional: true
+            - name: HTTPS_PROXY
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: proxyUrl
+                  optional: true
           resources: {}
           volumeMounts:
             - name: config
