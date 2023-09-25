@@ -4,6 +4,12 @@
 
 replicaCount: 1
 creatorUserId: ""
+workspaceName: ""
+
+server:
+  token: ''
+  ip: '0.0.0.0'
+  allowOrigin: '*'
 
 image:
   repository: jupyter/base-notebook
@@ -16,11 +22,6 @@ imagePullSecrets:
 
 nameOverride: ""
 fullnameOverride: ""
-
-server:
-  token: ''
-  ip: '0.0.0.0'
-  allowOrigin: '*'
 
 gatewayClient:
   enabled: true
