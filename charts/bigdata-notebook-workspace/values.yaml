@@ -12,10 +12,10 @@ server:
   allowOrigin: '*'
 
 image:
-  repository: jupyter/base-notebook
+  repository: public.ecr.aws/ocean-spark/bigdata-notebook
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: lab-4.0.4
+  tag: lab-3.6.3
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
