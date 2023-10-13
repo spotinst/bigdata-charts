@@ -11,6 +11,8 @@ metadata:
     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
     # Secret containing the trusted ca certificates
     nginx.ingress.kubernetes.io/auth-tls-secret: {{ printf "%s/%s" .Values.ingress.secretNamespace .Values.ingress.secretName }}
+    # Override proxy timeout to give time for possible cluster scale up
+    nginx.ingress.kubernetes.io/proxy-read-timeout: {{ .Values.ingress.readTimeout | quote }}
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:  
