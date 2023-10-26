@@ -11,11 +11,13 @@ image:
   repository: public.ecr.aws/f4k1p1n4/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.4.1-b55a6162
+  tag: 0.4.2-4ab3d381
 
 imagePullSecrets: []
 
 spotBaseUrl: "https://api.spotinst.io"
+
+oceanControllerNamespace: ""
 
 serviceAccount:
   create: true

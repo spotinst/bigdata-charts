@@ -48,6 +48,8 @@ spec:
               value: {{ .Values.spotBaseUrl | quote }}
             - name: CHART_VERSION
               value: {{ .Chart.Version | quote }}
+            - name: OCEAN_CONTROLLER_NAMESPACE
+              value: {{ .Values.oceanControllerNamespace }}
             - name: BIGDATA_OPERATOR_NAMESPACE
               valueFrom:
                 fieldRef:
