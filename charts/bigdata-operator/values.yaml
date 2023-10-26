@@ -17,6 +17,8 @@ imagePullSecrets: []
 
 spotBaseUrl: "https://api.spotinst.io"
 
+oceanControllerNamespace: ""
+
 serviceAccount:
   create: true
   annotations: {}
