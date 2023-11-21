@@ -58,6 +58,7 @@ spec:
             - --ServerApp.{{ $key | snakecase }}={{$value}}
           {{- end}}
             - --GatewayWebSocketConnection.kernel_ws_protocol=''
+            - --GatewayClient.gateway_token_renewer_class=jupyter_server.gateway.spottokenrenewer.SpotTokenRenewer
           env:
           {{- if .Values.pvc.create }}
           - name: "CHOWN_HOME"
