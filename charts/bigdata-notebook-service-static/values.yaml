@@ -9,7 +9,7 @@ kernel:
   # Port range usable by kernels. Each kernel takes one port.
   # Has to be in sync with the port range in the JEG deployment.
   portMin: 50000
-  portMax: 50100
+  portMax: 52100
 
 kernelConnectionServiceSelectorLabels: {}  # Overridden at deploy time
 
