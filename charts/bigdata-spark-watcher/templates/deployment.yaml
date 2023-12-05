@@ -42,6 +42,10 @@ spec:
           - --replica-count
           - "{{ .Values.replicaTagger.replicaCount }}"
           {{- end }}
+          - --enable-ghost-syncer
+          - "{{ .Values.ghostSyncerEnabled}}"
+          - --enable-kill-syncer
+          - "{{ .Values.killSyncerEnabled}}"
           ports:
           - name: metrics
             containerPort: 8080

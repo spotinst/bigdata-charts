@@ -43,6 +43,9 @@ replicaTagger:
 
 logLevel: debug
 
+killSyncerEnabled: true
+ghostSyncerEnabled: true
+
 serviceAccount:
   create: true
   annotations: {}
