@@ -33,6 +33,7 @@ ingress:
 
 egBaseUrl: "/"
 egLogLevel: "DEBUG"
+egListKernels: "true"
 
 # Has to be in sync with bigdata-notebook-service-storage chart
 sessionStoragePvcName: bigdata-notebook-service-storage
