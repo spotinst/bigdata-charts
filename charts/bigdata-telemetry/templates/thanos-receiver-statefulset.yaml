@@ -90,6 +90,8 @@ spec:
               port: 10902
               scheme: HTTP
             periodSeconds: 5
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           terminationMessagePolicy: FallbackToLogsOnError
           volumeMounts:
             - mountPath: /var/thanos/receive
