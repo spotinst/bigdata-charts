@@ -80,16 +80,6 @@ spec:
               containerPort: 2020
               protocol: TCP
           env:
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: spot-bigdata-telemetry-creds
-                  key: AWS_ACCESS_KEY_ID
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: spot-bigdata-telemetry-creds
-                  key: AWS_SECRET_ACCESS_KEY
             - name: AWS_BUCKET_NAME
               valueFrom:
                 secretKeyRef:
@@ -133,6 +123,8 @@ spec:
             - name: varlibdockercontainers
               readOnly: true
               mountPath: /var/lib/docker/containers
+            - name: telemetry-aws-credentials
+              mountPath: /root/.aws
       volumes:
         - name: config
           configMap:
@@ -143,6 +135,9 @@ spec:
         - name: varlibdockercontainers
           hostPath:
             path: /var/lib/docker/containers
+        - name: telemetry-aws-credentials
+          secret:
+            secretName: spot-bigdata-telemetry-creds
     {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
