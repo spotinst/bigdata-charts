@@ -27,6 +27,10 @@ envVars:
     value: 6m
   - name: APP_SYNC_REVERSE_GHOST_GRACE_PERIOD
     value: 30s
+  - name: KUBE_EVENT_LOG_COLLECTION_BUCKET
+    value: "spot-bigdata-logcollector-"
+  - name: KUBE_EVENT_LOG_COLLECTION_ENABLED
+    value: "true"
   - name: CREDS_REFRESH_INTERVAL
     value: 5m
   - name: SPARK_APP_FAILED_EXECUTOR_LIMIT
