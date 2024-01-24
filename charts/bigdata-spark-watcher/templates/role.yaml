@@ -26,7 +26,6 @@ rules:
       - "secrets"
     resourceNames:
       - "spotinst-kubernetes-cluster-controller"
-      - "spot-bigdata-log-collector-creds"
     verbs:
       - get
   - apiGroups:

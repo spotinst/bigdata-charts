@@ -49,10 +49,6 @@ volume:
   name: workspace-data
   mountPath: /home/jovyan
 
-podSecurityContext:
-  runAsUser: 0
-  fsGroup: 0
-
 containerPort:
   port: 8888
   name: workspace
