@@ -31,6 +31,8 @@ spec:
       containers:
         - name: manager
           args:
+          - --enable-event-log-collector
+          - {{ .Values.eventLogCollectorEnabled}}
           - --metrics-bind-address
           - ":8080"
           - --watch-label
