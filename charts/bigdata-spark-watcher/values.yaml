@@ -29,6 +29,12 @@ envVars:
     value: 30s
   - name: KUBE_EVENT_LOG_COLLECTION_BUCKET_PREFIX
     value: "spot-bigdata-logcollector"
+  - name: AWS_CREDENTIALS_FILE                                                                                                                                                                                                 │
+    value: /creds/aws                                                                                                                                                                                                          │
+  - name: GCP_CREDENTIALS_FILE                                                                                                                                                                                                 │
+    value: /creds/gcp                                                                                                                                                                                                          │
+  - name: AZURE_CREDENTIALS_FILE                                                                                                                                                                                               │
+    value: /creds/azure
   - name: CREDS_REFRESH_INTERVAL
     value: 5m
   - name: SPARK_APP_FAILED_EXECUTOR_LIMIT
