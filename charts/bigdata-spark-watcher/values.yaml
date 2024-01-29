@@ -82,7 +82,7 @@ resources:
     memory: 2000Mi
 
 eventLogCollectorEnabled:
-  true
+  false
 
 telemetry:
   enabled: false
