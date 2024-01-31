@@ -43,7 +43,7 @@ spec:
           - "{{ .Values.replicaTagger.replicaCount }}"
           {{- end }}
           {{- if .Values.ghostSyncerEnabled }}
-            - --enable-ghost-syncer
+          - --enable-ghost-syncer
           {{- end }}
           {{- if .Values.killSyncerEnabled }}
           - --enable-kill-syncer
