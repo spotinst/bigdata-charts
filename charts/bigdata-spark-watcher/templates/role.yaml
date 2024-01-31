@@ -8,11 +8,19 @@ rules:
     resources:
       - "pods"
       - "namespaces"
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ""
+    resources:
       - "events"
     verbs:
       - get
       - list
       - watch
+      - create
   - apiGroups:
       - ""
     resources:
