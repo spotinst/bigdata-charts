@@ -8,7 +8,7 @@ image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-spark-watcher
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.4.6-80ff0942
+  tag: 0.4.7-59176f1c
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
@@ -27,6 +27,14 @@ envVars:
     value: 6m
   - name: APP_SYNC_REVERSE_GHOST_GRACE_PERIOD
     value: 30s
+  - name: KUBE_EVENT_LOG_COLLECTION_BUCKET_PREFIX
+    value: "spot-bigdata-logcollector"
+  - name: AWS_CREDENTIALS_FILE                                                                                                                                                                                                 │
+    value: /creds/aws                                                                                                                                                                                                          │
+  - name: GCP_CREDENTIALS_FILE                                                                                                                                                                                                 │
+    value: /creds/gcp                                                                                                                                                                                                          │
+  - name: AZURE_CREDENTIALS_FILE                                                                                                                                                                                               │
+    value: /creds/azure
   - name: CREDS_REFRESH_INTERVAL
     value: 5m
   - name: SPARK_APP_FAILED_EXECUTOR_LIMIT
@@ -75,6 +83,9 @@ resources:
   requests:
     cpu: 2000m
     memory: 2000Mi
+
+eventLogCollectorEnabled:
+  false
 
 telemetry:
   enabled: false

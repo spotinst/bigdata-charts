@@ -31,6 +31,9 @@ spec:
       containers:
         - name: manager
           args:
+          {{- if .Values.eventLogCollectorEnabled }}
+          - --enable-event-log-collector
+          {{- end }}
           - --metrics-bind-address
           - ":8080"
           - --watch-label
@@ -127,6 +130,9 @@ spec:
               mountPath: /var/lib/docker/containers
             - name: telemetry-aws-credentials
               mountPath: /root/.aws
+            - name: spot-bigdata-log-collector-creds
+              mountPath: /creds
+              readOnly: true
       volumes:
         - name: config
           configMap:
@@ -140,6 +146,9 @@ spec:
         - name: telemetry-aws-credentials
           secret:
             secretName: spot-bigdata-telemetry-creds
+        - name: spot-bigdata-log-collector-creds
+          secret:
+            secretName: spot-bigdata-log-collector-creds
     {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
