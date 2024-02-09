@@ -11,7 +11,7 @@ image:
   repository: public.ecr.aws/f4k1p1n4/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.4.5-4828c9ec
+  tag: 0.4.7-5cf3b94b
 
 imagePullSecrets: []
 
@@ -90,10 +90,10 @@ telemetry:
             Add ClusterId ${CLUSTER_ID}
             Add AccountID ${ACCOUNT_ID}
 
-        # [FILTER]
-        #     Name    grep
-        #     Match   kube.*
-        #     Regex   $kubernetes['labels']['bigdata.spot.io/component'] .
+        [FILTER]
+            Name    grep
+            Match   kube.*
+            Regex   $kubernetes['labels']['bigdata.spot.io/component'] .
 
         [OUTPUT]
             Name s3
@@ -101,8 +101,8 @@ telemetry:
             bucket                       ${AWS_BUCKET_NAME}
             region                       ${AWS_REGION}
             use_put_object               On
-            total_file_size              10M
-            upload_timeout               15m
+            total_file_size              5M
+            upload_timeout               5m
 
 resources:
   limits:
