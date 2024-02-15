@@ -31,8 +31,8 @@ spec:
       containers:
         - name: manager
           args:
-          {{- if .Values.eventLogCollectorEnabled }}
-          - --enable-event-log-collector
+          {{- if .Values.k8sEventLogCollectorEnabled }}
+          - --enable-k8s-event-log-collector
           {{- end }}
           - --metrics-bind-address
           - ":8080"
