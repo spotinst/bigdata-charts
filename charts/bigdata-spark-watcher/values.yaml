@@ -85,8 +85,6 @@ resources:
     cpu: 2000m
     memory: 2000Mi
 
-
-
 telemetry:
   enabled: false
   fluentbit:
