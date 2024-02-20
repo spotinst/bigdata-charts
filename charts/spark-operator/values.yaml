@@ -2,7 +2,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   sparkJobNamespace: ""  # Empty means manage Spark apps in all namespaces
   image:
     repository: public.ecr.aws/ocean-spark/spark-operator
-    tag: 1aad721-gen19
+    tag: 195ccf4-gen20
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
@@ -20,7 +20,8 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
 
   disableExecutorReporting: false
 
-  securityContext: {}
+  securityContext:
+    runAsNonRoot: true
 
   webhook:
     enable: true
