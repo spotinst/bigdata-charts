@@ -57,6 +57,19 @@ rules:
   - get
   - delete
   - update
+# required for leader-election (high-availability)
+- apiGroups:
+  - "coordination.k8s.io"
+  resources:
+  - "leases"
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - patch
+  - update
+  - delete
   {{- /*
     We do not create Spark UI ingresses for each application
 - apiGroups:

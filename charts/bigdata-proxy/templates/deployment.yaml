@@ -30,6 +30,8 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: bigdata-proxy
+          args:
+            - --leader-elect
           ports:
           - name: proxy
             containerPort: {{ .Values.port }}
