@@ -31,6 +31,7 @@ spec:
       containers:
         - name: manager
           args:
+          - --leader-elect
           {{- if .Values.k8sEventLogCollectorEnabled }}
           - --enable-k8s-event-log-collector
           {{- end }}
