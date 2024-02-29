@@ -2678,6 +2678,26 @@ entries:
   bigdata-spark-watcher:
   - apiVersion: v2
     appVersion: 0.4.10
+    created: "2024-02-29T19:15:53.141975332Z"
+    description: A Helm chart for the Spot Big Data Spark Watcher
+    digest: 32cc7e5c53536392cfb45f824425aedbc394be769b68f30b9bf1a74de930bbc9
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-spark-watcher
+    sources:
+    - https://github.com/spotinst/bigdata-spark-watcher
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-spark-watcher-0.5.9/bigdata-spark-watcher-0.5.9.tgz
+    version: 0.5.9
+  - apiVersion: v2
+    appVersion: 0.4.10
     created: "2024-02-21T17:24:59.091113289Z"
     description: A Helm chart for the Spot Big Data Spark Watcher
     digest: 47897bc06778c133b7e809f8581947473e398b75c14b9e150b01acc63bf0384c
@@ -3620,6 +3640,22 @@ entries:
   spark-operator:
   - apiVersion: v2
     appVersion: v1beta2-1.3.4-3.1.1
+    created: "2024-02-29T19:15:53.346156933Z"
+    dependencies:
+    - name: spark-operator
+      repository: ""
+      version: 1.1.20
+    description: Spark Operator (b/g part)
+    digest: 1b3c476bf8153dbee1c9b60ff405443334263f49d817bc66d3e8df171a61f197
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: spark-operator
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-0.1.26/spark-operator-0.1.26.tgz
+    version: 0.1.26
+  - apiVersion: v2
+    appVersion: v1beta2-1.3.4-3.1.1
     created: "2024-02-20T14:41:28.481434696Z"
     dependencies:
     - name: spark-operator
@@ -4119,4 +4155,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-21T17:24:59.091662458Z"
+generated: "2024-02-29T19:15:53.346799688Z"
