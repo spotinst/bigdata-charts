@@ -100,6 +100,9 @@ rules:
   - apiGroups: [""]
     resources: ["resourcequotas"]
     verbs: ["get", "list", "watch"]
+  - apiGroups: [ "coordination.k8s.io" ]
+    resources: [ "leases" ]
+    verbs: [ "get", "list", "watch", "create", "update", "patch", "delete" ]
     # ----------------------------------------------------------------------------
     # Clean up deployer jobs
     # ----------------------------------------------------------------------------
@@ -114,9 +117,6 @@ rules:
     # ----------------------------------------------------------------------------
   - apiGroups: [""]
     resources: ["endpoints", "nodes", "secrets"]
-    verbs: ["list", "watch"]
-  - apiGroups: ["coordination.k8s.io"]
-    resources: ["leases"]
     verbs: ["list", "watch"]
   - apiGroups: ["discovery.k8s.io"]
     resources: ["endpointslices"]
