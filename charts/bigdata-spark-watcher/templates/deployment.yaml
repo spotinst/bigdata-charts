@@ -137,15 +137,14 @@ spec:
               mountPath: /var/lib/docker/containers
             - name: telemetry-aws-credentials
               mountPath: /root/.aws
-            - name: spot-bigdata-log-collector-creds
-              mountPath: /creds
-              readOnly: true
     {{- end }}
       {{- if or .Values.telemetry.enabled .Values.k8sEventLogCollectorEnabled }}
       volumes:
+      {{- if .Values.k8sEventLogCollectorEnabled }}
         - name: spot-bigdata-log-collector-creds
           secret:
             secretName: spot-bigdata-log-collector-creds
+      {{- end }}
       {{- if .Values.telemetry.enabled }}
         - name: config
           configMap:
