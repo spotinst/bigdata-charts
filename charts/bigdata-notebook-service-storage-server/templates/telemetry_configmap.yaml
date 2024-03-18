@@ -1,0 +1,17 @@
+{{- if .Values.telemetry.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "bigdata-notebook-service-storage-server.fullname" . }}-telemetry-cm
+  labels:
+  {{- include "bigdata-notebook-service-storage-server.labels" . | nindent 4 }}
+data:
+  custom-filters.conf: |
+    [FILTER]
+        Name    grep
+        Match   kube.*
+        Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ include "bigdata-notebook-service-storage-server.fullname" . }}
+
+  metrics-collection.conf: |
+    # Configuration for collecting metrics from the notebook service storage server
+{{- end }}
