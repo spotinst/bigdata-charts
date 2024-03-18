@@ -1,0 +1,12 @@
+{{- if .Values.telemetry.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "bigdata-proxy.fullname" . }}-telemetry-cm
+  labels:
+  {{- include "bigdata-proxy.labels" . | nindent 4 }}
+data:
+  bigdata_proxy_filters.conf: |
+{{ .Values.telemetry.fluentbit.configMap.config | toString | indent 6 }}
+{{- end }}
+
