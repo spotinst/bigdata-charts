@@ -1,0 +1,12 @@
+{{- if .Values.telemetry.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "spark-operator.fullname" . }}-telemetry-cm
+  labels:
+  {{- include "spark-operator.labels" . | nindent 4 }}
+data:
+  spark_operator_filters.conf: |
+{{ .Values.telemetry.fluentbit.configMap.config | toString | indent 6 }}
+{{- end }}
+
