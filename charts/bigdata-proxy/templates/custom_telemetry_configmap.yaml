@@ -1,0 +1,14 @@
+{{- if .Values.telemetry.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "bigdata-proxy.fullname" . }}-custom-fluentbit-cm
+  labels:
+  {{- include "bigdata-proxy.labels" . | nindent 4 }}
+data:
+  custom-filters.conf: |
+    [FILTER]
+        Name    grep
+        Match   kube.*
+        Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ include "bigdata-proxy.fullname" . }}
+{{- end }}
