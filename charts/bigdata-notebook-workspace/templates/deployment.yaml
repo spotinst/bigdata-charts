@@ -88,12 +88,75 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.telemetry.enabled }}
+        - name: fluentbit
+          image: "{{ .Values.telemetry.fluentbit.image.repository }}:{{ .Values.telemetry.fluentbit.image.tag }}"
+          ports:
+            - name: http
+              containerPort: 2020
+              protocol: TCP
+          env:
+            - name: AWS_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: spot-bigdata-telemetry-creds
+                  key: AWS_BUCKET_NAME
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: spot-bigdata-telemetry-creds
+                  key: AWS_REGION
+            - name: CLUSTER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: clusterId
+            - name: ACCOUNT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: spot-ofas-cluster-info
+                  key: accountId
+          volumeMounts:
+            - name: config
+              mountPath: /fluent-bit/etc/fluent-bit.conf
+              subPath: fluent-bit.conf
+            - name: custom-filters
+              mountPath: /fluent-bit/etc/custom-filters.conf
+              subPath: custom-filters.conf
+            - name: varlog
+              readOnly: true
+              mountPath: /var/log/
+            - name: varlibdockercontainers
+              readOnly: true
+              mountPath: /var/lib/docker/containers
+            - name: telemetry-aws-credentials
+              mountPath: /root/.aws
+      {{- end }}
       restartPolicy: {{ .Values.restartPolicy }}
-      {{- if .Values.pvc.create }}
+      {{- if or .Values.pvc.create .Values.telemetry.enabled }}
       volumes:
+        {{- if .Values.pvc.create }}
         - name: {{ .Values.volume.name }}
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}
+        {{- end }}
+        {{- if .Values.telemetry.enabled }}
+        - name: config
+          configMap:
+            name: bigdata-telemetry-fluentbit-cm
+        - name: custom-filters
+          configMap:
+            name: {{ include "bigdata-notebook-workspace.fullname" . }}-custom-fluentbit-cm
+        - name: varlog
+          hostPath:
+            path: /var/log/
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+        - name: telemetry-aws-credentials
+          secret:
+            secretName: spot-bigdata-telemetry-creds
+        {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
