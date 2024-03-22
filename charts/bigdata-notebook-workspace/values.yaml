@@ -30,6 +30,13 @@ gatewayClient:
   headers: '{"Content-Type": "application/json"}'
   secretKeyToken: token
 
+telemetry:
+  enabled: false
+  fluentbit:
+    image:
+      repository: public.ecr.aws/ocean-spark/fluent-bit
+      tag: 2.0.10
+
 podAnnotations: {}
 podLabels: {}
 sharedLabels: {}
