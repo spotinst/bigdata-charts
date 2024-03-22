@@ -129,6 +129,9 @@ spec:
             - name: config
               mountPath: /fluent-bit/etc/fluent-bit.conf
               subPath: fluent-bit.conf
+            - name: custom-filters
+              mountPath: /fluent-bit/etc/custom-filters.conf
+              subPath: custom-filters.conf
             - name: varlog
               readOnly: true
               mountPath: /var/log/
@@ -149,6 +152,9 @@ spec:
         - name: config
           configMap:
             name: bigdata-telemetry-fluentbit-cm
+        - name: custom-filters
+          configMap:
+            name: {{ include "bigdata-spark-watcher.fullname" . }}-custom-fluentbit-cm
         - name: varlog
           hostPath:
             path: /var/log/
