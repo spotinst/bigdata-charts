@@ -17,6 +17,4 @@ spec:
     port: 19291
     targetPort: 19291
   selector:
-    {{- with .Values.thanos.podLabels }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
+    {{- include "bigdata-telemetry.selectorLabels" . | nindent 4 }}

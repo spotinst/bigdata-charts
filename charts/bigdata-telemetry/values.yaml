@@ -10,7 +10,7 @@ podLabels:
 thanos:
   image:
     repository: quay.io/thanos/thanos
-    tag: v0.15.0
+    tag: v0.34.1
 
 
 nodeSelector: {}
