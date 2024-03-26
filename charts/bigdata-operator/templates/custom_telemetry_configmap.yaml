@@ -21,17 +21,6 @@ data:
       metrics_path            /metrics
       scrape_interval         5s
 
-    # [OUTPUT]
-    #   Name                 http
-    #   Match                *
-    #   Host                 bigdata-telemetry-thanos-receiver-svc.spot-system.svc.cluster.local
-    #   Port                 19291
-    #   URI                  /api/v1/receive
-    #   Format               json
-    #   tls                  off
-    #   tls.verify           off
-
-
     [OUTPUT]
       Name                 prometheus_remote_write
       Match                {{ include "bigdata-operator.fullname" . }}
@@ -40,6 +29,5 @@ data:
       uri                  /api/v1/receive
       tls                  off
       tls.verify           off
-      add_label            ClusterId ${CLUSTER_ID}
-      add_label            AccountID ${ACCOUNT_ID}
+      Workers              1
 {{- end }}

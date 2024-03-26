@@ -10,7 +10,7 @@ data:
     [
       {
         "endpoints": [
-          "{{ include "bigdata-telemetry.fullname" . }}-thanos-receiver-svc.{{ .Release.Namespace }}.svc.cluster.local:19291"
+          "127.0.0.1:10901"
         ]
       }
     ]

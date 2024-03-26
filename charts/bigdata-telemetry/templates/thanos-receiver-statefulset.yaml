@@ -91,10 +91,10 @@ spec:
               name: hashring-config
             - name: telemetry-aws-credentials
               mountPath: /var/lib/creds
-          resources:
-            requests:
-              cpu: 4
-              memory: 8Gi
+          # resources:
+          #   requests:
+          #     cpu: 8
+          #     memory: 8Gi
       terminationGracePeriodSeconds: 900
       volumes:
         - emptyDir: {}
