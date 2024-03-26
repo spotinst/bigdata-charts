@@ -14,6 +14,7 @@ data:
         Regex ^(?<time>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z)\t(?<level>[A-Z]+)\t(?<logger>[^\s]+)\t(?<message>.*)$
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%L%z
+        storage.max_chunks_up     10
 
   fluent-bit.conf: |
     [SERVICE]
@@ -40,6 +41,7 @@ data:
         K8S-Logging.Exclude On
 
     @INCLUDE custom-filters.conf
+    @INCLUDE metrics-collection.conf
 
     [FILTER]
         Name modify
