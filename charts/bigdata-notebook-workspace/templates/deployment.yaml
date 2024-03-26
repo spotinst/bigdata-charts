@@ -120,7 +120,7 @@ spec:
             - name: config
               mountPath: /fluent-bit/etc/fluent-bit.conf
               subPath: fluent-bit.conf
-            - name: custom-filters
+            - name: custom-config
               mountPath: /fluent-bit/etc/custom-filters.conf
               subPath: custom-filters.conf
             - name: custom-config
@@ -147,7 +147,7 @@ spec:
         - name: config
           configMap:
             name: bigdata-telemetry-fluentbit-cm
-        - name: custom-filters
+        - name: custom-config
           configMap:
             name: {{ include "bigdata-notebook-workspace.fullname" . }}-custom-fluentbit-cm
         - name: varlog
