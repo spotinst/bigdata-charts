@@ -32,6 +32,8 @@ spec:
             - --receive.local-endpoint=127.0.0.1:10901
             - --receive.grpc-compression=none
             - --tsdb.retention=1d
+            - --tsdb.min-block-duration=15m
+            - --tsdb.max-block-duration=15m
             - --receive.hashrings-file=/var/lib/thanos-receive/hashrings.json
           env:
             - name: SPOTINST_CLUSTER_ID
