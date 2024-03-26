@@ -46,16 +46,6 @@ spec:
             containerPort: 2020
             protocol: TCP
         env:
-          - name: AWS_ACCESS_KEY_ID
-            valueFrom:
-              secretKeyRef:
-                name: spot-bigdata-telemetry-creds
-                key: AWS_ACCESS_KEY_ID
-          - name: AWS_SECRET_ACCESS_KEY
-            valueFrom:
-              secretKeyRef:
-                name: spot-bigdata-telemetry-creds
-                key: AWS_SECRET_ACCESS_KEY
           - name: AWS_BUCKET_NAME
             valueFrom:
               secretKeyRef:
@@ -81,7 +71,7 @@ spec:
           - name: config
             mountPath: /fluent-bit/etc/fluent-bit.conf
             subPath: fluent-bit.conf
-          - name: custom-filters
+          - name: custom-config
             mountPath: /fluent-bit/etc/custom-filters.conf
             subPath: custom-filters.conf
           - name: custom-config
@@ -93,19 +83,24 @@ spec:
           - name: varlibdockercontainers
             readOnly: true
             mountPath: /var/lib/docker/containers
+          - name: telemetry-aws-credentials
+            mountPath: /root/.aws
       volumes:
         - name: config
           configMap:
             name: bigdata-telemetry-fluentbit-cm
-        - name: custom-filters
-            configMap:
-              name:  {{ include "bigdata-notebook-service-storage-server.fullname" . }}-custom-fluentbit-cm
+        - name: custom-config
+          configMap:
+            name:  {{ include "bigdata-notebook-service-storage-server.fullname" . }}-custom-fluentbit-cm
         - name: varlog
           hostPath:
             path: /var/log/
         - name: varlibdockercontainers
           hostPath:
             path: /var/lib/docker/containers
+        - name: telemetry-aws-credentials
+          secret:
+            secretName: spot-bigdata-telemetry-creds
     {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
