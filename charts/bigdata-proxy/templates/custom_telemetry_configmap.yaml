@@ -11,4 +11,8 @@ data:
         Name    grep
         Match   kube.*
         Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ include "bigdata-proxy.fullname" . }}
+
+  metrics-collection.conf: |
+    # Configuration for collecting metrics from the bigdata proxy
+
 {{- end }}

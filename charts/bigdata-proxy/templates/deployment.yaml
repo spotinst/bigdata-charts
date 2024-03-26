@@ -89,6 +89,9 @@ spec:
             - name: custom-filters
               mountPath: /fluent-bit/etc/custom-filters.conf
               subPath: custom-filters.conf
+            - name: custom-config
+              mountPath: /fluent-bit/etc/metrics-collection.conf
+              subPath: metrics-collection.conf
             - name: varlog
               readOnly: true
               mountPath: /var/log/

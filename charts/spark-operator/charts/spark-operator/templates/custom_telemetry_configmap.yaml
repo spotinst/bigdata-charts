@@ -11,4 +11,23 @@ data:
         Name    grep
         Match   kube.*
         Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ include "spark-operator.fullname" . }}
+
+  metrics-collection.conf: |
+    [INPUT]
+      name                    prometheus_scrape
+      host                    0.0.0.0
+      port                    10254
+      tag                     {{ include "spark-operator.fullname" . }}
+      metrics_path            /metrics
+      scrape_interval         5s
+
+    [OUTPUT]
+      Name                 prometheus_remote_write
+      Match                {{ include "spark-operator.fullname" . }}
+      Host                 bigdata-telemetry-thanos-receiver-svc.spot-system.svc.cluster.local
+      Port                 19291
+      uri                  /api/v1/receive
+      tls                  off
+      tls.verify           off
+      Workers              1
 {{- end }}
