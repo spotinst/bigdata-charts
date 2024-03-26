@@ -11,4 +11,7 @@ data:
         Name    grep
         Match   kube.*
         Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ include "bigdata-notebook-service.fullname" . }}
+
+  metrics-collection.conf: |
+    # Configuration for collecting metrics from the notebook service
 {{- end }}
