@@ -13,6 +13,8 @@ metadata:
     nginx.ingress.kubernetes.io/auth-tls-secret: {{ printf "%s/%s" .Values.ingress.secretNamespace .Values.ingress.secretName }}
     # Override proxy timeout to give time for possible cluster scale up
     nginx.ingress.kubernetes.io/proxy-read-timeout: {{ .Values.ingress.readTimeout | quote }}
+    # Override body size to allow file uploads from JupyterLab(workspace)
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.ingress.bodySize }}
 spec:
   ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:  
