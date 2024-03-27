@@ -78,6 +78,12 @@ spec:
                   optional: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.k8sEventLogCollectorEnabled }}
+          volumeMounts:
+            - name: spot-bigdata-log-collector-creds
+              mountPath: /creds
+              readOnly: true
+          {{- end }}
     {{- if .Values.telemetry.enabled }}
         - name: fluentbit
           image: "{{ .Values.telemetry.fluentbit.image.repository }}:{{ .Values.telemetry.fluentbit.image.tag }}"
@@ -131,10 +137,15 @@ spec:
               mountPath: /var/lib/docker/containers
             - name: telemetry-aws-credentials
               mountPath: /root/.aws
-            - name: spot-bigdata-log-collector-creds
-              mountPath: /creds
-              readOnly: true
+    {{- end }}
+      {{- if or .Values.telemetry.enabled .Values.k8sEventLogCollectorEnabled }}
       volumes:
+      {{- if .Values.k8sEventLogCollectorEnabled }}
+        - name: spot-bigdata-log-collector-creds
+          secret:
+            secretName: spot-bigdata-log-collector-creds
+      {{- end }}
+      {{- if .Values.telemetry.enabled }}
         - name: config
           configMap:
             name: bigdata-telemetry-fluentbit-cm
@@ -147,10 +158,10 @@ spec:
         - name: telemetry-aws-credentials
           secret:
             secretName: spot-bigdata-telemetry-creds
-        - name: spot-bigdata-log-collector-creds
-          secret:
-            secretName: spot-bigdata-log-collector-creds
-    {{- end }}
+      {{- end }}
+      {{- else }}
+      volumes: []
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
