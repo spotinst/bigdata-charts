@@ -28,6 +28,7 @@ ingress:
   host: ""  # Overridden at deploy time
   secretNamespace: ""  # Overridden at deploy time
   secretName: ""  # Overridden at deploy time
+  bodySize: "2M"
 
 nameOverride: ""
 fullnameOverride: ""
