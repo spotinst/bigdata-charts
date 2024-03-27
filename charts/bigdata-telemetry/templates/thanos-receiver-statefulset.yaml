@@ -46,7 +46,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: OBJSTORE_CONFIG_FILE
-              value: /var/lib/creds/thanos-objec-store.yaml
+              value: /var/lib/creds/thanos_object_store.yaml
             - name: HTTP_PROXY
               valueFrom:
                 configMapKeyRef:
