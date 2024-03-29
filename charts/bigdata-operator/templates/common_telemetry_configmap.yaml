@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bigdata-telemetry-fluentbit-cm
+  name: bigdata-common-telemetry-fluentbit-cm
   labels:
   {{- include "bigdata-operator.labels" . | nindent 4 }}
 data:

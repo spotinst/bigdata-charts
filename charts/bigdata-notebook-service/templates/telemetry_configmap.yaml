@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "bigdata-notebook-service.fullname" . }}-custom-fluentbit-cm
+  name: {{ include "bigdata-notebook-service.fullname" . }}-telemetry-cm
   labels:
   {{- include "bigdata-notebook-service.labels" . | nindent 4 }}
 data:

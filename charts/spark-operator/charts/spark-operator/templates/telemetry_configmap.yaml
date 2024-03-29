@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "spark-operator.fullname" . }}-custom-fluentbit-cm
+  name: {{ include "spark-operator.fullname" . }}-telemetry-cm
   labels:
   {{- include "spark-operator.labels" . | nindent 4 }}
 data:
@@ -16,15 +16,15 @@ data:
     [INPUT]
       name                    prometheus_scrape
       host                    0.0.0.0
-      port                    10254
+      port                    {{ .Values.metrics.portName }}
       tag                     {{ include "spark-operator.fullname" . }}
-      metrics_path            /metrics
+      metrics_path            {{ .Values.metrics.endpoint }}
       scrape_interval         5s
 
     [OUTPUT]
       Name                 prometheus_remote_write
       Match                {{ include "spark-operator.fullname" . }}
-      Host                 bigdata-telemetry-thanos-receiver-svc.spot-system.svc.cluster.local
+      Host                 bigdata-telemetry-thanos-receiver-svc.{{ .Release.Namespace }}.svc.cluster.local
       Port                 19291
       uri                  /api/v1/receive
       tls                  off
