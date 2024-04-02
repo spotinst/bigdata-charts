@@ -10,7 +10,7 @@ data:
     [FILTER]
         Name    grep
         Match   kube.*
-        Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ include "bigdata-operator.fullname" . }}
+        Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ index .Values.podLabels "bigdata.spot.io/component" | quote }}
 
   metrics-collection.conf: |
     [INPUT]
