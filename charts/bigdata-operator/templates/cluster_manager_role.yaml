@@ -20,11 +20,11 @@ rules:
     # ----------------------------------------------------------------------------
   - apiGroups: [""]
     resources: ["configmaps"]
-    resourceNames: ["spotinst-kubernetes-cluster-controller-config"]
+    resourceNames: ["spotinst-kubernetes-cluster-controller-config", "ocean-controller-ocean-kubernetes-controller"]
     verbs: ["get", "list"]
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["spotinst-kubernetes-cluster-controller", "spotinst-kubernetes-cluster-controller-ca-bundle"]
+    resourceNames: ["spotinst-kubernetes-cluster-controller", "spotinst-kubernetes-cluster-controller-ca-bundle", "ocean-controller-ocean-kubernetes-controller"]
     verbs: ["get", "list"]
     # ----------------------------------------------------------------------------
     # Grant full permissions over Ocean for Apache Spark managed secrets
