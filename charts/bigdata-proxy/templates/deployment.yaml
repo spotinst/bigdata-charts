@@ -83,9 +83,15 @@ spec:
                   key: accountId
           resources: {}
           volumeMounts:
-            - name: config
+            - name: telementry-global-config
               mountPath: /fluent-bit/etc/fluent-bit.conf
               subPath: fluent-bit.conf
+            - name: telementry-custom-config
+              mountPath: /fluent-bit/etc/custom-filters.conf
+              subPath: custom-filters.conf
+            - name: telementry-custom-config
+              mountPath: /fluent-bit/etc/metrics-collection.conf
+              subPath: metrics-collection.conf
             - name: varlog
               readOnly: true
               mountPath: /var/log/
@@ -95,9 +101,12 @@ spec:
             - name: telemetry-aws-credentials
               mountPath: /root/.aws
       volumes:
-        - name: config
+        - name: telementry-global-config
           configMap:
-            name: bigdata-telemetry-fluentbit-cm
+            name: bigdata-common-telemetry-fluentbit-cm
+        - name: telementry-custom-config
+          configMap:
+            name: {{ include "bigdata-proxy.fullname" . }}-telemetry-cm
         - name: varlog
           hostPath:
             path: /var/log/
