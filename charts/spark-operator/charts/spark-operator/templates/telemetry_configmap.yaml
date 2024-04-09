@@ -16,7 +16,7 @@ data:
     [INPUT]
       name                    prometheus_scrape
       host                    0.0.0.0
-      port                    {{ .Values.metrics.portName }}
+      port                    {{ .Values.metrics.port }}
       tag                     {{ include "spark-operator.fullname" . }}
       metrics_path            {{ .Values.metrics.endpoint }}
       scrape_interval         5s
