@@ -13,6 +13,8 @@ data:
         Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ index .Values.podLabels "bigdata.spot.io/component" | quote }}
 
   metrics-collection.conf: |
+    ## Configuration for collecting metrics from the spark operator
+    {{- if .Values.metrics.enable }}
     [INPUT]
       name                    prometheus_scrape
       host                    0.0.0.0
@@ -30,4 +32,5 @@ data:
       tls                  off
       tls.verify           off
       Workers              1
+    {{- end }}
 {{- end }}
