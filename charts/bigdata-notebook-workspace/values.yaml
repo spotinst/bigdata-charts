@@ -30,8 +30,16 @@ gatewayClient:
   headers: '{"Content-Type": "application/json"}'
   secretKeyToken: token
 
+telemetry:
+  enabled: false
+  fluentbit:
+    image:
+      repository: public.ecr.aws/ocean-spark/fluent-bit
+      tag: 2.0.10
+
+podLabels:
+  bigdata.spot.io/component: "bigdata-notebook-workspace"
 podAnnotations: {}
-podLabels: {}
 sharedLabels: {}
 sharedAnnotations: {}
 

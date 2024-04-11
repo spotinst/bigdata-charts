@@ -32,6 +32,23 @@ spec:
       - name: session-storage
         persistentVolumeClaim:
           claimName: {{ .Values.sessionStoragePvcName }}
+      {{- if .Values.telemetry.enabled }}
+      - name: telementry-global-config
+        configMap:
+          name: bigdata-common-telemetry-fluentbit-cm
+      - name: telementry-custom-config
+        configMap:
+          name: {{ include "bigdata-notebook-service.fullname" . }}-telemetry-cm
+      - name: varlog
+        hostPath:
+          path: /var/log/
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: telemetry-aws-credentials
+        secret:
+          secretName: spot-bigdata-telemetry-creds
+      {{- end }}
       # This initContainers section should not be needed if the
       # securityContext.fsGroup entry above wasn't ignored, but unfortunately
       # it is ignored for NFS volumes:
@@ -168,9 +185,15 @@ spec:
                   optional: true
           resources: {}
           volumeMounts:
-            - name: config
+            - name: telementry-global-config
               mountPath: /fluent-bit/etc/fluent-bit.conf
               subPath: fluent-bit.conf
+            - name: telementry-custom-config
+              mountPath: /fluent-bit/etc/custom-filters.conf
+              subPath: custom-filters.conf
+            - name: telementry-custom-config
+              mountPath: /fluent-bit/etc/metrics-collection.conf
+              subPath: metrics-collection.conf
             - name: varlog
               readOnly: true
               mountPath: /var/log/
@@ -179,19 +202,6 @@ spec:
               mountPath: /var/lib/docker/containers
             - name: telemetry-aws-credentials
               mountPath: /root/.aws
-      volumes:
-        - name: config
-          configMap:
-            name: bigdata-telemetry-fluentbit-cm
-        - name: varlog
-          hostPath:
-            path: /var/log/
-        - name: varlibdockercontainers
-          hostPath:
-            path: /var/lib/docker/containers
-        - name: telemetry-aws-credentials
-          secret:
-            secretName: spot-bigdata-telemetry-creds
     {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
