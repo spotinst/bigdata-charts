@@ -3795,6 +3795,26 @@ entries:
   bigdata-telemetry:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-04-11T10:18:04.196282375Z"
+    description: A Helm chart for the Spot Big Data Telemetry components
+    digest: d47891e97f0111e52ca9d6aa14571c32f01c1add98438cb6ae17fb1f68aba372
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: zakaria.elbazi@netapp.com
+      name: z4ck404
+    name: bigdata-telemetry
+    sources:
+    - https://github.com/spotinst/bigdata-telemetry
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-telemetry-0.2.3/bigdata-telemetry-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-04-05T17:33:21.300890467Z"
     description: A Helm chart for the Spot Big Data Telemetry components
     digest: 67ad0015a5d22fc1f342fffd1672078a33261d52ba44c4f3806170b285d765ec
@@ -3894,6 +3914,22 @@ entries:
     - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-telemetry-0.1.0/bigdata-telemetry-0.1.0.tgz
     version: 0.1.0
   spark-operator:
+  - apiVersion: v2
+    appVersion: v1beta2-1.3.4-3.1.1
+    created: "2024-04-11T10:18:04.299057035Z"
+    dependencies:
+    - name: spark-operator
+      repository: ""
+      version: 1.1.20
+    description: Spark Operator (b/g part)
+    digest: 3ff6dce14c8a1f8dd4dfdd26fe83155aa542b79ccee1d367fc1e81db7da46e60
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: spark-operator
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-0.1.28/spark-operator-0.1.28.tgz
+    version: 0.1.28
   - apiVersion: v2
     appVersion: v1beta2-1.3.4-3.1.1
     created: "2024-04-05T17:33:21.413502936Z"
@@ -4427,4 +4463,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-08T10:47:45.376668775Z"
+generated: "2024-04-11T10:18:04.299516122Z"
