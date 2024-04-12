@@ -39,6 +39,9 @@ spec:
             - name: metrics
               containerPort: 8080
               protocol: TCP
+            - name: api
+              containerPort: 18080
+              protocol: TCP
           securityContext:
           {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"

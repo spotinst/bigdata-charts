@@ -28,43 +28,24 @@ spec:
       serviceAccountName: {{ include "bigdata-notebook-service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      volumes:
-      - name: session-storage
-        persistentVolumeClaim:
-          claimName: {{ .Values.sessionStoragePvcName }}
       {{- if .Values.telemetry.enabled }}
-      - name: telementry-global-config
-        configMap:
-          name: bigdata-common-telemetry-fluentbit-cm
-      - name: telementry-custom-config
-        configMap:
-          name: {{ include "bigdata-notebook-service.fullname" . }}-telemetry-cm
-      - name: varlog
-        hostPath:
-          path: /var/log/
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
-      - name: telemetry-aws-credentials
-        secret:
-          secretName: spot-bigdata-telemetry-creds
+      volumes:
+        - name: telementry-global-config
+          configMap:
+            name: bigdata-common-telemetry-fluentbit-cm
+        - name: telementry-custom-config
+          configMap:
+            name: {{ include "bigdata-notebook-service.fullname" . }}-telemetry-cm
+        - name: varlog
+          hostPath:
+            path: /var/log/
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+        - name: telemetry-aws-credentials
+          secret:
+            secretName: spot-bigdata-telemetry-creds
       {{- end }}
-      # This initContainers section should not be needed if the
-      # securityContext.fsGroup entry above wasn't ignored, but unfortunately
-      # it is ignored for NFS volumes:
-      # https://github.com/kubernetes/examples/issues/260
-      initContainers:
-      - name: nfs-fixer
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        securityContext:
-          runAsUser: 0
-        volumeMounts:
-        - name: session-storage
-          mountPath: "/mnt"
-        command:
-        - sh
-        - -c
-        - (chmod 0775 /mnt; chgrp 1000 /mnt)
       containers:
         - name: bigdata-notebook-service
           ports:
@@ -73,9 +54,6 @@ spec:
             protocol: TCP
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          volumeMounts:
-          - name: session-storage
-            mountPath: "/mnt"
           livenessProbe:
             exec:
               command:
@@ -94,7 +72,7 @@ spec:
           - name: EG_NAMESPACE
             value: {{ .Release.Namespace }}
           - name: EG_LIST_KERNELS
-            value: {{ .Values.eglistKernels }}
+            value: {{ .Values.egListKernels }}
           - name: EG_CULL_IDLE_TIMEOUT
             value: {{ .Values.kernel.cullIdleTimeout | quote }}
           - name: EG_LOG_LEVEL
@@ -113,12 +91,16 @@ spec:
             value: "{{ sub .Values.kernel.portMax .Values.kernel.portMin }}"
           - name: EG_KERNEL_SESSION_PERSISTENCE
             value: "True"
+          - name: EG_AVAILABILITY_MODE
+            value: "replication"
+          - name: EG_KERNEL_SESSION_MANAGER
+            value: enterprise_gateway.services.sessions.kernelsessionmanager.WebhookKernelSessionManager
+          - name: EG_WEBHOOK_URL
+            value: "http://{{ .Values.sessionStorageServiceName }}.{{ .Release.Namespace }}.svc.cluster.local/kernelSession"
           - name: EG_RESPONSE_ADDR_ANY
             value: "True"
           - name: EG_RESPONSE_PORT
             value: {{ .Values.kernel.egResponsePort | quote }}
-          - name: EG_PERSISTENCE_ROOT
-            value: "/mnt"
           - name: SPOTINST_CLUSTER_ID
             valueFrom:
               configMapKeyRef:
@@ -143,7 +125,7 @@ spec:
                 optional: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-    {{- if .Values.telemetry.enabled }}
+      {{- if .Values.telemetry.enabled }}
         - name: fluentbit
           image: "{{ .Values.telemetry.fluentbit.image.repository }}:{{ .Values.telemetry.fluentbit.image.tag }}"
           ports:
@@ -205,7 +187,7 @@ spec:
               mountPath: /var/lib/docker/containers
             - name: telemetry-aws-credentials
               mountPath: /root/.aws
-    {{- end }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

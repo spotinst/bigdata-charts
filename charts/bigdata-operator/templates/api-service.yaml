@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "bigdata-operator.fullname" . }}-api
+  labels:
+  {{- include "bigdata-operator.labels" . | nindent 4 }}
+spec:
+  ports:
+    - name: api
+      port: 80
+      protocol: TCP
+      targetPort: api
+  selector:
+  {{- include "bigdata-operator.selectorLabels" . | nindent 4 }}
+  sessionAffinity: None
+  type: ClusterIP

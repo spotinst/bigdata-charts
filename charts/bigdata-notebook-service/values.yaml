@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: 066597193667.dkr.ecr.us-east-1.amazonaws.com/private/bigdata-notebook-service
   pullPolicy: IfNotPresent
-  tag: 4d9d29b6
+  tag: 01f57ad7
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
@@ -33,10 +33,11 @@ ingress:
 
 egBaseUrl: "/"
 egLogLevel: "DEBUG"
-egListKernels: "true"
+egListKernels: "True"
 
-# Has to be in sync with bigdata-notebook-service-storage chart
-sessionStoragePvcName: bigdata-notebook-service-storage
+# Has to be in sync with bigdata-operator chart
+sessionStorageServiceName: bigdata-operator-api
+
 
 spotBaseUrl: "https://api.spotinst.io"
 
@@ -56,12 +57,13 @@ podLabels:
 
 podSecurityContext:
   fsGroup: 1000
+  runAsNonRoot: true
 
 securityContext: {}
 
 livenessProbe:
-  initialDelaySeconds: 30
-  periodSeconds: 10
+  initialDelaySeconds: 10
+  periodSeconds: 30
   timeoutSeconds: 5
 
 resources:
