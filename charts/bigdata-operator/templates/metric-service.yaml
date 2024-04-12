@@ -15,3 +15,4 @@ spec:
   {{- include "bigdata-operator.selectorLabels" . | nindent 4 }}
   sessionAffinity: None
   type: ClusterIP
+
