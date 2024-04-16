@@ -61,12 +61,13 @@ spec:
                   optional: true
           image: "{{ .Values.thanos.image.repository }}:{{ .Values.thanos.image.tag }}"
           livenessProbe:
-            failureThreshold: 8
-            httpGet:
-              path: /-/healthy
-              port: 10902
-              scheme: HTTP
-            periodSeconds: 30
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - 'sleep 900; exit 1'
+            initialDelaySeconds: 15
+            periodSeconds: 920
           name: thanos-receive
           ports:
             - containerPort: 10901
@@ -93,6 +94,8 @@ spec:
               name: hashring-config
             - name: telemetry-aws-credentials
               mountPath: /var/lib/creds
+            - name: telemetry-aws-credentials
+              mountPath: /home/thanos/.aws
       terminationGracePeriodSeconds: 900
       volumes:
         - emptyDir: {}
