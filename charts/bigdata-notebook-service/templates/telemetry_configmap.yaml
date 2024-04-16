@@ -10,7 +10,7 @@ data:
     [FILTER]
         Name    grep
         Match   kube.*
-        Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ index .Values.podLabels "bigdata.spot.io/component" | quote }}
+        Regex   $kubernetes['labels']['bigdata.spot.io/component'] {{ index .Values.podLabels "bigdata.spot.io/component" }}
 
   metrics-collection.conf: |
     # Configuration for collecting metrics from the notebook service
