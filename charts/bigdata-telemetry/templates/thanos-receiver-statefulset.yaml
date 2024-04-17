@@ -65,8 +65,8 @@ spec:
               command:
               - /bin/sh
               - -c
-              - 'sleep 900; exit 1'
-            initialDelaySeconds: 15
+              - 'exit 1'
+            initialDelaySeconds: 900
             periodSeconds: 920
           name: thanos-receive
           ports:
