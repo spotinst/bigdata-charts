@@ -86,6 +86,9 @@ spec:
             - name: telementry-global-config
               mountPath: /fluent-bit/etc/fluent-bit.conf
               subPath: fluent-bit.conf
+            - name: telementry-global-config
+              mountPath: /fluent-bit/etc/parsers.conf
+              subPath: parsers.conf
             - name: telementry-custom-config
               mountPath: /fluent-bit/etc/custom-filters.conf
               subPath: custom-filters.conf

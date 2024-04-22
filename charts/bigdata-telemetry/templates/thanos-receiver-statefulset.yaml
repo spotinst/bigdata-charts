@@ -66,6 +66,7 @@ spec:
               - /bin/sh
               - -c
               - 'exit 1'
+            failureThreshold: 2
             initialDelaySeconds: 900
             periodSeconds: 920
           name: thanos-receive
