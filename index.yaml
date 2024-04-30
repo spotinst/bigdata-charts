@@ -62,6 +62,21 @@ entries:
     version: 0.1.0
   bigdata-notebook-service:
   - apiVersion: v2
+    appVersion: 0.82.3
+    created: "2024-04-30T09:03:04.331256617Z"
+    description: A Helm chart for the Spot Big Data Notebook Service
+    digest: ff38e777e7982671adf7c6a47d3dbfc65ec7af3b496120583176b1e8e79334c4
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    maintainers:
+    - email: sebastien.maintrot@netapp.com
+      name: impsy
+    name: bigdata-notebook-service
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-service-0.3.0/bigdata-notebook-service-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.82.1
     created: "2024-04-23T09:36:44.539725911Z"
     description: A Helm chart for the Spot Big Data Notebook Service
@@ -1216,6 +1231,27 @@ entries:
     - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-workspace-0.0.1/bigdata-notebook-workspace-0.0.1.tgz
     version: 0.0.1
   bigdata-operator:
+  - apiVersion: v2
+    appVersion: 0.4.11
+    created: "2024-04-30T09:03:04.467221706Z"
+    description: Spot Ocean BigData Operator
+    digest: 85966495c118e4e4db6b3f6eed8a4e047c4f8db6e88bb7af73a51f146fd6141f
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - toolkit
+    - ocean
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-operator
+    sources:
+    - https://github.com/spotinst/bigdata-operator
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-operator-0.4.14/bigdata-operator-0.4.14.tgz
+    version: 0.4.14
   - apiVersion: v2
     appVersion: 0.4.10
     created: "2024-04-17T11:01:44.670306458Z"
@@ -4775,4 +4811,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-23T09:36:44.540356311Z"
+generated: "2024-04-30T09:03:04.467928771Z"
