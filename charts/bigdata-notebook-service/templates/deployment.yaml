@@ -72,7 +72,7 @@ spec:
           - name: EG_NAMESPACE
             value: {{ .Release.Namespace }}
           - name: EG_LIST_KERNELS
-            value: {{ .Values.egListKernels }}
+            value: {{ .Values.egListKernels | quote }}
           - name: EG_CULL_IDLE_TIMEOUT
             value: {{ .Values.kernel.cullIdleTimeout | quote }}
           - name: EG_LOG_LEVEL
