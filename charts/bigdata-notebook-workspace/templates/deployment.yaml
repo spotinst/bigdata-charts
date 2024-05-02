@@ -52,7 +52,7 @@ spec:
             - containerPort: {{ .Values.containerPort.port }}
               name: {{ .Values.containerPort.name }}
           command:
-            - start-notebook.sh
+            - start-notebook.py
           args:
           {{- range $key, $value := .Values.server }}
             - --ServerApp.{{ $key | snakecase }}={{$value}}
