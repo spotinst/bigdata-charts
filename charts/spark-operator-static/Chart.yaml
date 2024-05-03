@@ -1,8 +1,8 @@
 apiVersion: v2
 description: Spark Operator (static part)
 name: spark-operator-static
-version: 0.1.6
-appVersion: 0.1.6
+version: 0.1.7
+appVersion: 0.1.7
 maintainers:
   - name: thorsteinnth
     email: thorsteinn.sigurdsson@netapp.com
