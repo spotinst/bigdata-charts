@@ -2,7 +2,7 @@
 # The objective is to prevent pods with higher priority to evict them.
 # We're not sure yet whether this will work.
 # Let's test this when we implement priorities!
-{{- if semverCompare ">1.21-0" .Capabilities.KubeVersion.Version }}
+{{- if semverCompare ">1.21.0" .Capabilities.KubeVersion.Version }}
 apiVersion: policy/v1
 {{- else }}
 apiVersion: policy/v1beta1
