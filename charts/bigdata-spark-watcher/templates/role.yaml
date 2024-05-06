@@ -27,6 +27,7 @@ rules:
       - "configmaps"
     resourceNames:
       - "spotinst-kubernetes-cluster-controller-config"
+      - "ocean-controller-ocean-kubernetes-controller"
     verbs:
       - get
   - apiGroups:
@@ -35,6 +36,7 @@ rules:
       - "secrets"
     resourceNames:
       - "spotinst-kubernetes-cluster-controller"
+      - "ocean-controller-ocean-kubernetes-controller"
       - "spot-bigdata-log-collector-creds"
     verbs:
       - get
