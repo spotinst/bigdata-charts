@@ -15,7 +15,7 @@ image:
   repository: public.ecr.aws/ocean-spark/bigdata-notebook
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: lab-4.0.10-ofas-d35201c
+  tag: lab-4.1.8-ofas-704f999
 
 imagePullSecrets:
   - name: spot-bigdata-image-pull
