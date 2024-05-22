@@ -53,6 +53,8 @@ spec:
               value: {{ .Chart.Version | quote }}
             - name: OCEAN_CONTROLLER_NAMESPACE
               value: {{ .Values.oceanControllerNamespace }}
+            - name: USE_EMBEDDED_CHARTS
+              value: {{ .Values.useEmbeddedCharts }}
             - name: BIGDATA_OPERATOR_NAMESPACE
               valueFrom:
                 fieldRef:
