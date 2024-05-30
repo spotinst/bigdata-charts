@@ -55,11 +55,10 @@ podLabels:
   spotinst.io/restrict-scale-down: "true"
   bigdata.spot.io/component: "bigdata-notebook-service"
 
-podSecurityContext:
-  fsGroup: 1000
-  runAsNonRoot: true
+podSecurityContext: {}
 
-securityContext: {}
+securityContext:
+  runAsNonRoot: true
 
 livenessProbe:
   initialDelaySeconds: 10
@@ -79,7 +78,7 @@ telemetry:
   fluentbit:
     image:
       repository: public.ecr.aws/ocean-spark/fluent-bit
-      tag: 2.0.10
+      tag: 3.0.5
 
 nodeSelector: {}
 

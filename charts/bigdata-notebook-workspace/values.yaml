@@ -35,7 +35,7 @@ telemetry:
   fluentbit:
     image:
       repository: public.ecr.aws/ocean-spark/fluent-bit
-      tag: 2.0.10
+      tag: 3.0.5
 
 podLabels:
   bigdata.spot.io/component: "bigdata-notebook-workspace"

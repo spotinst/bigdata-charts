@@ -56,7 +56,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
     fluentbit:
       image:
         repository: public.ecr.aws/ocean-spark/fluent-bit
-        tag: 2.0.10
+        tag: 3.0.5
 
   tolerations:
   - key: "bigdata.spot.io/unschedulable"

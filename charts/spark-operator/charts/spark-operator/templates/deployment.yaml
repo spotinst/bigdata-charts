@@ -137,6 +137,8 @@ spec:
       {{- if .Values.telemetry.enabled }}
       - name: fluentbit
         image: "{{ .Values.telemetry.fluentbit.image.repository }}:{{ .Values.telemetry.fluentbit.image.tag }}"
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
         ports:
           - name: http
             containerPort: 2020
@@ -165,16 +167,16 @@ spec:
         resources: {}
         volumeMounts:
           - name: telementry-global-config
-            mountPath: /fluent-bit/etc/fluent-bit.conf
+            mountPath: /opt/bitnami/fluent-bit/conf/fluent-bit.conf
             subPath: fluent-bit.conf
           - name: telementry-custom-config
-            mountPath: /fluent-bit/etc/custom-filters.conf
+            mountPath: /opt/bitnami/fluent-bit/conf/custom-filters.conf
             subPath: custom-filters.conf
           - name: telementry-global-config
-            mountPath: /fluent-bit/etc/parsers.conf
+            mountPath: /opt/bitnami/fluent-bit/conf/parsers.conf
             subPath: parsers.conf
           - name: telementry-custom-config
-            mountPath: /fluent-bit/etc/metrics-collection.conf
+            mountPath: /opt/bitnami/fluent-bit/conf/metrics-collection.conf
             subPath: metrics-collection.conf
           - name: varlog
             readOnly: true
@@ -183,7 +185,7 @@ spec:
             readOnly: true
             mountPath: /var/lib/docker/containers
           - name: telemetry-aws-credentials
-            mountPath: /root/.aws
+            mountPath: /.aws
       {{- end }}
       {{- if or .Values.webhook.enable (ne (len .Values.volumes) 0) .Values.telemetry.enabled }}
       volumes:
