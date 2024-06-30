@@ -69,6 +69,8 @@ spec:
                   name: spot-ofas-cluster-info
                   key: proxyUrl
                   optional: true
+            - name: CLUSTER_INFO_MAX_AGE
+              value: {{ .Values.clusterInfoMaxAge }}
           resources:
       {{- toYaml .Values.resources | nindent 12 }}
       {{- if .Values.telemetry.enabled }}
