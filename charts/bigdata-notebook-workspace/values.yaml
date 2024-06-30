@@ -31,7 +31,7 @@ gatewayClient:
   secretKeyToken: token
 
 telemetry:
-  enabled: false
+  enabled: true
   fluentbit:
     image:
       repository: public.ecr.aws/ocean-spark/fluent-bit
