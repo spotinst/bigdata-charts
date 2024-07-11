@@ -2,7 +2,7 @@ spark-operator:  # This section controls the behavior of the spark operator sub-
   sparkJobNamespace: ""  # Empty means manage Spark apps in all namespaces
   image:
     repository: public.ecr.aws/ocean-spark/spark-operator
-    tag: 195ccf4-gen20
+    tag: 848e664-gen23-rc11
     pullPolicy: IfNotPresent
   imagePullSecrets: []
 
