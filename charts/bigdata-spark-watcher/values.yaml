@@ -53,7 +53,7 @@ logLevel: debug
 
 killSyncerEnabled: true
 ghostSyncerEnabled: true
-k8sEventLogCollectorEnabled: false
+k8sEventLogCollectorEnabled: true
 
 serviceAccount:
   create: true
