@@ -11,7 +11,7 @@ image:
   repository: public.ecr.aws/f4k1p1n4/bigdata-operator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 0.4.17-a2ce3ec6
+  tag: 0.4.18-acda714b
 
 imagePullSecrets: []
 
@@ -55,10 +55,10 @@ telemetry:
 resources:
   limits:
     cpu: 500m
-    memory: 500Mi
+    memory: 1000Mi
   requests:
     cpu: 500m
-    memory: 500Mi
+    memory: 1000Mi
 
 nodeSelector: {}
 
