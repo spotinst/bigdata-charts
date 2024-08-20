@@ -60,10 +60,33 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- with .Values.envVars }}
           env:
-          {{- toYaml . | nindent 12 }}
-          {{- end }}
+            - name: SPOTINST_BASE_URL
+              value: {{ .Values.spotBaseUrl }}
+            {{- if .Values.k8sEventLogCollectorEnabled }}
+            - name: APP_SYNC_PERIOD
+              value: {{ .Values.k8SEventLogCollection.appSyncPeriod }}
+            - name: APP_SYNC_KILL_GRACE_PERIOD
+              value: {{ .Values.k8SEventLogCollection.appSyncKillGracePeriod }}
+            - name: APP_SYNC_GHOST_GRACE_PERIOD
+              value: {{ .Values.k8SEventLogCollection.appSyncKillGhostGracePeriod }}
+            - name: APP_SYNC_REVERSE_GHOST_GRACE_PERIOD
+              value: {{ .Values.k8SEventLogCollection.appSyncReverseGhostGracePeriod }}
+            - name: KUBE_EVENT_LOG_COLLECTION_BUCKET_PREFIX
+              value: {{ .Values.k8SEventLogCollection.bucketPrefix }}
+            - name: AWS_CREDENTIALS_FILE
+              value: /creds/aws
+            - name: GCP_CREDENTIALS_FILE
+              value: /creds/gcp
+            - name: AZURE_CREDENTIALS_FILE
+              value: /creds/azure
+            - name: CREDS_REFRESH_INTERVAL
+              value: 2m
+            - name: SPARK_APP_FAILED_EXECUTOR_LIMIT
+              value: {{ .Values.k8SEventLogCollection.sparkAppFailedExecutorLimit }}
+            - name: SPARK_APP_TERMINATED_CRITICAL_SIDECAR_GRACE_PERIOD
+              value: {{ .Values.k8SEventLogCollection.sparkAppTerminatedCriticalSidecarGracePeriod }}
+            {{- end }}
             - name: HTTP_PROXY
               valueFrom:
                 configMapKeyRef:

@@ -16,31 +16,7 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
-envVars:
-  - name: SPOTINST_BASE_URL
-    value: https://api.spotinst.io
-  - name: APP_SYNC_PERIOD
-    value: 5m
-  - name: APP_SYNC_KILL_GRACE_PERIOD
-    value: 5m
-  - name: APP_SYNC_GHOST_GRACE_PERIOD
-    value: 6m
-  - name: APP_SYNC_REVERSE_GHOST_GRACE_PERIOD
-    value: 30s
-  - name: KUBE_EVENT_LOG_COLLECTION_BUCKET_PREFIX
-    value: "spot-bigdata-logcollector"
-  - name: AWS_CREDENTIALS_FILE
-    value: /creds/aws
-  - name: GCP_CREDENTIALS_FILE
-    value: /creds/gcp
-  - name: AZURE_CREDENTIALS_FILE
-    value: /creds/azure
-  - name: CREDS_REFRESH_INTERVAL
-    value: 2m
-  - name: SPARK_APP_FAILED_EXECUTOR_LIMIT
-    value: "200"
-  - name: SPARK_APP_TERMINATED_CRITICAL_SIDECAR_GRACE_PERIOD
-    value: 3m
+spotBaseUrl: "https://api.spotinst.io"
 
 # Spark Application watch label - used to select sparkApplication custom resources
 saWatchLabel: ""
@@ -91,6 +67,17 @@ telemetry:
     image:
       repository: public.ecr.aws/ocean-spark/fluent-bit
       tag: 3.0.5
+
+k8SEventLogCollection:
+  # enabled: true
+  appSyncPeriod: 5m
+  appSyncKillGracePeriod: 5m
+  appSyncKillGhostGracePeriod: 5m
+  appSyncReverseGhostGracePeriod: 30s
+  bucketPrefix: "spot-bigdata-logcollector"
+  sparkAppFailedExecutorLimit: '200'
+  sparkAppTerminatedCriticalSidecarGracePeriod: 3m
+
 
 nodeSelector: {}
 
