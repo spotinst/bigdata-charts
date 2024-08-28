@@ -1,0 +1,35 @@
+name: Branch Protection Change Alert
+
+on:
+  branch_protection_rule:
+    types: [created, edited, deleted]
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set event details
+      id: event_details
+      run: |
+        echo "::set-output name=event_type::${{ github.event.action }}"
+        echo "::set-output name=branch::${{ github.event.rule.pattern }}"
+        echo "::set-output name=actor::${{ github.actor }}"
+        echo "::set-output name=actor_url::https://github.com/${{ github.actor }}"
+
+    - name: Notify the Team on Slack
+      uses: ravsamhq/notify-slack-action@master
+      if: always()
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEVOPS_CHANNEL_WEBHOOK }}
+      with:
+        status: ${{ job.status }}
+        notify_when: "success"
+        mention_groups: "S07C4DA4U5V"
+        notification_title: 'Branch Protection Rule Change'
+        message_format: |
+          ${{ steps.event_details.outputs.event_type }} branch protection rule for `${{ steps.event_details.outputs.branch }}` in ${{ github.repository }}
+          Changed by: <${{ steps.event_details.outputs.actor_url }}|${{ steps.event_details.outputs.actor }}>
+        footer: 'Ocean Spark GitHub Branch Protection Monitor'
