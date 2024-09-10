@@ -8,7 +8,7 @@ _Description of the work contained in this PR_
 
 ## Demo
 
-_Please add a recording/screenshot of the feature/bug fix in work_
+_Please add a recording/screenshot of the feature/bug fix in action_
 
 ## Checklist
 - [ ] I have added a Jira ticket link
