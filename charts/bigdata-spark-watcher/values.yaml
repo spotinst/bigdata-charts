@@ -29,7 +29,17 @@ logLevel: debug
 
 killSyncerEnabled: true
 ghostSyncerEnabled: true
+
+appSyncKillGracePeriod: 5m
+appSyncKillGhostGracePeriod: 5m
+appSyncReverseGhostGracePeriod: 30s
+appSyncPeriod: 5m
+sparkAppFailedExecutorLimit: 200
+sparkAppTerminatedCriticalSidecarGracePeriod: 3m
+
 k8sEventLogCollectorEnabled: true
+k8sEventLogCollectorBucketPrefix: "spot-bigdata-logcollector"
+k8sEventLogCollectorEnvironment: ""
 
 serviceAccount:
   create: true
@@ -67,17 +77,6 @@ telemetry:
     image:
       repository: public.ecr.aws/ocean-spark/fluent-bit
       tag: 3.0.5
-
-k8SEventLogCollection:
-  # enabled: true
-  appSyncPeriod: 5m
-  appSyncKillGracePeriod: 5m
-  appSyncKillGhostGracePeriod: 5m
-  appSyncReverseGhostGracePeriod: 30s
-  bucketPrefix: "spot-bigdata-logcollector"
-  sparkAppFailedExecutorLimit: '200'
-  sparkAppTerminatedCriticalSidecarGracePeriod: 3m
-
 
 nodeSelector: {}
 
