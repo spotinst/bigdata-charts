@@ -72,9 +72,9 @@ spec:
             - name: APP_SYNC_REVERSE_GHOST_GRACE_PERIOD
               value: {{ .Values.appSyncReverseGhostGracePeriod }}
             - name: KUBE_EVENT_LOG_COLLECTION_BUCKET_PREFIX
-              value: {{ .Values.k8sEventLogCollectorBucketPrefix }}
+              value: {{ .Values.k8sEventLogCollector.bucketPrefix }}
             - name: KUBE_EVENT_LOG_COLLECTION_ENVIRONMENT
-              value: {{ .Values.k8sEventLogCollectorEnvironment }}
+              value: {{ .Values.k8sEventLogCollector.environment }}
             - name: AWS_CREDENTIALS_FILE
               value: /creds/aws
             - name: GCP_CREDENTIALS_FILE

@@ -38,8 +38,9 @@ sparkAppFailedExecutorLimit: 200
 sparkAppTerminatedCriticalSidecarGracePeriod: 3m
 
 k8sEventLogCollectorEnabled: true
-k8sEventLogCollectorBucketPrefix: "spot-bigdata-logcollector"
-k8sEventLogCollectorEnvironment: ""
+k8sEventLogCollector:
+  bucketPrefix: "spot-bigdata-logcollector"
+  environment: ""
 
 serviceAccount:
   create: true
