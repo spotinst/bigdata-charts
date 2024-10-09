@@ -60,6 +60,7 @@ spec:
           {{- end}}
             - --GatewayWebSocketConnection.kernel_ws_protocol=''
             - --GatewayClient.gateway_token_renewer_class=jupyter_server.gateway.spottokenrenewer.SpotTokenRenewer
+            - --LabServerApp.notebook_starts_kernel=False
           env:
           {{- if .Values.pvc.create }}
           - name: "CHOWN_HOME"
