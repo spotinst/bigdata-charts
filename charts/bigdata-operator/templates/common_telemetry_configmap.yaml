@@ -1,4 +1,3 @@
-{{- if .Values.telemetry.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -57,4 +56,3 @@ data:
         use_put_object               On
         total_file_size              5M
         upload_timeout               5m
-{{- end }}

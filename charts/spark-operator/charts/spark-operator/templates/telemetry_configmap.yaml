@@ -1,4 +1,3 @@
-{{- if .Values.telemetry.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -33,4 +32,3 @@ data:
       tls.verify           off
       Workers              1
     {{- end }}
-{{- end }}
