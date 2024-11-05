@@ -58,8 +58,9 @@ volume:
   mountPath: /home/jovyan
 
 podSecurityContext:
-  runAsUser: 0
-  fsGroup: 0
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 100
 
 containerPort:
   port: 8888
