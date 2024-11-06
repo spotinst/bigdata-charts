@@ -1150,6 +1150,26 @@ entries:
   bigdata-notebook-workspace:
   - apiVersion: v2
     appVersion: 4.1.8-ofas-31799c9
+    created: "2024-11-06T10:37:34.347649706Z"
+    description: A Helm chart for the Spot Big Data Notebook Workspace
+    digest: afc3fd91b23ab31b71e7ef4f7b484a0f54af4783360f6d165be570ffcc5c889c
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - spark
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-notebook-workspace
+    sources:
+    - https://github.com/spotinst/bigdata-operator
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-notebook-workspace-0.0.17/bigdata-notebook-workspace-0.0.17.tgz
+    version: 0.0.17
+  - apiVersion: v2
+    appVersion: 4.1.8-ofas-31799c9
     created: "2024-11-04T18:17:44.235595056Z"
     description: A Helm chart for the Spot Big Data Notebook Workspace
     digest: 2f7db3de799feb887e41b114927656953e2270a0990aa5710ffbc20a608e6f92
@@ -5624,4 +5644,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-04T18:17:44.641248913Z"
+generated: "2024-11-06T10:37:34.348205163Z"
