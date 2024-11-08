@@ -10,7 +10,7 @@ server:
   token: ''
   ip: '0.0.0.0'
   allowOrigin: '*'
-  terminals_enabled: False
+  terminals_enabled: false
 
 image:
   repository: public.ecr.aws/ocean-spark/bigdata-notebook
