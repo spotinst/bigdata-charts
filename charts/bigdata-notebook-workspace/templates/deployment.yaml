@@ -69,11 +69,6 @@ spec:
           {{- if .Values.gatewayClient.enabled }}
           - name: "JUPYTER_GATEWAY_URL"
             value: {{ .Values.gatewayClient.url }}
-          - name: "JUPYTER_GATEWAY_AUTH_TOKEN"
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Release.Name }}
-                key: {{ .Values.gatewayClient.secretKeyToken }}
           - name: "JUPYTER_GATEWAY_REQUEST_TIMEOUT"
             value: {{ .Values.gatewayClient.requestTimeout | quote }}
           - name: "JUPYTER_GATEWAY_HEADERS"
