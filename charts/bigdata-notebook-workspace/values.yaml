@@ -28,7 +28,6 @@ gatewayClient:
   url: "http://bigdata-notebook-service.spot-system.svc.cluster.local"
   requestTimeout: 600
   headers: '{"Content-Type": "application/json"}'
-  secretKeyToken: token
 
 telemetry:
   enabled: false
