@@ -1,0 +1,40 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "bigdata-notebook-workspace.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "bigdata-notebook-workspace.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "bigdata-notebook-workspace.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "bigdata-notebook-workspace.fullname" . }}-pod-watcher
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "bigdata-notebook-workspace.fullname" . }}-pod-watcher
+subjects:
+- kind: ServiceAccount
+  name: {{ include "bigdata-notebook-workspace.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "bigdata-notebook-workspace.fullname" . }}-killer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "bigdata-notebook-workspace.fullname" . }}-killer
+subjects:
+- kind: ServiceAccount
+  name: {{ include "bigdata-notebook-workspace.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}

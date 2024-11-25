@@ -51,14 +51,8 @@ spec:
           ports:
             - containerPort: {{ .Values.containerPort.port }}
               name: {{ .Values.containerPort.name }}
-          command:
-            - start-notebook.py
-          args:
-          {{- range $key, $value := .Values.server }}
-            - --ServerApp.{{ $key | snakecase }}={{$value}}
-          {{- end}}
-            - --GatewayWebSocketConnection.kernel_ws_protocol=''
-            - --GatewayClient.gateway_token_renewer_class=jupyter_server.gateway.spottokenrenewer.SpotTokenRenewer
+            - containerPort: 8877
+              name: http-response
           env:
           {{- if .Values.pvc.create }}
           - name: "CHOWN_HOME"
@@ -67,19 +61,17 @@ spec:
             value: "-R"
           {{- end }}
           {{- if .Values.gatewayClient.enabled }}
-          - name: "JUPYTER_GATEWAY_URL"
-            value: {{ .Values.gatewayClient.url }}
-          - name: "JUPYTER_GATEWAY_AUTH_TOKEN"
+          - name: "SPOTINST_AUTH_TOKEN"
             valueFrom:
               secretKeyRef:
                 name: {{ .Release.Name }}
                 key: {{ .Values.gatewayClient.secretKeyToken }}
-          - name: "JUPYTER_GATEWAY_REQUEST_TIMEOUT"
-            value: {{ .Values.gatewayClient.requestTimeout | quote }}
-          - name: "JUPYTER_GATEWAY_HEADERS"
-            value: {{ .Values.gatewayClient.headers | quote }}
           {{- end }}
           {{- if .Values.pvc.create }}
+          - name: GP_OFAS_WKSP_ID
+            value: {{ .Release.Name }}
+          - name: GP_OFAS_CLUSTER_ID
+            value: "osc-cec441dc"
           volumeMounts:
             - name: {{ .Values.volume.name }}
               mountPath: {{ .Values.volume.mountPath }}

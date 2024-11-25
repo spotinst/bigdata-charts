@@ -20,5 +20,10 @@ spec:
       targetPort: {{ .Values.containerPort.name }}
       protocol: TCP
       name: {{ .Values.containerPort.name }}
+     # The  port on which Gateway Provisioners will receive kernel connection info responses.
+    - name: http-response
+      port: 8877
+      targetPort: 8877
+      protocol: TCP
   selector:
     {{- include "bigdata-notebook-workspace.selectorLabels" . | nindent 4 }}

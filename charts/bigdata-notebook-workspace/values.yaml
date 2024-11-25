@@ -12,13 +12,13 @@ server:
   allowOrigin: '*'
 
 image:
-  repository: public.ecr.aws/ocean-spark/bigdata-notebook
-  pullPolicy: IfNotPresent
+  repository: 598800841386.dkr.ecr.us-east-2.amazonaws.com/dev/test-images
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: lab-4.1.8-ofas-31799c9
+  tag: bigdata-notebook-workspace-bigdata-notebook-workspace-gateway-provisioner
 
 imagePullSecrets:
-  - name: spot-bigdata-image-pull
+  - name: spot-bigdata-image-pull-dev
 
 nameOverride: ""
 fullnameOverride: ""
@@ -44,9 +44,9 @@ sharedLabels: {}
 sharedAnnotations: {}
 
 serviceAccount:
-  create: false
+  create: true
   annotations: {}
-  name: ""
+  name: bigdata-notebook-workspace
 
 pvc:
   create: true
