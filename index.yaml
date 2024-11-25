@@ -1486,6 +1486,27 @@ entries:
   bigdata-operator:
   - apiVersion: v2
     appVersion: 0.5.0
+    created: "2024-11-25T13:56:22.680572769Z"
+    description: Spot Ocean BigData Operator
+    digest: 60e988b530b629ac1bba5ace0f5d4a6e82d423d3de7cc719722a97f03906dd44
+    home: https://github.com/spotinst/charts
+    icon: https://docs.spot.io/_media/images/spot_mark.png
+    keywords:
+    - spot
+    - toolkit
+    - ocean
+    maintainers:
+    - email: thorsteinn.sigurdsson@netapp.com
+      name: thorsteinnth
+    name: bigdata-operator
+    sources:
+    - https://github.com/spotinst/bigdata-operator
+    type: application
+    urls:
+    - https://github.com/spotinst/bigdata-charts/releases/download/bigdata-operator-0.5.1/bigdata-operator-0.5.1.tgz
+    version: 0.5.1
+  - apiVersion: v2
+    appVersion: 0.5.0
     created: "2024-11-14T15:19:03.701157222Z"
     description: Spot Ocean BigData Operator
     digest: 4b1b55dbb31148f6854f6f5d3c5ea4eeb43e586faf7dbde53d7b341abd01d553
@@ -5721,4 +5742,4 @@ entries:
     urls:
     - https://github.com/spotinst/bigdata-charts/releases/download/spark-operator-static-0.1.0/spark-operator-static-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-21T09:35:59.550702596Z"
+generated: "2024-11-25T13:56:22.68119877Z"
