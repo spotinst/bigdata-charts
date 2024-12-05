@@ -1,122 +1,118 @@
-spark-operator:  # This section controls the behavior of the spark operator sub-chart
-  sparkJobNamespace: ""  # Empty means manage Spark apps in all namespaces
+spark-operator:
   image:
-    repository: public.ecr.aws/ocean-spark/spark-operator
-    tag: a4fbb58-gen23-rc11
-    pullPolicy: IfNotPresent
-  imagePullSecrets: []
+    registry: public.ecr.aws
+    repository: ocean-spark/spark-operator
+    tag: 251fdb1
 
-  # Required on EKS if the cluster has a custom CNI (e.g. Calico),
-  # then the control plane (managed by AWS) can't communicate with
-  # pods' IP CIDR and webhooks don't work.
-  hostNetwork: false
+  spark:
+    jobNamespaces: [""]
+    serviceAccount:
+      create: false
+    rbac:
+      create: false
 
-  workqueue:
-    tokenRefillRate: 50
-    tokenBucketSize: 500
-    maxDelay:
-      enabled: false
-      value: 6h
-
-  disableExecutorReporting: false
-
-  securityContext:
-    runAsNonRoot: true
-
-  webhook:
-    enable: true
-    # If hostNetwork is set to true it is probably a good idea to change this (e.g. 25554)
-    port: 443
-    jobTTLSecondsAfterFinished: 60
-
-  pprof:
-    enable: true
-    port: 6060
-    portName: pprof
-
-  # This just adds a label/annotation to turn off istio sidecar injection in the webhook jobs
-  istio:
-    enabled: true
-
-  serviceAccounts:
-    spark:
-      create: false  # We create it ourselves so that we can add image pull secrets (static part)
-
-  controllerThreads: 20
-  uiService:
-    enable: false
-
-  resources:
-    requests:
-      cpu: 1000m
-      memory: 1000Mi
-
-  telemetry:
-    enabled: false
-    fluentbit:
-      image:
-        repository: public.ecr.aws/ocean-spark/fluent-bit
-        tag: 3.0.5
-
-  tolerations:
-  - key: "bigdata.spot.io/unschedulable"
-    operator: "Equal"
-    value: "ocean-spark-system"
-    effect: "NoSchedule"
-  - key: "kubernetes.azure.com/scalesetpriority"
-    operator: "Equal"
-    value: "spot"
-    effect: "NoSchedule"
-
-  rbac:
-    createClusterRole: true  # This one is part of the blue/green
-    createRole: false        # This one is static
-
-  podLabels:
-    bigdata.spot.io/component: "spark-operator"
-
-  jobAffinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
+  controller:
+    workers: 20
+    uiService:
+      enable: false
+    pprof:
+      enable: true
+    labels:
+      bigdata.spot.io/component: "spark-operator-controller"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
               - key: spotinst.io/ocean-vng-id
                 operator: Exists
               - key: bigdata.spot.io/vng
                 operator: NotIn
                 values:
                 - ocean-spark
-    podAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          podAffinityTerm:
-            labelSelector:
-              matchExpressions:
-                - key: bigdata.spot.io/component
-                  operator: Exists
-            topologyKey: "kubernetes.io/hostname"
+      podAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: bigdata.spot.io/component
+                    operator: Exists
+              topologyKey: "kubernetes.io/hostname"
+    toleration:
+      - key: "bigdata.spot.io/unschedulable"
+        operator: "Equal"
+        value: "ocean-spark-system"
+        effect: "NoSchedule"
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
+    volumes:
+      - name: telementry-global-config
+        configMap:
+          name: bigdata-common-telemetry-fluentbit-cm
+      - name: telementry-custom-config
+        configMap:
+          name: spark-operator-static-telemetry-cm
+      - name: telemetry-aws-credentials
+        secret:
+          secretName: spot-bigdata-telemetry-creds
+      - name: varlog
+        hostPath:
+          path: /var/log/
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
 
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: spotinst.io/node-lifecycle
-            operator: In
-            values:
-            - od
-          - key: spotinst.io/ocean-vng-id
-            operator: Exists
-          - key: bigdata.spot.io/vng
-            operator: NotIn
-            values:
-            - ocean-spark
-    podAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: bigdata.spot.io/component
-              operator: Exists
-          topologyKey: "kubernetes.io/hostname"
+  webhook:
+    labels:
+      bigdata.spot.io/component: "spark-operator-webhook"
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+              - key: spotinst.io/ocean-vng-id
+                operator: Exists
+              - key: bigdata.spot.io/vng
+                operator: NotIn
+                values:
+                - ocean-spark
+      podAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: bigdata.spot.io/component
+                    operator: Exists
+              topologyKey: "kubernetes.io/hostname"
+    toleration:
+      - key: "bigdata.spot.io/unschedulable"
+        operator: "Equal"
+        value: "ocean-spark-system"
+        effect: "NoSchedule"
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
+    volumes:
+      - name: telementry-global-config
+        configMap:
+          name: bigdata-common-telemetry-fluentbit-cm
+      - name: telementry-custom-config
+        configMap:
+          name: spark-operator-static-telemetry-cm
+      - name: telemetry-aws-credentials
+        secret:
+          secretName: spot-bigdata-telemetry-creds
+      - name: varlog
+        hostPath:
+          path: /var/log/
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+
+  telemetry:
+    enabled: true
