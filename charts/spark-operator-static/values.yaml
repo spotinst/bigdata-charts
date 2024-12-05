@@ -12,3 +12,5 @@ sparkDriverServiceAccount:
 sparkPodsPreemptionPolicy: Never
 
 createPriorityClasses: true
+
+manageCRDs: false
