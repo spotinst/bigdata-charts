@@ -75,6 +75,20 @@ spec:
               value: {{ .Values.k8sEventLogCollector.bucketPrefix }}
             - name: KUBE_EVENT_LOG_COLLECTION_ENVIRONMENT
               value: {{ .Values.k8sEventLogCollector.environment }}
+            {{- if or .Values.stuckAppCleanupEnabled .Values.stuckDriverCleanupEnabled }}
+            - name: WATCHER_STUCK_SPARK_APP_CLEANUP_ENABLED
+              value: {{ .Values.stuckAppCleanupEnabled | quote }}
+            - name: WATCHER_STUCK_DRIVER_CLEANUP_ENABLED
+              value: {{ .Values.stuckDriverCleanupEnabled | quote }}
+            {{- with .Values.stuckCleanup }}
+            - name: WATCHER_STUCK_TTL
+              value: {{ .gracePeriod }}
+            - name: WATCHER_STUCK_TTL_LEEWAY
+              value: {{ .leeway }}
+            - name: WATCHER_STUCK_CHECK_FREQUENCY
+              value: {{ .period }}
+            {{- end }}
+            {{- end }}
             - name: AWS_CREDENTIALS_FILE
               value: /creds/aws
             - name: GCP_CREDENTIALS_FILE
