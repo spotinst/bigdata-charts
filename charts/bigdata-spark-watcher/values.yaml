@@ -42,6 +42,15 @@ k8sEventLogCollector:
   bucketPrefix: "spot-bigdata-logcollector"
   environment: ""
 
+# cleans up stuck failed apps without termination times
+stuckAppCleanupEnabled: true
+# cleans up orphaned drivers
+stuckDriverCleanupEnabled: true
+stuckCleanup:
+  gracePeriod: 10m
+  leeway: 2m
+  period: 2m
+
 serviceAccount:
   create: true
   annotations: {}
