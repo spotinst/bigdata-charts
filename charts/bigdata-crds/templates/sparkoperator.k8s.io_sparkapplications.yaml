@@ -1,0 +1,2 @@
+{{- $crd := (.Files.Get "crds/sparkoperator.k8s.io_sparkapplications.yaml") }}
+{{ $crd | nindent 0 }}
