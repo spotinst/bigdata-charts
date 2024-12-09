@@ -1,7 +1,0 @@
-{{ if .Values.manageCRDs }}
-{{- $crd := (.Files.Get "crds/sparkoperator.k8s.io_sparkapplications.yaml") }}
-{{ $crd | nindent 0 }}
----
-{{- $crd := (.Files.Get "crds/sparkoperator.k8s.io_scheduledsparkapplications.yaml") }}
-{{ $crd | nindent 0 }}
-{{- end }}

@@ -8,4 +8,4 @@ spark-operator-v2:
 	rm -rf ./charts/spark-operator-v2/charts/spark-operator
 	mv ./spark-on-k8s-operator-ocean-spark-v2/charts/spark-operator-chart ./charts/spark-operator-v2/charts/spark-operator
 	rm -rf spark-on-k8s-operator-ocean-spark-v2
-	cp -r ./charts/spark-operator-v2/charts/spark-operator/crds ./charts/spark-operator-static
+	cp -r ./charts/spark-operator-v2/charts/spark-operator/crds ./charts/bigdata-crds
