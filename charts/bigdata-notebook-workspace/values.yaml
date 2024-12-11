@@ -49,6 +49,7 @@ serviceAccount:
 
 pvc:
   create: true
+  storageClassName: ""
   requests:
     storage: 10Gi
 
