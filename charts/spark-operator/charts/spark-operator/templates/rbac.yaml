@@ -57,6 +57,7 @@ rules:
   - get
   - delete
   - update
+  - patch
 # required for leader-election (high-availability)
 - apiGroups:
   - "coordination.k8s.io"
