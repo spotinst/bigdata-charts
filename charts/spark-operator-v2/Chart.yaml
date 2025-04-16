@@ -1,0 +1,12 @@
+apiVersion: v2
+name: spark-operator-v2
+description: A Helm chart for Spark on Kubernetes operator.
+version: 2.0.2
+appVersion: 2.0.2
+home: https://github.com/kubeflow/spark-operator
+maintainers:
+  - name: thorsteinnth
+    email: thorsteinn.sigurdsson@netapp.com
+dependencies:
+  - name: spark-operator
+    version: "2.0.2"
